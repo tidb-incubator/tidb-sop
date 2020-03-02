@@ -21,3 +21,5 @@ mkdir -p /tmp/tidb_update_3.0/group_vars
 
 登录 Grafana 页面 [http://{grafana-ip}:{grafana-port}](http://{grafana-ip}:{grafana-port}) 用户名和密码：inventory.ini 有配置 查看 overview 页面， Overview 页面的 Services Port Status 状态是否均为绿色的 up 状态； ![](../.gitbook/assets/15831579646252.jpg)
 
+![](../.gitbook/assets/image.png)
+
