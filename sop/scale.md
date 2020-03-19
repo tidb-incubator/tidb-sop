@@ -29,9 +29,11 @@ PD 通过 Raft 协议保证数据的安全性。Raft 的 leader server 负责处
 
 1. 检查当前集群状态，各个组件正常运行
 2. 检查扩容组件需要使用的端口是否被占用(参考命令：netstat -ntlp | grep {PORT})
+
  * TiDB 组件默认使用 `tidb_port=4000,tidb_status_port=10080`
  * TiKV 组件默认使用 `tikv_port_20160,tikv_status_port=20180`
  * PD 组件默认使用 `pd_client_port=2379,pd_peer_port=2380`
+
 3. 如果扩容节点是全新的服务器，扩容之前确认扩容节点防火墙是否关闭，与原集群端口访问正常，否则扩容过程中可能会因为通讯不成功导致扩容失败。
 4. 扩容之前确认 swap 永久关闭，避免服务器重启会自动开启 swap
 
@@ -43,6 +45,7 @@ $ swapoff -a
 ```
 
 5. 如果扩容节点是全新的机器，需要参考官方文档：[使用 TiDB Ansible 部署 TiDB 集群](https://pingcap.com/docs-cn/dev/how-to/deploy/orchestrated/ansible/)，检查下述步骤是否已完成
+
  * 配置新扩容节点与中控机的 SSH 免密
  * 在部署目标机器上安装 NTP 服务
  * 在部署目标机器上配置 CPUfreq 调节器模式
@@ -379,7 +382,7 @@ $ /home/tidb/tidb-ansible/resources/bin/pd-ctl -u "http://172.16.10.1:2379" -d m
 ### 6.2 TiDB 缩容操作回退
 TiDB 组件缩容过程中如果有异常或者想取消缩容，可以按照扩容步骤重新操作即可。 
 
-###6.3 TiKV 缩容操作回退
+### 6.3 TiKV 缩容操作回退
 #### 6.3.1 TiKV 节点下线处于 offline 状态，如何重新上线 TiKV 节点
 可以通过 pd api 接口修改 Store 的状态：
 
@@ -403,6 +406,7 @@ PD 组件缩容过程中如果有异常或者想取消缩容，可以按照扩�
 
 ## 七、操作后 Check 项
 1. 扩缩容操作完成后，检查集群状态
+
  * 通过监控 Overview 面板检查所有节点状态都是 health 的
  * 通过 pd-ctl 查看 member 节点状态为 health，且有 leader 节点
  * 通过 pd-ctl 查看 store 节点状态为 health，各个 store 上 region 以及 leader 数量分布是否均匀
