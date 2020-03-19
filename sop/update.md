@@ -6,155 +6,95 @@ description: 李仲舒  2020 年 2 月 10 日
 
 ## **一、背景 / 目的**
 
-**分布式数据库集群运维过程有一定的复杂性和繁琐性，3.0 版本是目前被广泛使用的版本，相比 2.1 有大幅度增加性能，以及很多新增的功能和特性，整体架构、配置也有较大的优化。该篇根据广大用户的升级经验，尽可能将 Release-2.1 升级到 Release-3.0 的准备工作、升级过程中注意事项、升级后重点关注列举详细，做到防患于未然。为 Release-3.0 版本的优秀特性和产品性能在业务场景中广泛使用提供文档依托。**  
+分布式数据库集群运维过程有一定的复杂性和繁琐性，3.0 版本是目前被广泛使用的版本，相比 2.1 有大幅度增加性能，以及很多新增的功能和特性，整体架构、配置也有较大的优化。该篇根据广大用户的升级经验，尽可能将 Release-2.1 升级到 Release-3.0 的准备工作、升级过程中注意事项、升级后重点关注列举详细，做到防患于未然。为 Release-3.0 版本的优秀特性和产品性能在业务场景中广泛使用提供文档依托。  
 
 
-**适用人群默认为熟悉 2.1 版本的使用，但是没有做过大版本升级。**
+适用人群默认为熟悉 2.1 版本的使用，但是没有做过大版本升级。
 
 ## **二、操作前的 Check 项**
 
 ### **2.1 备份原集群修改过的 TiDB、TiKV 和 PD 参数**
 
-* **创建临时目录，备份升级前的参数配置**
+> 创建临时目录，备份升级前的参数配置
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">
-        <p><b>mkdir -p /tmp/tidb_update_3.0/conf</b>
-        </p>
-        <p><b>mkdir -p /tmp/tidb_update_3.0/group_vars</b>
-        </p>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>* **确认并备份 tidb-ansible/conf/tidb.yml 中的参数**
+```
+mkdir -p /tmp/tidb_update_3.0/conf
+mkdir -p /tmp/tidb_update_3.0/group_vars
+```
+> 确认并备份 tidb-ansible/conf/tidb.yml 中的参数
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">
-        <p><b>$cat tidb.yml |grep -v &quot;#&quot; |grep -v ^$ &gt; /tmp/tidb_update_3.0/conf/tidb.yml</b>
-        </p>
-        <p><b>$cat /tmp/tidb_update_3.0/conf/tidb.yml</b>
-        </p>
-        <p><b>&#x2026; &#x914D;&#x7F6E;&#x5C55;&#x793A;&#x7701;&#x7565; ...</b>
-        </p>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>* **确认并备份 tidb-ansible/conf/tikv.yml 中的参数**
+```
+$cat tidb.yml |grep -v "#" |grep -v ^$ > /tmp/tidb_update_3.0/conf/tidb.yml
+$cat /tmp/tidb_update_3.0/conf/tidb.yml
+… 配置展示省略 ...
+```
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">
-        <p><b>$cat tikv.yml |grep -v &quot;#&quot; |grep -v ^$ &gt; /tmp/tidb_update_3.0/conf/tikv.yml</b>
-        </p>
-        <p><b>$cat /tmp/tidb_update_3.0/conf/tikv.yml</b>
-        </p>
-        <p><b>&#x2026; &#x914D;&#x7F6E;&#x5C55;&#x793A;&#x7701;&#x7565; ...</b>
-        </p>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>* **确认并备份 tidb-ansible/conf/pd.yml 中的参数**
+> 确认并备份 tidb-ansible/conf/tikv.yml 中的参数
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">
-        <p><b>$cat pd.yml |grep -v &quot;#&quot; |grep -v ^$ &gt; /tmp/tidb_update_3.0/conf/tidb.yml</b>
-        </p>
-        <p><b>$cat /tmp/tidb_update_3.0/conf/pd.yml</b>
-        </p>
-        <p><b>&#x2026; &#x914D;&#x7F6E;&#x5C55;&#x793A;&#x7701;&#x7565; ...</b>
-        </p>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>* **确认并备份 PD 集群中 etcd 记录的 PD 配置信息**
+```
+$cat tikv.yml |grep -v "#" |grep -v ^$ > /tmp/tidb_update_3.0/conf/tikv.yml
+$cat /tmp/tidb_update_3.0/conf/tikv.yml
+… 配置展示省略 ...
+```
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">
-        <p><b>$cd tidb-ansible/resource/bin/</b>
-        </p>
-        <p><b>$./pd-ctl -u &quot;http://{pd-ip}:{pd_client_port}&quot; config show all &gt; /tmp/tidb_update_3.0/conf/pd.json</b>
-        </p>
-        <p><b>$cat /tmp/tidb_update_3.0/conf/pd.json</b>
-        </p>
-        <p><b>&#x2026; &#x914D;&#x7F6E;&#x5C55;&#x793A;&#x7701;&#x7565; ...</b>
-        </p>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>* **确认并备份 TiDB、TiKV、PD、Grafana、Prometheus 等组件的组参数的变化，尤其是端口的变化**
+> 确认并备份 tidb-ansible/conf/pd.yml 中的参数
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">
-        <p><b>$cd tidb-ansible/group_vars</b>
-        </p>
-        <p><b>$ll |awk &apos;{print $9}&apos;|grep -v ^$</b>
-        </p>
-        <p><b>alertmanager_servers.yml</b>
-        </p>
-        <p><b>all.yml</b>
-        </p>
-        <p><b>drainer_servers.yml</b>
-        </p>
-        <p><b>grafana_servers.yml</b>
-        </p>
-        <p><b>importer_server.yml</b>
-        </p>
-        <p><b>lightning_server.yml</b>
-        </p>
-        <p><b>monitored_servers.yml</b>
-        </p>
-        <p><b>monitoring_servers.yml</b>
-        </p>
-        <p><b>pd_servers.yml</b>
-        </p>
-        <p><b>pump_servers.yml</b>
-        </p>
-        <p><b>tidb_servers.yml</b>
-        </p>
-        <p><b>tikv_servers.yml</b>
-        </p>
-        <p><b>$cp *.yml /tmp/tidb_update_3.0/group_vars/</b>
-        </p>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>## **三、升级前的注意事项**
+```
+$cat pd.yml |grep -v "#" |grep -v ^$ > /tmp/tidb_update_3.0/conf/tidb.yml
+$cat /tmp/tidb_update_3.0/conf/pd.yml
+… 配置展示省略 ...
+```
+
+> 确认并备份 PD 集群中 etcd 记录的 PD 配置信息
+
+```
+$cd tidb-ansible/resource/bin/
+$./pd-ctl -u "http://{pd-ip}:{pd_client_port}" config show all > /tmp/tidb_update_3.0/conf/pd.json
+$cat /tmp/tidb_update_3.0/conf/pd.json
+… 配置展示省略 ...
+```
+
+> 确认并备份 TiDB、TiKV、PD、Grafana、Prometheus 等组件的组参数的变化，尤其是端口的变化
+
+```
+$cd tidb-ansible/group_vars
+$ll |awk '{print $9}'|grep -v ^$
+alertmanager_servers.yml
+all.yml
+drainer_servers.yml
+grafana_servers.yml
+importer_server.yml
+lightning_server.yml
+monitored_servers.yml
+monitoring_servers.yml
+pd_servers.yml
+pump_servers.yml
+tidb_servers.yml
+tikv_servers.yml
+$cp *.yml /tmp/tidb_update_3.0/group_vars/
+```
+
+## **三、升级前的注意事项**
 
 ### **3.1  查看 TiDB 的 Release Notes**
 
-**以 v3.0.9** [**Release Notes**](https://pingcap.com/docs-cn/stable/releases/3.0.9/) **为例，通过Release Notes了解做了那些优化或者修复了哪些 bug。**
+以 v3.0.9** [**Release Notes**](https://pingcap.com/docs-cn/stable/releases/3.0.9/) **为例，通过Release Notes了解做了那些优化或者修复了哪些 bug。
 
 ### **3.2 升级 3 个注意、2 个不支持、1 个用户**
 
-* **注意通知业务，升级期间可能会有偶尔的性能抖动，PD leader 升级可能会有 3s 的影响；**
-* **注意预估升级时间 = tikv 个数 \* 5 min（默认是 transfer leader 时间） + 10 min，滚动升级 TiKV 时间较长；**
-* **注意通知业务升级过程禁止操作 DDL，最好过一次完整的数据冷备份，通过 MyDumper 导出业务库；**
-* **整个升级过程不支持版本回退，目前未出现升级失败需要回退案例;**
-* **升级过程中不支持 DDL 操作，否则会有未定义问题，最终导致升级异常，影响业务；**
-* **升级操作通过中控机的 TiDB 管理用户完成，默认是 “tidb” 用户。**
+* 注意通知业务，升级期间可能会有偶尔的性能抖动，PD leader 升级可能会有 3s 的影响；
+* 注意预估升级时间 = tikv 个数 \* 5 min（默认是 transfer leader 时间） + 10 min，滚动升级 TiKV 时间较长；
+* 注意通知业务升级过程禁止操作 DDL，最好过一次完整的数据冷备份，通过 MyDumper 导出业务库；
+* 整个升级过程不支持版本回退，目前未出现升级失败需要回退案例;
+* 升级过程中不支持 DDL 操作，否则会有未定义问题，最终导致升级异常，影响业务；**
+* 升级操作通过中控机的 TiDB 管理用户完成，默认是 “tidb” 用户。
 
 ## **四、操作步骤**
 
-### **4.1 下载最新版的 v3.0.x 版本的 tidb-ansible,**
+### **4.1 下载最新版的 v3.0.x 版本的 tidb-ansible**
 
-**对应的 TAG 可以查看 Github 中的** [**tidb-ansible 项目**](https://github.com/pingcap/tidb-ansible/releases/tag/v3.0.9)**，以 v3.0.9 为例，注意设置目录别名 “tidb-ansible-v3.0.9”**
+对应的 TAG 可以查看 Github 中的[ tidb-ansible 项目](https://github.com/pingcap/tidb-ansible/releases/tag/v3.0.9)，以 v3.0.9 为例，注意设置目录别名 “tidb-ansible-v3.0.9”
+
 
 | **git clone -b v3.0.9** [**https://github.com/pingcap/tidb-ansible.git**](https://github.com/pingcap/tidb-ansible.git) **tidb-ansible-v3.0.9** |
 | :--- |
