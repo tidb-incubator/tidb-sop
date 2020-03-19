@@ -1,8 +1,6 @@
----
-description: 李仲舒  2020 年 2 月 10 日
----
-
 # 01 Release-2.1 升级到 Release-3.0 线上集群升级
+> 李仲舒  2020 年 2 月 10 日
+
 
 ## 一、背景 / 目的
 
@@ -491,3 +489,4 @@ Asktug 问题
 - [https://asktug.com/t/v2-1-9-v3-0-5-fatal-schema-1146-table-mysql-tidb-doesnt-exist/1616](https://asktug.com/t/v2-1-9-v3-0-5-fatal-schema-1146-table-mysql-tidb-doesnt-exist/1616)
 
 - [https://asktug.com/t/tidbv2-1-1-v3-0-1/1638](https://asktug.com/t/tidbv2-1-1-v3-0-1/1638)
+

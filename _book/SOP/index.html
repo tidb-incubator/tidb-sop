@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>SOP 系列 · GitBook</title>
+        <title>TiDB 运维手册 SOP 系列 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="update.md" />
+    <link rel="next" href="upgradeto3.0.html" />
     
     
     <link rel="prev" href="../" />
@@ -107,7 +107,7 @@
                 <a href="./">
             
                     
-                    SOP 系列
+                    TiDB 运维手册 SOP 系列
             
                 </a>
             
@@ -116,12 +116,25 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="update.md">
+        <li class="chapter " data-level="1.2.1" data-path="upgradeto3.0.html">
             
-                <span>
+                <a href="upgradeto3.0.html">
             
                     
-                    SOP 系列-线上集群升级(2.1 升 3.0 踩坑实践)
+                    01 Release-2.1 升级到 Release-3.0线上集群升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="Prometheuemigrate.html">
+            
+                <a href="Prometheuemigrate.html">
+            
+                    
+                    02 Prometheus 等监控组件迁移
             
                 </a>
             
@@ -134,9 +147,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="../TroubleShooting/">
+        <li class="chapter " data-level="1.3" data-path="../troubleshooting.html">
             
-                <a href="../TroubleShooting/">
+                <a href="../troubleshooting.html">
             
                     
                     TroubleShooting 系列
@@ -147,9 +160,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="../POC/README.md">
+        <li class="chapter " data-level="1.4" data-path="../poc.html">
             
-                <span>
+                <a href="../poc.html">
             
                     
                     POC 测试系列
@@ -160,9 +173,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="../Case/">
+        <li class="chapter " data-level="1.5" data-path="../case.html">
             
-                <a href="../Case/">
+                <a href="../case.html">
             
                     
                     CaseStudy 系列
@@ -203,7 +216,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >SOP 系列</a>
+        <a href=".." >TiDB 运维手册 SOP 系列</a>
     </h1>
 </div>
 
@@ -218,7 +231,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="sop-&#x7CFB;&#x5217;">SOP &#x7CFB;&#x5217;</h1>
+                                <h1 id="tidb-&#x8FD0;&#x7EF4;&#x624B;&#x518C;-sop-&#x7CFB;&#x5217;">TiDB &#x8FD0;&#x7EF4;&#x624B;&#x518C; SOP &#x7CFB;&#x5217;</h1>
+<p>SOP &#x7684;&#x5B9A;&#x4F4D;&#xFF0C;&#x662F;&#x57FA;&#x4E8E;&#x4E0A;&#x7EBF;&#x540E;&#x7684;&#x96C6;&#x7FA4;&#xFF0C;&#x5C06;&#x5E38;&#x89C1;&#x7684;&#x8FD0;&#x7EF4;&#x64CD;&#x4F5C;&#x6807;&#x51C6;&#x5316;&#x7684;&#x624B;&#x518C;&#xFF1B; &#x5982;&#x679C;&#x4F60;&#x6709;&#x9700;&#x6C42;&#xFF0C;&#x5E0C;&#x671B;&#x5F97;&#x5230;&#x66F4;&#x591A;&#x5927;&#x5496;&#x7684;&#x64CD;&#x4F5C;&#x5EFA;&#x8BAE;&#xFF0C;&#x53EF;&#x4EE5;&#x63D0; issue&#xFF1B; &#x5982;&#x679C;&#x4F60;&#x6709;&#x7C7B;&#x4F3C;&#x8FD0;&#x7EF4;&#x64CD;&#x4F5C;&#x7684; SOP &#x7ECF;&#x9A8C;&#xFF0C;&#x6B22;&#x8FCE;&#x63D0; pr&#xFF0C;&#x7ECF;&#x8FC7;&#x5B98;&#x65B9; review &#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x53D1;&#x5E03;&#x3002;</p>
 
                                 
                                 </section>
@@ -251,7 +265,7 @@
                 </a>
                 
                 
-                <a href="update.md" class="navigation navigation-next " aria-label="Next page: SOP 系列-线上集群升级(2.1 升 3.0 踩坑实践)">
+                <a href="upgradeto3.0.html" class="navigation navigation-next " aria-label="Next page: 01 Release-2.1 升级到 Release-3.0线上集群升级">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -262,7 +276,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"SOP 系列","level":"1.2","depth":1,"next":{"title":"SOP 系列-线上集群升级(2.1 升 3.0 踩坑实践)","level":"1.2.1","depth":2,"path":"SOP/update.md","ref":"SOP/update.md","articles":[]},"previous":{"title":"前言","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"SOP/README.md","mtime":"2020-03-01T11:24:12.687Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-02T14:00:45.768Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"TiDB 运维手册 SOP 系列","level":"1.2","depth":1,"next":{"title":"01 Release-2.1 升级到 Release-3.0线上集群升级","level":"1.2.1","depth":2,"path":"sop/upgradeto3.0.md","ref":"sop/upgradeto3.0.md","articles":[]},"previous":{"title":"前言","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"sop/README.md","mtime":"2020-03-12T14:29:39.587Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-19T14:24:18.411Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
