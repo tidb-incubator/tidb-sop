@@ -1,25 +1,23 @@
----
-description: 沈刚 2020 年 2 月 15 日
----
+# 08 线上集群扩缩容操作及要点
+> 沈刚 2020 年 2 月 15 日
 
-# 线上集群扩缩容操作及要点
 ## 一、背景
 
 随着业务和数据量的增长，很容易遇到 TiDB 集群出现性能下降或存储空间不足的问题，对于分布式的 TiDB 来讲，可以通过扩容集群节点来分担负载、提高存储能力。在运维工作中还可能遇到服务器维修、更换等需求，在 TiDB 集群中也可以通过扩容新服务器，缩容旧服务器的方式做到应用无感知的日常维护操作。本文主要讲解 TiDB 集群在扩容缩容 TiDB 、 TiKV 、 PD 组件方面的准备工作、注意事项、操作步骤以及检查回退方案。
 
 ## 二、相关概念及原理解释
 
-### TiDB Server
+### 2.1 TiDB Server
 
 TiDB Server 负责接收 SQL 请求，处理 SQL 相关的逻辑，并通过 PD 找到存储计算所需数据的 TiKV 地址，与 TiKV 交互获取数据，最终返回结果。TiDB Server 是无状态的，其本身并不存储数据，只负责计算，可以无限水平扩展，可以通过负载均衡组件（如LVS、HAProxy 或 F5）对外提供统一的接入地址。
 
-### PD Server
+### 2.2 PD Server
 
 Placement Driver (简称 PD) 是整个集群的管理模块，其主要工作有三个：一是存储集群的元信息（某个 Key 存储在哪个 TiKV 节点）；二是对 TiKV 集群进行调度和负载均衡（如数据的迁移、Raft group leader 的迁移等）；三是分配全局唯一且递增的事务 ID。
 PD 通过 Raft 协议保证数据的安全性。Raft 的 leader server 负责处理所有操作，其余的 PD server 仅用于保证高可用。建议部署奇数个 PD 节点。
 
 
-### TiKV Server
+### 2.3 TiKV Server
 
 Placement Driver (简称 PD) 是整个集群的管理模块，其主要工作有三个：一是存储集群的元信息（某个 Key 存储在哪个 TiKV 节点）；二是对 TiKV 集群进行调度和负载均衡（如数据的迁移、Raft group leader 的迁移等）；三是分配全局唯一且递增的事务 ID。
 PD 通过 Raft 协议保证数据的安全性。Raft 的 leader server 负责处理所有操作，其余的 PD server 仅用于保证高可用。建议部署奇数个 PD 节点。
