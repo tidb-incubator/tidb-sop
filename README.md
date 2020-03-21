@@ -12,7 +12,7 @@ TiDB 作为一款新一代的分布式关系型数据库，在日常运维上会
 
 本期是 SOP（`Standard Operation Procedure`） 系列，是第一个版本，一共包括 10 个主题，每个主题我们都会通过标准的 step by step 步骤，来完整实现对某一个常见运维目标的操作。希望对大家有用，如果在操作过程遇到什么问题、或者你有什么需求，可以通过邮件、或者 AskTUG 进行讨论与反馈（ https://asktug.com/t/topic/33145 ），我们会定期 review 、修正内容、增加新的主题，进行版本迭代。
 
-> V1.0 目录:
+> V1.0 目录: 
 
   * [【SOP 系列 01】 Release-2.1 升级到 Release-3.0 线上集群升级](upgradeto3.0.md)
   * [【SOP 系列 02】 Prometheus 等监控组件迁移](Prometheuemigrate.md)
