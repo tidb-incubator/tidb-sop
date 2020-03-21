@@ -1,0 +1,653 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>【SOP 系列 04】现有集群 TiKV 如何从单实例部署调整为多实例部署 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="multi-idc.html" />
+    
+    
+    <link rel="prev" href="onlineddl.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <span>
+            
+                    
+                    [TiDB 运维手册 SOP 系列 V1.0]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="sop/upgradeto3.0.md">
+            
+                <span>
+            
+                    
+                    01 Release-2.1 升级到 Release-3.0线上集群升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="sop/Prometheuemigrate.md">
+            
+                <span>
+            
+                    
+                    02 Prometheus 等监控组件迁移
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="upgradeto3.0.html">
+            
+                <a href="upgradeto3.0.html">
+            
+                    
+                    【SOP 系列 01】 Release-2.1 升级到 Release-3.0 线上集群升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="Prometheuemigrate.html">
+            
+                <a href="Prometheuemigrate.html">
+            
+                    
+                    【SOP 系列 02】 Prometheus 等监控组件迁移
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="onlineddl.html">
+            
+                <a href="onlineddl.html">
+            
+                    
+                    【SOP 系列 03】在线表结构变更（Online DDL）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.7" data-path="multi-tikv.html">
+            
+                <a href="multi-tikv.html">
+            
+                    
+                    【SOP 系列 04】现有集群 TiKV 如何从单实例部署调整为多实例部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="multi-idc.html">
+            
+                <a href="multi-idc.html">
+            
+                    
+                    【SOP 系列 05】现有集群如何从单机房调整为跨机房部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9" data-path="maintenance.html">
+            
+                <a href="maintenance.html">
+            
+                    
+                    【SOP 系列 06】临时关机维护某线上主机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10" data-path="switch-binlog.html">
+            
+                <a href="switch-binlog.html">
+            
+                    
+                    【SOP 系列 07】如何在线开启/关闭 TiDB Binlog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.11" data-path="scale.html">
+            
+                <a href="scale.html">
+            
+                    
+                    【SOP 系列 08】线上集群扩缩容操作及要点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.12" data-path="modify-ip.html">
+            
+                <a href="modify-ip.html">
+            
+                    
+                    【SOP 系列 09】现网如何修改 tidb，tikv，pd 的 ip 地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.13" data-path="modify-port.html">
+            
+                <a href="modify-port.html">
+            
+                    
+                    【SOP 系列 10】现网如何修改 tidb，tikv，pd 的 port
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >【SOP 系列 04】现有集群 TiKV 如何从单实例部署调整为多实例部署</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="04-&#x73B0;&#x6709;&#x96C6;&#x7FA4;-tikv-&#x5982;&#x4F55;&#x4ECE;&#x5355;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;&#x8C03;&#x6574;&#x4E3A;&#x591A;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;">04 &#x73B0;&#x6709;&#x96C6;&#x7FA4; TiKV &#x5982;&#x4F55;&#x4ECE;&#x5355;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;&#x8C03;&#x6574;&#x4E3A;&#x591A;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;</h1>
+<blockquote>
+<p>&#x738B;&#x8D24;&#x51C0; 2020 &#x5E74; 2 &#x6708; 20 &#x65E5;</p>
+</blockquote>
+<h2 id="&#x4E00;&#x3001;&#x80CC;&#x666F;--&#x76EE;&#x7684;">&#x4E00;&#x3001;&#x80CC;&#x666F; / &#x76EE;&#x7684;</h2>
+<p>&#x56E0;&#x4E1A;&#x52A1;&#x589E;&#x957F;&#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#x4E0D;&#x53EF;&#x63A7;&#x56E0;&#x7D20;&#xFF0C;&#x9700;&#x8981;&#x5BF9; TiKV &#x8282;&#x70B9;&#x8FDB;&#x884C;&#x6269;&#x5BB9;&#x64CD;&#x4F5C;&#x3002;&#x6269;&#x5BB9;&#x65B9;&#x5F0F;&#x5305;&#x62EC;&#x6DFB;&#x52A0;&#x65B0;&#x673A;&#x5668;&#x6269;&#x5BB9; TiKV &#x8282;&#x70B9; <a href="https://pingcap.com/docs-cn/stable/how-to/scale/with-ansible/" target="_blank">&#x4F7F;&#x7528; ansible &#x6269;&#x5BB9;</a> &#x6216;&#x8005;&#x5BF9;&#x5F53;&#x524D; TiKV &#x8282;&#x70B9;&#x8FDB;&#x884C;&#x6269;&#x5BB9;&#xFF08;&#x5982;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x6302;&#x8F7D;&#x65B0;&#x7684;&#x78C1;&#x76D8;&#xFF09;&#x7B49;&#x65B9;&#x5F0F;&#x3002;&#x8BE5;&#x6587;&#x6863;&#x9488;&#x5BF9;&#x7684;&#x573A;&#x666F;&#x4E3A;&#x76F4;&#x63A5;&#x5728;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x8FDB;&#x884C;&#x6269;&#x5BB9;&#x64CD;&#x4F5C;&#xFF0C;&#x5373;&#x5355;&#x673A;&#x5355;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;&#x8C03;&#x6574;&#x4E3A;&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;&#x3002;</p>
+<h2 id="&#x4E8C;&#x3001;&#x76F8;&#x5173;&#x6982;&#x5FF5;&#x53CA;&#x539F;&#x7406;&#x89E3;&#x91CA;">&#x4E8C;&#x3001;&#x76F8;&#x5173;&#x6982;&#x5FF5;&#x53CA;&#x539F;&#x7406;&#x89E3;&#x91CA;</h2>
+<p>&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;&#x65F6;&#xFF0C;&#x6CE8;&#x610F;&#x7ED9; TiKV &#x8282;&#x70B9;&#x6253;&#x4E0A; label &#x6807;&#x7B7E;&#x3002;PD &#x7406;&#x89E3; TiKV &#x62D3;&#x6251;&#x7ED3;&#x6784;&#x540E;&#xFF0C;&#x4F1A;&#x6839;&#x636E;&#x63D0;&#x4F9B;&#x7684;&#x62D3;&#x6251;&#x4FE1;&#x606F;&#x4F5C;&#x51FA;&#x6700;&#x4F18;&#x7684;&#x8C03;&#x5EA6;&#x3002;&#x76F8;&#x5173;&#x539F;&#x7406;&#x53EF;&#x53C2;&#x8003; <a href="https://pingcap.com/docs-cn/stable/how-to/deploy/geographic-redundancy/location-awareness/" target="_blank">&#x96C6;&#x7FA4;&#x62D3;&#x6251;&#x4FE1;&#x606F;&#x8BE6;&#x89E3;</a></p>
+<h2 id="&#x4E09;&#x3001;&#x64CD;&#x4F5C;&#x524D;-check-&#x9879;">&#x4E09;&#x3001;&#x64CD;&#x4F5C;&#x524D; Check &#x9879;</h2>
+<h3 id="31-&#x68C0;&#x67E5;&#x673A;&#x5668;&#x8D44;&#x6E90;&#xFF0C;&#x786E;&#x4FDD;&#x5355;&#x673A;&#x53EF;&#x4EE5;&#x90E8;&#x7F72;&#x4E24;&#x4E2A;-tikv-&#x5B9E;&#x4F8B;">3.1 &#x68C0;&#x67E5;&#x673A;&#x5668;&#x8D44;&#x6E90;&#xFF0C;&#x786E;&#x4FDD;&#x5355;&#x673A;&#x53EF;&#x4EE5;&#x90E8;&#x7F72;&#x4E24;&#x4E2A; tikv &#x5B9E;&#x4F8B;</h3>
+<ul>
+<li>&#x6BCF;&#x4E2A;&#x5B9E;&#x4F8B;&#x80FD;&#x5206;&#x914D; 16c&#xFF0C;32G &#x5185;&#x5B58;</li>
+<li>&#x5355;&#x4E2A; tikv &#x786C;&#x76D8;&#x5927;&#x5C0F;&#x914D;&#x7F6E;&#x5EFA;&#x8BAE; PCI-E SSD &#x4E0D;&#x8D85;&#x8FC7; 2 TB&#xFF0C;&#x666E;&#x901A; SSD &#x4E0D;&#x8D85;&#x8FC7; 1.5 TB&#xFF0C;&#x9700;&#x8981;&#x786E;&#x8BA4;&#x78C1;&#x76D8;&#x3001;IO &#x8DB3;&#x591F;&#xFF08;&#x53EF;&#x5355;&#x76D8;&#x6216;&#x8005;&#x591A;&#x76D8;&#xFF09;</li>
+</ul>
+<h3 id="32-&#x7AEF;&#x53E3;&#x9884;&#x7559;&#xFF0C;&#x68C0;&#x67E5;&#x7AEF;&#x53E3;&#x662F;&#x5426;&#x88AB;&#x5360;&#x7528;&#xFF0C;&#x5F53;&#x524D;&#x662F;&#x5426;&#x53EF;&#x7528;&#x7B49;">3.2 &#x7AEF;&#x53E3;&#x9884;&#x7559;&#xFF0C;&#x68C0;&#x67E5;&#x7AEF;&#x53E3;&#x662F;&#x5426;&#x88AB;&#x5360;&#x7528;&#xFF0C;&#x5F53;&#x524D;&#x662F;&#x5426;&#x53EF;&#x7528;&#x7B49;</h3>
+<pre><code>shell&gt; netstat -anp |grep &#x7AEF;&#x53E3;&#x53F7;&#xFF08;&#x5982; tikv_port&#x3001;tikv_status_port&#xFF09;
+</code></pre><h3 id="33-&#x68C0;&#x67E5;&#x96C6;&#x7FA4;&#x5F53;&#x524D;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x662F;&#x5426;&#x6B63;&#x5E38;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;&#x76D1;&#x63A7;&#x6216;&#x8005;-pd-ctl-&#x67E5;&#x770B;&#x3002;">3.3 &#x68C0;&#x67E5;&#x96C6;&#x7FA4;&#x5F53;&#x524D;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x662F;&#x5426;&#x6B63;&#x5E38;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;&#x76D1;&#x63A7;&#x6216;&#x8005; pd-ctl &#x67E5;&#x770B;&#x3002;</h3>
+<ul>
+<li>&#x76D1;&#x63A7;&#x9762;&#x677F;&#xFF1A;&#x67E5;&#x770B; cluster-overview &#x2192; service port status &#x670D;&#x52A1;&#x662F;&#x5426;&#x6B63;&#x5E38;&#x3002;</li>
+<li>pd-ctl&#xFF1A;&#x6267;&#x884C; health &#x663E;&#x793A;&#x96C6;&#x7FA4;&#x5065;&#x5EB7;&#x4FE1;&#x606F;</li>
+</ul>
+<h2 id="&#x56DB;&#x3001;&#x6CE8;&#x610F;&#x4E8B;&#x9879;">&#x56DB;&#x3001;&#x6CE8;&#x610F;&#x4E8B;&#x9879;</h2>
+<ol>
+<li>label &#x8981;&#x548C;&#x771F;&#x5B9E;&#x7269;&#x7406;&#x62D3;&#x6251;&#x4E00;&#x81F4;&#xFF0C;&#x5426;&#x5219;&#x6807;&#x7B7E;&#x65E0;&#x610F;&#x4E49;&#xFF1B;</li>
+<li>&#x5355;&#x673A;&#x5355;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;&#x8C03;&#x6574;&#x4E3A;&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;&#x65F6;&#xFF0C;&#x540C;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x6CE8;&#x610F;&#x533A;&#x5206; deploy_dir&#x3001;&#x7AEF;&#x53E3;&#x3001;labels &#x6807;&#x7B7E;&#xFF1B;<ul>
+<li>&#x540C;&#x4E00;&#x4E2A;&#x673A;&#x5668;&#x4E0A;&#x90E8;&#x7F72;&#x591A;&#x4E2A; tikv &#x8282;&#x70B9;&#x65F6;&#xFF0C;&#x65B0;&#x7684; tikv &#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684; depoly_dir&#x3001;&#x7AEF;&#x53E3;&#x7B49;</li>
+</ul>
+</li>
+<li>inventory.ini &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D; ps_servers&#xFF1A;vars &#x4E2D;&#x7684;&#x6807;&#x7B7E;&#x4E0E; TiKV &#x4E2D;&#x7684;&#x6807;&#x7B7E;&#x8981;&#x4E00;&#x81F4;&#xFF1B;<ul>
+<li>&#x8BBE;&#x7F6E;&#x6807;&#x7B7E;&#x540E;&#xFF0C;&#x4F7F; PD &#x7406;&#x89E3; tikv &#x96C6;&#x7FA4;&#x7684;&#x62D3;&#x6251;&#x7ED3;&#x6784;&#xFF0C;&#x4ECE;&#x800C;&#x8FDB;&#x884C;&#x6700;&#x4F18;&#x8C03;&#x5EA6;</li>
+</ul>
+</li>
+<li><p>&#x8C03;&#x4F4E;&#x8C03;&#x5EA6;&#x53C2;&#x6570;&#xFF0C;&#x9632;&#x6B62; balance &#x8FC7;&#x5FEB;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x4F7F;&#x7528; pd-ctl &#x6267;&#x884C; config show &#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x6240;&#x6709;&#x7684;&#x8C03;&#x5EA6;&#x53C2;&#x6570;&#xFF0C;&#x6267;&#x884C; config set {key} {value} &#x53EF;&#x4EE5;&#x8C03;&#x6574;&#x5BF9;&#x5E94;&#x53C2;&#x6570;&#x7684;&#x503C;&#xFF0C;&#x9700;&#x8C03;&#x6574;&#x53C2;&#x6570;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>leader-schedule-limit&#xFF1A;&#x63A7;&#x5236; transfer leader &#x8C03;&#x5EA6;&#x7684;&#x5E76;&#x53D1;&#x6570;</li>
+<li>region-schedule-limit&#xFF1A;&#x63A7;&#x5236;&#x589E;&#x5220; peer &#x8C03;&#x5EA6;&#x7684;&#x5E76;&#x53D1;&#x6570;</li>
+<li>replica-schedule-limit&#xFF1A;&#x63A7;&#x5236;&#x540C;&#x65F6;&#x8FDB;&#x884C; replica &#x8C03;&#x5EA6;&#x7684;&#x4EFB;&#x52A1;&#x4E2A;&#x6570;</li>
+</ul>
+</li>
+</ol>
+<h2 id="&#x4E94;&#x3001;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;">&#x4E94;&#x3001;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;</h2>
+<h3 id="51-&#x96C6;&#x7FA4;&#x62D3;&#x6251;&#x4FE1;&#x606F;">5.1 &#x96C6;&#x7FA4;&#x62D3;&#x6251;&#x4FE1;&#x606F;</h3>
+<p>&#x8BE5;&#x6269;&#x5BB9;&#x64CD;&#x4F5C;&#x662F;&#x5C06; 238 &#x673A;&#x5668;&#x4E0A;&#x7684; TiKV &#x8282;&#x70B9;&#x7531;&#x5355;&#x673A;&#x5355;&#x5B9E;&#x4F8B;&#x72B6;&#x6001;&#x8C03;&#x6574;&#x4E3A;&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;&#x3002;</p>
+<h4 id="&#x5F53;&#x524D;&#x96C6;&#x7FA4;&#x62D3;&#x6251;&#x4FE1;&#x606F;">&#x5F53;&#x524D;&#x96C6;&#x7FA4;&#x62D3;&#x6251;&#x4FE1;&#x606F;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x7EC4;&#x4EF6;</th>
+<th>&#x673A;&#x5668; IP:&#x7AEF;&#x53E3;</th>
+<th>&#x6570;&#x91CF; </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TiDB</td>
+<td>172.16.4.243:4807<br>172.16.4.242:4807</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>PD</td>
+<td>172.16.4.243:12779<br>172.16.4.242:12779<br>172.16.4.240:12779</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>TiKV</td>
+<td>172.16.4.239:27173<br>172.16.4.240:27173<br>172.16.4.238:27173</td>
+<td>3</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>&#x5F53;&#x524D;&#x96C6;&#x7FA4; label &#x7684;&#x72B6;&#x6001;&#x4E3A;&#x7A7A;</p>
+<pre><code>./pd-ctl -i -u http://172.16.4.243:12779
+
+&#xBB; label
+null
+
+&#xBB; config show replication
+{
+  &quot;max-replicas&quot;: 3,
+  &quot;location-labels&quot;: &quot;&quot;,
+  &quot;strictly-match-label&quot;: &quot;false&quot;
+}
+</code></pre><h4 id="&#x8C03;&#x6574;&#x540E;&#x96C6;&#x7FA4;&#x76EE;&#x6807;&#x62D3;&#x6251;&#x4FE1;&#x606F;">&#x8C03;&#x6574;&#x540E;&#x96C6;&#x7FA4;&#x76EE;&#x6807;&#x62D3;&#x6251;&#x4FE1;&#x606F;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x7EC4;&#x4EF6;</th>
+<th>&#x673A;&#x5668; IP:&#x7AEF;&#x53E3;</th>
+<th>&#x6570;&#x91CF; </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TiDB</td>
+<td>172.16.4.243:4807<br>172.16.4.242:4807</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>PD</td>
+<td>172.16.4.243:12779<br>172.16.4.242:12779<br>172.16.4.240:12779</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>TiKV</td>
+<td>172.16.4.239:27173<br>172.16.4.240:27173<br><strong>172.16.4.238:27173/labels=&quot;host=tikv1&quot;</strong><br><strong>172.16.4.238:27174/labels=&quot;host=tikv1&quot;</strong></td>
+<td>4</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x8FD9;&#x91CC;&#x4EE5;&#x8C03;&#x6574; 1 &#x4E2A; tikv &#x4E3E;&#x4F8B;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x8C03;&#x6574;&#x6240;&#x6709;&#x7684; tikv &#xFF0C;&#x64CD;&#x4F5C;&#x7C7B;&#x4F3C;</li>
+</ul>
+<h3 id="52-&#x64CD;&#x4F5C;&#x4E2D;&#x7684;&#x5173;&#x952E;&#x6B65;&#x9AA4;">5.2 &#x64CD;&#x4F5C;&#x4E2D;&#x7684;&#x5173;&#x952E;&#x6B65;&#x9AA4;</h3>
+<p>&#x5355;&#x673A;&#x5355;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;&#x5230;&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x9996;&#x5148;&#x91C7;&#x7528;&#x6269;&#x5BB9;&#x65B9;&#x5F0F;&#x4E3A;&#x96C6;&#x7FA4;&#x65B0;&#x52A0;&#x4E00;&#x4E2A; tikv &#x8282;&#x70B9;&#xFF0C;&#x672C;&#x6B21;&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x6269;&#x5BB9;&#x65F6;&#x5148;&#x5BF9;&#x65B0;&#x8282;&#x70B9;&#x6253;&#x4E0A; label &#x6807;&#x7B7E;&#xFF0C;&#x6269;&#x5BB9;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x518D;&#x4F7F;&#x7528; pd-ctl &#x5728;&#x7EBF;&#x5BF9; 238 &#x8282;&#x70B9;&#x4E0A;&#x539F;&#x6709;&#x7684; tikv &#x8282;&#x70B9;&#xFF08;&#x5373; tikv1-1&#xFF09;&#x6253;&#x4E0A; label &#x6807;&#x7B7E;&#x3002;&#x4E5F;&#x53EF;&#x91C7;&#x7528;&#x5B98;&#x7F51;&#x6269;&#x5BB9;&#x65B9;&#x5F0F;&#x76F4;&#x63A5;&#x6DFB;&#x52A0; tikv &#x8282;&#x70B9;&#xFF0C;&#x6DFB;&#x52A0;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x5728;&#x7EBF;&#x5BF9;&#x5355;&#x673A;&#x4E24;&#x4E2A; tikv &#x8282;&#x70B9;&#x8FDB;&#x884C;&#x6253; label &#x64CD;&#x4F5C; <a href="https://pingcap.com/docs-cn/stable/reference/tools/pd-control/#store-delete--label--weight-store_id--jqquery-string" target="_blank">&#x8BE6;&#x7EC6;&#x547D;&#x4EE4;&#x53C2;&#x8003;&#x5B98;&#x7F51;&#x94FE;&#x63A5;</a></p>
+<h4 id="0&#x9996;&#x5148;&#x5C06;&#x539F;-tikv-&#x7684;&#x5185;&#x5B58;&#x914D;&#x7F6E;&#x51CF;&#x534A;">0.&#x9996;&#x5148;&#x5C06;&#x539F; tikv &#x7684;&#x5185;&#x5B58;&#x914D;&#x7F6E;&#x51CF;&#x534A;</h4>
+<p>&#x4FEE;&#x6539; tidb-ansible/conf/tikv.yml &#x4E2D;&#xFF1A;</p>
+<ul>
+<li>capacity = MEM_TOTAL * 0.5 / TiKV &#x5B9E;&#x4F8B;&#x6570;&#x91CF;</li>
+<li>high-concurrency&#x3001;normal-concurrency &#x548C; low-concurrency &#x4E09;&#x4E2A;&#x53C2;&#x6570; &#x4E3A;&#xFF1A;TiKV &#x5B9E;&#x4F8B;&#x6570;&#x91CF; <em> &#x53C2;&#x6570;&#x503C; = CPU &#x6838;&#x5FC3;&#x6570;&#x91CF; </em> 0.8</li>
+<li>&#x9700;&#x8981;&#x91CD;&#x542F;&#x8BE5; tikv &#x5B9E;&#x4F8B;</li>
+</ul>
+<h4 id="1&#x4FEE;&#x6539;-inventoryini-&#x6587;&#x4EF6;&#xFF0C;&#x6269;&#x5BB9;&#x4E00;&#x4E2A;-tikv-&#x8282;&#x70B9;&#x3002;">1.&#x4FEE;&#x6539; inventory.ini &#x6587;&#x4EF6;&#xFF0C;&#x6269;&#x5BB9;&#x4E00;&#x4E2A; tikv &#x8282;&#x70B9;&#x3002;</h4>
+<ul>
+<li>&#x5176;&#x4E2D; &#x2018;host&#x2019; &#x53EA;&#x662F;&#x6807;&#x7B7E;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#xFF0C;&#x4F46;&#x4E0A;&#x4E0B;&#x8981;&#x7EDF;&#x4E00;</li>
+<li>&#x76F8;&#x540C;&#x4E3B;&#x673A;&#x4E0A;&#x7684;&#x591A;&#x4E2A; tikv&#xFF0C;label &#x8981;&#x76F8;&#x540C;</li>
+</ul>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x591A;&#x5B9E;&#x4F8B;&#x573A;&#x666F;&#x9700;&#x8981;&#x989D;&#x5916;&#x914D;&#x7F6E; status &#x7AEF;&#x53E3;&#xFF0C;<strong>tikv_status_port</strong> &#x6307;&#x7684;&#x662F;&#x4E0A;&#x62A5; TiKV &#x72B6;&#x6001;&#x7684;&#x901A;&#x4FE1;&#x7AEF;&#x53E3;&#x3002;</p>
+<pre><code class="lang-ini"># TiDB Cluster Part
+[tidb_servers]
+172.16.4.243 tidb_port=4807 tidb_status_port=11793
+172.16.4.242 tidb_port=4807 tidb_status_port=11793
+
+[tikv_servers]
+172.16.4.239 tikv_port=27173 tikv_status_port=27193
+172.16.4.240 tikv_port=27173 tikv_status_port=27193
+tikv1-1 ansible_host=172.16.4.238 tikv_port=27173 tikv_status_port=27193 labels=&quot;host=tikv1&quot;
+tikv1-2 ansible_host=172.16.4.238 tikv_port=27174 tikv_status_port=27194 deploy_dir=/home/tidb/deploy2_3.0.7 labels=&quot;host=tikv1&quot;
+
+... ...
+
+## Group variables
+[pd_servers:vars]
+location_labels = [&quot;host&quot;]
+
+## Global variables
+[all:vars]
+deploy_dir = /home/tidb/deploy_3.0.7
+</code></pre>
+<h4 id="2&#x521D;&#x59CB;&#x5316;&#x65B0;&#x589E;&#x8282;&#x70B9;">2.&#x521D;&#x59CB;&#x5316;&#x65B0;&#x589E;&#x8282;&#x70B9;</h4>
+<pre><code>ansible-playbook bootstrap.yml -l tikv1-2
+</code></pre><h4 id="3&#x90E8;&#x7F72;&#x65B0;&#x589E;&#x8282;&#x70B9;">3.&#x90E8;&#x7F72;&#x65B0;&#x589E;&#x8282;&#x70B9;</h4>
+<pre><code>ansible-playbook deploy.yml -l tikv1-2
+</code></pre><h4 id="4&#x542F;&#x52A8;&#x65B0;&#x589E;&#x8282;&#x70B9;">4.&#x542F;&#x52A8;&#x65B0;&#x589E;&#x8282;&#x70B9;</h4>
+<pre><code>ansible-playbook start.yml -l tikv1-2
+</code></pre><p>&#x6CE8;&#x610F;&#xFF1A;&#x65B0;&#x8282;&#x70B9;&#x542F;&#x52A8;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x5DF2;&#x6253;&#x4E0A; label &#x6807;&#x7B7E;&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528; pd-ctl &#x9A8C;&#x8BC1; label &#x7684;&#x72B6;&#x6001;&#xFF0C;&#x786E;&#x4FDD;&#x5DF2;&#x6210;&#x529F;&#x6253;&#x4E0A; label &#x6807;&#x7B7E;&#x3002;</p>
+<pre><code>./pd-ctl -i -u http://172.16.4.243:12779
+&#xBB; label
+[
+  {
+    &quot;key&quot;: &quot;host&quot;,
+    &quot;value&quot;: &quot;tikv1&quot;
+  }
+]
+
+&#xBB; store 2409
+{
+  &quot;store&quot;: {
+    &quot;id&quot;: 2409,
+    &quot;address&quot;: &quot;172.16.4.238:27174&quot;,
+    &quot;labels&quot;: [
+      {
+        &quot;key&quot;: &quot;host&quot;,
+        &quot;value&quot;: &quot;tikv1&quot;
+      }
+    ],
+    &quot;version&quot;: &quot;3.0.7&quot;,
+    &quot;state_name&quot;: &quot;Up&quot;
+  },
+  &quot;status&quot;: {
+&#x2026; ...
+  }
+}
+</code></pre><h4 id="5&#x66F4;&#x65B0;-prometheus-&#x76D1;&#x63A7;">5.&#x66F4;&#x65B0; prometheus &#x76D1;&#x63A7;</h4>
+<pre><code>ansible-playbook rolling_update_monitor.yml --tags=prometheus
+</code></pre><p>&#x6CE8;&#x610F;&#xFF1A;&#x66F4;&#x65B0;&#x76D1;&#x63A7;&#x540E;&#xFF0C;&#x65B0;&#x6269;&#x5BB9;&#x7684;&#x8282;&#x70B9;&#x80FD;&#x591F;&#x6B63;&#x5E38;&#x663E;&#x793A;&#x5728;&#x76D1;&#x63A7;&#x4E2D;&#xFF08;tikv &#x8282;&#x70B9;&#x7531;&#x521D;&#x59CB;&#x72B6;&#x6001; 3 &#x4E2A;&#x53D8;&#x6210;&#x6269;&#x5BB9;&#x540E;&#x7684; 4 &#x4E2A;&#x8282;&#x70B9;&#xFF09;&#x3002;
+<img src="media/sop2-1.png" alt="&#x76D1;&#x63A7;"></p>
+<h4 id="6&#x5C06;-238-&#x673A;&#x5668;&#x4E0A;&#x539F;&#x6709;&#x7684;-tikv-&#x8282;&#x70B9;&#xFF08;&#x5373;-tikv1-1&#xFF0C;&#x4ED6;&#x7684;-storeid4&#xFF09;&#x6253;&#x4E0A;-label-&#x6807;&#x7B7E;">6.&#x5C06; 238 &#x673A;&#x5668;&#x4E0A;&#x539F;&#x6709;&#x7684; tikv &#x8282;&#x70B9;&#xFF08;&#x5373; tikv1-1&#xFF0C;&#x4ED6;&#x7684; store_id=4&#xFF09;&#x6253;&#x4E0A; label &#x6807;&#x7B7E;</h4>
+<pre><code>&#xBB; store label 4 host tikv1      # &#x7ED9; tikv1-1 &#x6253; label
+Success!
+
+&#xBB; store 4
+{
+  &quot;store&quot;: {
+    &quot;id&quot;: 4,
+    &quot;address&quot;: &quot;172.16.4.238:27173&quot;,
+    &quot;labels&quot;: [
+      {
+        &quot;key&quot;: &quot;host&quot;,
+        &quot;value&quot;: &quot;tikv1&quot;
+      }
+    ],
+    &quot;version&quot;: &quot;3.0.7&quot;,
+    &quot;state_name&quot;: &quot;Up&quot;
+  },
+  &quot;status&quot;: {
+&#x2026; ...
+  }
+}
+
+&#xBB; label
+[
+  {
+    &quot;key&quot;: &quot;host&quot;,
+    &quot;value&quot;: &quot;tikv1&quot;
+  },
+  {
+    &quot;key&quot;: &quot;host&quot;,
+    &quot;value&quot;: &quot;tikv1&quot;
+  }
+]
+</code></pre><h4 id="7&#x8BBE;&#x7F6E;-location-labels&#xFF0C;&#x8BE5;&#x53C2;&#x6570;&#x9700;&#x8981;&#x4E0E;-tikv-&#x7684;-labels-&#x540D;&#x5B57;&#x5BF9;&#x5E94;&#xFF0C;&#x8FD9;&#x6837;-pd-&#x624D;&#x80FD;&#x77E5;&#x9053;&#x8FD9;&#x4E9B;-labels-&#x4EE3;&#x8868;&#x4E86;-tikv-&#x7684;&#x62D3;&#x6251;&#x7ED3;&#x6784;&#x3002;">7.&#x8BBE;&#x7F6E; location-labels&#xFF0C;&#x8BE5;&#x53C2;&#x6570;&#x9700;&#x8981;&#x4E0E; tikv &#x7684; labels &#x540D;&#x5B57;&#x5BF9;&#x5E94;&#xFF0C;&#x8FD9;&#x6837; PD &#x624D;&#x80FD;&#x77E5;&#x9053;&#x8FD9;&#x4E9B; labels &#x4EE3;&#x8868;&#x4E86; tikv &#x7684;&#x62D3;&#x6251;&#x7ED3;&#x6784;&#x3002;</h4>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5FC5;&#x987B;&#x540C;&#x65F6;&#x914D;&#x7F6E; PD &#x7684; location-labels &#x548C; tikv &#x7684; labels &#x53C2;&#x6570;&#xFF0C;&#x5426;&#x5219; labels &#x4E0D;&#x4F1A;&#x751F;&#x6548;&#x3002;</p>
+<pre><code>&#xBB; config set location-labels &quot;host&quot;
+Success!
+
+&#xBB; config show replication
+{
+  &quot;max-replicas&quot;: 3,
+  &quot;location-labels&quot;: &quot;host&quot;,
+  &quot;strictly-match-label&quot;: &quot;false&quot;
+}
+</code></pre><h2 id="&#x516D;&#x3001;&#x64CD;&#x4F5C;&#x540E;-check-&#x9879;">&#x516D;&#x3001;&#x64CD;&#x4F5C;&#x540E; Check &#x9879;</h2>
+<h3 id="1&#x4ECE;&#x76D1;&#x63A7;&#x4E2D;&#x67E5;&#x770B;-tikv-&#x8282;&#x70B9;-label-&#x7684;&#x5206;&#x5E03;&#x60C5;&#x51B5;&#x4EE5;&#x53CA;&#x8C03;&#x5EA6;&#x60C5;&#x51B5;&#xFF08;&#x67E5;&#x770B;-pd-leader-&#x7684;&#x76D1;&#x63A7;&#xFF09;">1.&#x4ECE;&#x76D1;&#x63A7;&#x4E2D;&#x67E5;&#x770B; TiKV &#x8282;&#x70B9; label &#x7684;&#x5206;&#x5E03;&#x60C5;&#x51B5;&#x4EE5;&#x53CA;&#x8C03;&#x5EA6;&#x60C5;&#x51B5;&#xFF08;&#x67E5;&#x770B; PD leader &#x7684;&#x76D1;&#x63A7;&#xFF09;</h3>
+<p><img src="media/sop2-2.png" alt="label &#x76D1;&#x63A7;"></p>
+<h2 id="&#x4E03;&#x3001;&#x5E38;&#x89C1;&#x95EE;&#x9898;">&#x4E03;&#x3001;&#x5E38;&#x89C1;&#x95EE;&#x9898;</h2>
+<h3 id="q1&#x90E8;&#x7F72;&#x96C6;&#x7FA4;&#x65F6;&#xFF0C;label-&#x6807;&#x7B7E;&#x5DF2;&#x8BBE;&#x7F6E;&#xFF0C;&#x540E;&#x9762;&#x68C0;&#x67E5;&#x53D1;&#x73B0;&#x96C6;&#x7FA4;&#x6CA1;&#x6709;&#x6253;-label-&#x6807;&#x7B7E;&#xFF1F;">Q1.&#x90E8;&#x7F72;&#x96C6;&#x7FA4;&#x65F6;&#xFF0C;label &#x6807;&#x7B7E;&#x5DF2;&#x8BBE;&#x7F6E;&#xFF0C;&#x540E;&#x9762;&#x68C0;&#x67E5;&#x53D1;&#x73B0;&#x96C6;&#x7FA4;&#x6CA1;&#x6709;&#x6253; label &#x6807;&#x7B7E;&#xFF1F;</h3>
+<p>  A.inventory.ini &#x4E2D;&#x672A;&#x8BBE;&#x7F6E;&#x8BE5;&#x5185;&#x5BB9;&#xFF0C;&#x4ECD;&#x4E3A;&#x6CE8;&#x91CA;&#x72B6;&#x6001;</p>
+<p>  <img src="media/sop2-3.png" alt="inventory.ini"></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="onlineddl.html" class="navigation navigation-prev " aria-label="Previous page: 【SOP 系列 03】在线表结构变更（Online DDL）">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="multi-idc.html" class="navigation navigation-next " aria-label="Next page: 【SOP 系列 05】现有集群如何从单机房调整为跨机房部署">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"【SOP 系列 04】现有集群 TiKV 如何从单实例部署调整为多实例部署","level":"1.1.7","depth":2,"next":{"title":"【SOP 系列 05】现有集群如何从单机房调整为跨机房部署","level":"1.1.8","depth":2,"path":"multi-idc.md","ref":"multi-idc.md","articles":[]},"previous":{"title":"【SOP 系列 03】在线表结构变更（Online DDL）","level":"1.1.6","depth":2,"path":"onlineddl.md","ref":"onlineddl.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"multi-tikv.md","mtime":"2020-03-19T13:11:15.955Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-21T13:25:49.008Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

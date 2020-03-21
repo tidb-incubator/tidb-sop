@@ -1,0 +1,651 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>【SOP 系列 10】现网如何修改 tidb，tikv，pd 的 port · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="modify-ip.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <span>
+            
+                    
+                    [TiDB 运维手册 SOP 系列 V1.0]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="sop/upgradeto3.0.md">
+            
+                <span>
+            
+                    
+                    01 Release-2.1 升级到 Release-3.0线上集群升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="sop/Prometheuemigrate.md">
+            
+                <span>
+            
+                    
+                    02 Prometheus 等监控组件迁移
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="upgradeto3.0.html">
+            
+                <a href="upgradeto3.0.html">
+            
+                    
+                    【SOP 系列 01】 Release-2.1 升级到 Release-3.0 线上集群升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="Prometheuemigrate.html">
+            
+                <a href="Prometheuemigrate.html">
+            
+                    
+                    【SOP 系列 02】 Prometheus 等监控组件迁移
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="onlineddl.html">
+            
+                <a href="onlineddl.html">
+            
+                    
+                    【SOP 系列 03】在线表结构变更（Online DDL）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="multi-tikv.html">
+            
+                <a href="multi-tikv.html">
+            
+                    
+                    【SOP 系列 04】现有集群 TiKV 如何从单实例部署调整为多实例部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="multi-idc.html">
+            
+                <a href="multi-idc.html">
+            
+                    
+                    【SOP 系列 05】现有集群如何从单机房调整为跨机房部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9" data-path="maintenance.html">
+            
+                <a href="maintenance.html">
+            
+                    
+                    【SOP 系列 06】临时关机维护某线上主机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10" data-path="switch-binlog.html">
+            
+                <a href="switch-binlog.html">
+            
+                    
+                    【SOP 系列 07】如何在线开启/关闭 TiDB Binlog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.11" data-path="scale.html">
+            
+                <a href="scale.html">
+            
+                    
+                    【SOP 系列 08】线上集群扩缩容操作及要点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.12" data-path="modify-ip.html">
+            
+                <a href="modify-ip.html">
+            
+                    
+                    【SOP 系列 09】现网如何修改 tidb，tikv，pd 的 ip 地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.13" data-path="modify-port.html">
+            
+                <a href="modify-port.html">
+            
+                    
+                    【SOP 系列 10】现网如何修改 tidb，tikv，pd 的 port
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >【SOP 系列 10】现网如何修改 tidb，tikv，pd 的 port</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="10-&#x73B0;&#x7F51;&#x5982;&#x4F55;&#x4FEE;&#x6539;-tidb&#xFF0C;tikv&#xFF0C;pd-&#x7684;-port">10 &#x73B0;&#x7F51;&#x5982;&#x4F55;&#x4FEE;&#x6539; tidb&#xFF0C;tikv&#xFF0C;pd &#x7684; port</h1>
+<blockquote>
+<p>&#x8363;&#x6BC5;&#x9F99;  2020 &#x5E74; 3 &#x6708; 10 &#x65E5;</p>
+</blockquote>
+<h2 id="&#x4E00;&#x3001;&#x80CC;&#x666F;--&#x76EE;&#x7684;">&#x4E00;&#x3001;&#x80CC;&#x666F; / &#x76EE;&#x7684;</h2>
+<pre><code>    &#x56E0;&#x4E3A;&#x673A;&#x623F;&#x7F51;&#x7EDC;&#x8C03;&#x6574;&#xFF0C;&#x9700;&#x8981;&#x66F4;&#x6539; tidb&#xFF0C;tikv&#xFF0C;pd &#x5B9E;&#x4F8B;&#x7AEF;&#x53E3;&#x4FE1;&#x606F;
+</code></pre><h2 id="&#x4E8C;&#x3001;&#x76F8;&#x5173;&#x6982;&#x5FF5;&#x53CA;&#x539F;&#x7406;&#x89E3;&#x91CA;">&#x4E8C;&#x3001;&#x76F8;&#x5173;&#x6982;&#x5FF5;&#x53CA;&#x539F;&#x7406;&#x89E3;&#x91CA;</h2>
+<pre><code>    &#x4FEE;&#x6539;&#x7AEF;&#x53E3;&#x4FE1;&#x606F;&#x524D;&#xFF0C;&#x9700;&#x8981;&#x548C;&#x7F51;&#x7EDC;&#x89C4;&#x5212;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#xFF0C;&#x5E76;&#x4E14;&#x907F;&#x514D;&#x7AEF;&#x53E3;&#x51B2;&#x7A81;&#x7684;&#x95EE;&#x9898;
+</code></pre><h2 id="&#x4E09;&#x3001;&#x64CD;&#x4F5C;&#x524D;-check-&#x9879;">&#x4E09;&#x3001;&#x64CD;&#x4F5C;&#x524D; Check &#x9879;</h2>
+<ol>
+<li><p>&#x7AEF;&#x53E3;&#x9884;&#x7559;&#xFF0C;&#x68C0;&#x67E5;&#x7AEF;&#x53E3;&#x662F;&#x5426;&#x88AB;&#x5360;&#x7528;&#xFF0C;&#x5F53;&#x524D;&#x662F;&#x5426;&#x53EF;&#x7528;&#x7B49;</p>
+<pre><code>     netstat -anp |grep &#x7AEF;&#x53E3;&#x53F7;&#xFF08;&#x5982; tikv_port&#x3001;tikv_status_port&#xFF09;
+</code></pre></li>
+<li>&#x68C0;&#x67E5;&#x96C6;&#x7FA4;&#x5F53;&#x524D;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x662F;&#x5426;&#x6B63;&#x5E38;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;&#x76D1;&#x63A7;&#x6216;&#x8005; <code>pd-ctl</code> &#x67E5;&#x770B;
+ &#x76D1;&#x63A7;&#x9762;&#x677F;&#xFF1A;&#x67E5;&#x770B; <code>cluster-overview &#x2192; service port status</code> &#x670D;&#x52A1;&#x662F;&#x5426;&#x6B63;&#x5E38;
+ pd-ctl&#xFF1A;&#x6267;&#x884C; <code>health</code> &#x663E;&#x793A;&#x96C6;&#x7FA4;&#x5065;&#x5EB7;&#x4FE1;&#x606F;</li>
+</ol>
+<h2 id="&#x56DB;&#x3001;&#x6CE8;&#x610F;&#x4E8B;&#x9879;">&#x56DB;&#x3001;&#x6CE8;&#x610F;&#x4E8B;&#x9879;</h2>
+<ol>
+<li>tidb&#x548C;tikv&#x8C03;&#x6574;&#x7AEF;&#x53E3;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x91CD;&#x542F;&#xFF0C;&#x4F1A;&#x5F71;&#x54CD;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x4E1A;&#x52A1;&#xFF0C;&#x6700;&#x597D;&#x53EF;&#x4EE5;&#x5728;&#x4E1A;&#x52A1;&#x505C;&#x6B62;&#x6216;&#x8005;&#x4F4E;&#x5CF0;&#x671F;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;</li>
+<li>&#x8C03;&#x6574;&#x7AEF;&#x53E3;&#x4F1A;&#x4E5F;&#x5F71;&#x54CD;&#x5230;&#x544A;&#x8B66;&#x4FE1;&#x606F;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x5176;&#x4ED6;&#x544A;&#x8B66;&#x5BF9;&#x63A5;&#xFF0C;&#x53EF;&#x80FD;&#x4E5F;&#x9700;&#x8981;&#x8C03;&#x6574;&#x914D;&#x7F6E;</li>
+</ol>
+<h2 id="&#x4E94;&#x3001;&#x96C6;&#x7FA4;&#x62D3;&#x6251;&#x4FE1;&#x606F;">&#x4E94;&#x3001;&#x96C6;&#x7FA4;&#x62D3;&#x6251;&#x4FE1;&#x606F;</h2>
+<table>
+<thead>
+<tr>
+<th>&#x7EC4;&#x4EF6;</th>
+<th>&#x673A;&#x5668; IP:&#x7AEF;&#x53E3;</th>
+<th>&#x76EE;&#x6807;&#x673A;&#x5668; IP:&#x7AEF;&#x53E3;</th>
+<th>&#x6570;&#x91CF; </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TiDB</td>
+<td>172.16.4.242 tidb_port=4807 tidb_status_port=11793<br>172.16.4.243 tidb_port=4807 tidb_status_port=11793</td>
+<td>172.16.4.242 tidb_port=4807 tidb_status_port=11793<br>172.16.4.243 tidb_port=4817 tidb_status_port=12793</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>PD</td>
+<td>172.16.4.243 pd_client_port=12779 pd_peer_port=2787<br>172.16.4.242 pd_client_port=12779 pd_peer_port=2787<br>172.16.4.240 pd_client_port=12779 pd_peer_port=2787</td>
+<td>172.16.4.243 pd_client_port=12779 pd_peer_port=2787<br>172.16.4.242 pd_client_port=12779 pd_peer_port=2787<br>172.16.4.240 pd_client_port=12779 pd_peer_port=2787</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>TiKV</td>
+<td>172.16.4.239 tikv_port=27173 tikv_status_port=27193<br>172.16.4.240 tikv_port=27173 tikv_status_port=27193<br>tikv1-1 ansible_host=172.16.4.238 tikv_port=27173 tikv_status_port=27193 labels=&quot;host=tikv1&quot;<br>tikv1-2 ansible_host=172.16.4.238 tikv_port=27174 tikv_status_port=27194 deploy_dir=/home/tidb/deploy2_3.0.7 labels=&quot;host=tikv2&quot;</td>
+<td>172.16.4.239 tikv_port=27173 tikv_status_port=27193<br>172.16.4.240 tikv_port=27273 tikv_status_port=27293<br>tikv1-1 ansible_host=172.16.4.238 tikv_port=27173 tikv_status_port=27193 labels=&quot;host=tikv1&quot;<br>tikv1-2 ansible_host=172.16.4.238 tikv_port=27174 tikv_status_port=27194 deploy_dir=/home/tidb/deploy2_3.0.7 labels=&quot;host=tikv2&quot;</td>
+<td>3</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="&#x516D;&#x3001;&#x64CD;&#x4F5C;&#x4E2D;&#x7684;&#x5173;&#x952E;&#x6B65;&#x9AA4;">&#x516D;&#x3001;&#x64CD;&#x4F5C;&#x4E2D;&#x7684;&#x5173;&#x952E;&#x6B65;&#x9AA4;</h2>
+<h3 id="61-&#x4FEE;&#x6539;-tidb-&#x5B9E;&#x4F8B;&#x7AEF;&#x53E3;-tidbport-&#x548C;-tidbstatusport">6.1 &#x4FEE;&#x6539; tidb &#x5B9E;&#x4F8B;&#x7AEF;&#x53E3; tidb_port &#x548C; tidb_status_port</h3>
+<blockquote>
+<p>&#x4EE5; 172.16.4.243 &#x670D;&#x52A1;&#x5668; tidb_port &#x7AEF;&#x53E3;&#x4ECE; 4807 &#x4FEE;&#x6539;&#x4E3A; 4817&#xFF0C;tidb_status_port &#x7AEF;&#x53E3;&#x4ECE; 11793 &#x4FEE;&#x6539;&#x4E3A; 12793 &#x4E3A;&#x4F8B;</p>
+</blockquote>
+<ol>
+<li><p>&#x5728;ansible&#x4E2D;&#x63A7;&#x673A;&#x4E0A;&#x4F7F;&#x7528;tidb&#x7528;&#x6237;&#xFF0C;&#x505C;&#x6B62;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x7684;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;tidb-server&#x670D;&#x52A1;</p>
+<pre><code>     su - tidb
+     cd &lt;ansible_deploy&gt;
+     ansible-playbook stop.yml -l 172.16.4.243 -t tidb
+</code></pre></li>
+<li><p>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#x4E0A;&#x4FEE;&#x6539; inventory.ini &#x6587;&#x4EF6;</p>
+<pre><code>     # TiDB Cluster Part
+     [tidb_servers]
+     172.16.4.243 tidb_port=4817 tidb_status_port=12793
+     172.16.4.242 tidb_port=4807 tidb_status_port=11793
+</code></pre></li>
+<li><p>&#x5728;tidb&#x670D;&#x52A1;&#x5668; 172.16.4.243 &#x4E0A;&#xFF0C;&#x4F7F;&#x7528;root&#x7528;&#x6237;&#x4FEE;&#x6539;/etc/systemd/system/&#x76EE;&#x5F55;&#x4E0B;&#x6587;&#x4EF6;&#x540D;tidb-4807.service &#x4E3A; tidb-4817.service</p>
+<pre><code>     cd /etc/systemd/system/
+     mv tidb-4807.service tidb-4817.service
+</code></pre></li>
+<li><p>&#x5728;tidb&#x670D;&#x52A1;&#x5668; 172.16.4.243 &#x4E0A;&#xFF0C;&#x4F7F;&#x7528; tidb &#x7528;&#x6237;&#x4FEE;&#x6539; <deploy_dir>/scripts &#x76EE;&#x5F55;&#x4E0B;&#x6587;&#x4EF6;run_tidb.sh , start_tidb.sh , stop_tidb.sh &#x5C06;&#x539F;&#x7AEF;&#x53E3;&#x4FEE;&#x6539;&#x4E3A;&#x76EE;&#x6807;&#x7AEF;&#x53E3;</deploy_dir></p>
+<pre><code>     su - tidb
+     cd &lt;deploy_dir&gt;/scripts
+     vi run_tidb.sh
+     ---------------------------
+     #!/bin/bash
+     set -e
+
+     ulimit -n 1000000
+
+     # WARNING: This file was auto-generated. Do not edit!
+     #          All your edit might be overwritten!
+     DEPLOY_DIR=/home/tidb/deploy_3.0.7
+
+     cd &quot;${DEPLOY_DIR}&quot; || exit 1
+
+     export TZ=Asia/Shanghai
+
+     exec bin/tidb-server \
+         -P 4817 \
+         --status=&quot;12793&quot; \
+         --advertise-address=&quot;172.16.4.243&quot; \
+         --path=&quot;172.16.4.243:12779,172.16.4.242:12779,172.16.4.240:12779&quot; \
+         --config=conf/tidb.toml \
+         --log-slow-query=&quot;/home/tidb/deploy_3.0.7/log/tidb_slow_query.log&quot; \
+         --log-file=&quot;/home/tidb/deploy_3.0.7/log/tidb.log&quot; 2&gt;&gt; &quot;/home/tidb/deploy_3.0.7/log/tidb_stderr.log&quot;
+     ---------------------------
+
+     vi start_tidb.sh
+     ---------------------------
+     #!/bin/bash
+     set -e
+
+     # WARNING: This file was auto-generated. Do not edit!
+     #          All your edit might be overwritten!
+     sudo systemctl start tidb-4817.service
+     ---------------------------
+
+     vi stop_tidb.sh 
+     ---------------------------
+     #!/bin/bash
+     set -e
+
+     # WARNING: This file was auto-generated. Do not edit!
+     #          All your edit might be overwritten!
+     sudo systemctl stop tidb-4817.service
+     ---------------------------
+</code></pre></li>
+<li><p>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#x4E0A;&#xFF0C;&#x4F7F;&#x7528; tidb &#x7528;&#x6237;&#x542F;&#x52A8; tidb &#x670D;&#x52A1;</p>
+<pre><code>     ansible-playbook start.yml -l 172.16.4.243 -t tidb
+</code></pre></li>
+<li><p>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#x4E0A;&#xFF0C;&#x4F7F;&#x7528; tidb &#x7528;&#x6237;&#x66F4;&#x65B0; prometheus &#x76D1;&#x63A7;</p>
+<pre><code>     ansible-playbook rolling_update_monitor.yml --tags=prometheus
+</code></pre></li>
+<li><p>&#x66F4;&#x65B0;&#x540E;&#x67E5;&#x770B;&#x76D1;&#x63A7;&#x9879;&#x662F;&#x5426;&#x6709;&#x663E;&#x793A;&#x65B0;&#x7684;&#x7AEF;&#x53E3;&#x4FE1;&#x606F;,&#x53EF;&#x4EE5;&#x67E5;&#x770B; tidb---&gt;server----&gt;uptime &#x76D1;&#x63A7;&#x4FE1;&#x606F;</p>
+</li>
+</ol>
+<h3 id="62-&#x4FEE;&#x6539;-tikv-&#x5B9E;&#x4F8B;&#x7AEF;&#x53E3;">6.2 &#x4FEE;&#x6539; tikv &#x5B9E;&#x4F8B;&#x7AEF;&#x53E3;</h3>
+<blockquote>
+<p>&#x4EE5; 172.16.4.240 &#x670D;&#x52A1;&#x5668; tikv_port &#x7AEF;&#x53E3;&#x4ECE; 27173 &#x4FEE;&#x6539;&#x4E3A; 27273&#xFF0C;tikv_status_port &#x7AEF;&#x53E3;&#x4ECE; 27193 &#x4FEE;&#x6539;&#x4E3A; 27293</p>
+</blockquote>
+<ol>
+<li><p>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#xFF0C;&#x4F7F;&#x7528; tidb &#x7528;&#x6237;&#x4FEE;&#x6539;&#x53C2;&#x6570;max-store-down-time&#x65F6;&#x95F4;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;30min&#xFF0C;&#x4FEE;&#x6539;&#x4E3A;&#x8DB3;&#x591F;&#x957F;&#x65F6;&#x95F4; &#xFF08;&#x4E3E;&#x4F8B;&#x4FEE;&#x6539;&#x4E3A;60min&#xFF09;&#xFF0C;&#x6216;&#x8005;&#x5B8C;&#x5168;&#x5173;&#x95ED;&#x96C6;&#x7FA4;</p>
+<pre><code>     su - tidb
+     cd &lt;deploy_dir&gt;/resource/bin
+     ./pd-ctl -u http://172.16.4.240:12779 -i
+     &gt;config set max-store-down-time 60m
+</code></pre></li>
+</ol>
+<pre><code>&#x89E3;&#x91CA;&#xFF1A;max-store-down-time &#x4E3A; PD &#x8BA4;&#x4E3A;&#x5931;&#x8054; store &#x65E0;&#x6CD5;&#x6062;&#x590D;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x5F53;&#x8D85;&#x8FC7;&#x6307;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x6CA1;&#x6709;&#x6536;&#x5230; store &#x7684;&#x5FC3;&#x8DF3;&#x540E;&#xFF0C;PD &#x4F1A;&#x5728;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x8865;&#x5145;&#x526F;&#x672C;
+</code></pre><ol>
+<li><p>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#xFF0C;&#x4F7F;&#x7528; tidb &#x7528;&#x6237;&#x5173;&#x95ED; 172.16.4.240 tikv &#x5B9E;&#x4F8B;</p>
+<pre><code>     su - tidb
+     cd &lt;deploy_dir&gt;
+     ansible-playbook stop.yml  -l 172.16.4.240 -t tikv
+</code></pre></li>
+<li><p>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#xFF0C;&#x4F7F;&#x7528;tidb&#x7528;&#x6237;&#x4FEE;&#x6539;inventory.ini&#x4E2D;&#x7684; tikv &#x7AEF;&#x53E3;</p>
+<pre><code>     su - tidb
+     cd &lt;deploy_dir&gt;
+     vi inventory.ini
+     [tikv_servers]
+     172.16.4.239 tikv_port=27173 tikv_status_port=27193
+     172.16.4.240 tikv_port=27273 tikv_status_port=27293
+     tikv1-1 ansible_host=172.16.4.238 tikv_port=27173 tikv_status_port=27193 labels=&quot;host=tikv1&quot;
+     tikv1-2 ansible_host=172.16.4.238 tikv_port=27174 tikv_status_port=27194 deploy_dir=/home/tidb/deploy2_3.0.7 labels=&quot;host=tikv2&quot;
+</code></pre></li>
+<li><p>&#x5728; tikv &#x670D;&#x52A1;&#x5668; 172.16.4.240 &#x4E0A;&#xFF0C;&#x4F7F;&#x7528;root&#x7528;&#x6237;&#x4FEE;&#x6539;/etc/systemd/system/&#x76EE;&#x5F55;&#x4E0B;&#x6587;&#x4EF6;&#x540D;tikv-27173.service &#x4E3A; tikv-27273.service</p>
+<pre><code>     cd /etc/systemd/system/
+     mv tikv-27173.service tikv-27273.service
+</code></pre></li>
+<li><p>&#x5728; tikv &#x670D;&#x52A1;&#x5668; 172.16.4.240 &#x4E0A;&#xFF0C;&#x4F7F;&#x7528; tidb &#x7528;&#x6237;&#x4FEE;&#x6539; <deploy_dir>/scripts &#x76EE;&#x5F55;&#x4E0B;&#x6587;&#x4EF6;run_tikv.sh , start_tikv.sh , stop_tikv.sh &#x5C06;&#x539F;&#x7AEF;&#x53E3;&#x4FEE;&#x6539;&#x4E3A;&#x76EE;&#x6807;&#x7AEF;&#x53E3;</deploy_dir></p>
+<p> ```</p>
+<pre><code> su - tidb
+ cd &lt;deploy_dir&gt;/scripts
+ vi run_tikv.sh
+ ---------------------------
+ #!/bin/bash
+ set -e
+ ulimit -n 1000000
+
+ # WARNING: This file was auto-generated. Do not edit!
+ #          All your edit might be overwritten!
+ cd &quot;/home/tidb/deploy_3.0.7&quot; || exit 1
+
+ export RUST_BACKTRACE=1
+
+ export TZ=${TZ:-/etc/localtime}
+
+ echo -n &apos;sync ... &apos;
+ stat=$(time sync)
+ echo ok
+ echo $stat
+
+ echo $$ &gt; &quot;status/tikv.pid&quot;
+
+ exec bin/tikv-server \
+     --addr &quot;0.0.0.0:27273&quot; \
+     --advertise-addr &quot;172.16.4.240:27273&quot; \
+     --status-addr &quot;172.16.4.240:27293&quot; \
+     --pd &quot;172.16.4.243:12779,172.16.4.242:12779,172.16.4.240:12779&quot; \
+     --data-dir &quot;/home/tidb/deploy_3.0.7/data&quot; \
+     --config conf/tikv.toml \
+     --log-file &quot;/home/tidb/deploy_3.0.7/log/tikv.log&quot; 2&gt;&gt; &quot;/home/tidb/deploy_3.0.7/log/tikv_stderr.log&quot;
+ ---------------------------
+
+ vi start_tikv.sh
+ ---------------------------
+ #!/bin/bash
+ set -e
+
+ # WARNING: This file was auto-generated. Do not edit!
+ #          All your edit might be overwritten!
+ sudo systemctl start tikv-27273.service
+ ---------------------------
+</code></pre></li>
+</ol>
+<pre><code>    vi stop_tikv.sh 
+    ---------------------------
+    #!/bin/bash
+    set -e
+
+    # WARNING: This file was auto-generated. Do not edit!
+    #          All your edit might be overwritten!
+    sudo systemctl stop tikv-27273.service
+    ---------------------------
+
+```
+</code></pre><ol>
+<li><p>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#x4E0A;&#xFF0C;&#x4F7F;&#x7528; tidb &#x7528;&#x6237;&#x542F;&#x52A8; tikv &#x670D;&#x52A1;</p>
+<pre><code>     ansible-playbook start.yml -l 172.16.4.240 -t tikv
+</code></pre></li>
+<li><p>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#x4E0A;&#xFF0C;&#x4F7F;&#x7528; tidb &#x7528;&#x6237;&#x66F4;&#x65B0; prometheus &#x76D1;&#x63A7;</p>
+<pre><code>     ansible-playbook rolling_update_monitor.yml --tags=prometheus
+</code></pre></li>
+<li><p>&#x66F4;&#x65B0;&#x540E;&#x67E5;&#x770B;&#x76D1;&#x63A7;&#x9879;&#x662F;&#x5426;&#x6709;&#x663E;&#x793A;&#x65B0;&#x7684;&#x7AEF;&#x53E3;&#x4FE1;&#x606F;,&#x53EF;&#x4EE5;&#x67E5;&#x770B; detail-tikv---&gt;cluster----&gt;cpu &#x76D1;&#x63A7;&#x4FE1;&#x606F;</p>
+</li>
+<li><p>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#xFF0C;&#x4F7F;&#x7528; tidb &#x7528;&#x6237;&#x4FEE;&#x6539;&#x53C2;&#x6570;max-store-down-time&#x65F6;&#x95F4;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;30min&#xFF0C;&#x4FEE;&#x6539;&#x4E3A;&#x539F;&#x914D;&#x7F6E;</p>
+<pre><code>     su - tidb
+     cd &lt;deploy_dir&gt;/resource/bin
+     ./pd-ctl -u http://172.16.4.240:12779 -i
+     &gt;config set max-store-down-time 30m
+
+     &#x89E3;&#x91CA;&#xFF1A;max-store-down-time &#x4E3A; PD &#x8BA4;&#x4E3A;&#x5931;&#x8054; store &#x65E0;&#x6CD5;&#x6062;&#x590D;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x5F53;&#x8D85;&#x8FC7;&#x6307;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x6CA1;&#x6709;&#x6536;&#x5230; store &#x7684;&#x5FC3;&#x8DF3;&#x540E;&#xFF0C;PD &#x4F1A;&#x5728;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x8865;&#x5145;&#x526F;&#x672C;
+</code></pre></li>
+</ol>
+<h3 id="63-pd-&#x4FEE;&#x6539;&#x7AEF;&#x53E3;">6.3 PD &#x4FEE;&#x6539;&#x7AEF;&#x53E3;</h3>
+<pre><code>    PD &#x4E0D;&#x5EFA;&#x8BAE;&#x76F4;&#x63A5;&#x4FEE;&#x6539;&#x7AEF;&#x53E3;&#xFF0C;&#x8BF7;&#x53C2;&#x8003;&#x6269;&#x5BB9;&#x7F29;&#x5BB9;&#x7AE0;&#x8282;&#xFF0C;&#x5148;&#x8FDB;&#x884C;&#x6269;&#x5BB9;&#xFF0C;&#x518D;&#x7F29;&#x5BB9;
+</code></pre><h2 id="&#x4E03;&#x3001;&#x5E38;&#x89C1;&#x95EE;&#x9898;">&#x4E03;&#x3001;&#x5E38;&#x89C1;&#x95EE;&#x9898;</h2>
+<pre><code>Q1. &#x7AEF;&#x53E3;&#x5DF2;&#x7ECF;&#x88AB;&#x5360;&#x7528;&#xFF0C;&#x62A5;&#x9519;&#x65E0;&#x6CD5;&#x542F;&#x52A8;&#xFF0C;&#x9700;&#x8981;&#x63D0;&#x524D;&#x68C0;&#x67E5;&#x7AEF;&#x53E3;&#x4FE1;&#x606F;
+    netstat -ntlp | grep 2779
+
+Q2. &#x4FEE;&#x6539;&#x7AEF;&#x53E3;&#x4FE1;&#x606F;&#x53EA;&#x4FEE;&#x6539;&#x4E86;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x6CA1;&#x6709;&#x4FEE;&#x6539;/etc/systemd/system&#x4E0B;&#x7684;service&#x6587;&#x4EF6;
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="modify-ip.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 【SOP 系列 09】现网如何修改 tidb，tikv，pd 的 ip 地址">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"【SOP 系列 10】现网如何修改 tidb，tikv，pd 的 port","level":"1.1.13","depth":2,"previous":{"title":"【SOP 系列 09】现网如何修改 tidb，tikv，pd 的 ip 地址","level":"1.1.12","depth":2,"path":"modify-ip.md","ref":"modify-ip.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"modify-port.md","mtime":"2020-03-20T15:56:05.337Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-21T13:25:49.008Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

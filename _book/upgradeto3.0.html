@@ -1,0 +1,867 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>【SOP 系列 01】 Release-2.1 升级到 Release-3.0 线上集群升级 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Prometheuemigrate.html" />
+    
+    
+    <link rel="prev" href="sop/Prometheuemigrate.md" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <span>
+            
+                    
+                    [TiDB 运维手册 SOP 系列 V1.0]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="sop/upgradeto3.0.md">
+            
+                <span>
+            
+                    
+                    01 Release-2.1 升级到 Release-3.0线上集群升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="sop/Prometheuemigrate.md">
+            
+                <span>
+            
+                    
+                    02 Prometheus 等监控组件迁移
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.4" data-path="upgradeto3.0.html">
+            
+                <a href="upgradeto3.0.html">
+            
+                    
+                    【SOP 系列 01】 Release-2.1 升级到 Release-3.0 线上集群升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="Prometheuemigrate.html">
+            
+                <a href="Prometheuemigrate.html">
+            
+                    
+                    【SOP 系列 02】 Prometheus 等监控组件迁移
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="onlineddl.html">
+            
+                <a href="onlineddl.html">
+            
+                    
+                    【SOP 系列 03】在线表结构变更（Online DDL）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="multi-tikv.html">
+            
+                <a href="multi-tikv.html">
+            
+                    
+                    【SOP 系列 04】现有集群 TiKV 如何从单实例部署调整为多实例部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="multi-idc.html">
+            
+                <a href="multi-idc.html">
+            
+                    
+                    【SOP 系列 05】现有集群如何从单机房调整为跨机房部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.9" data-path="maintenance.html">
+            
+                <a href="maintenance.html">
+            
+                    
+                    【SOP 系列 06】临时关机维护某线上主机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10" data-path="switch-binlog.html">
+            
+                <a href="switch-binlog.html">
+            
+                    
+                    【SOP 系列 07】如何在线开启/关闭 TiDB Binlog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.11" data-path="scale.html">
+            
+                <a href="scale.html">
+            
+                    
+                    【SOP 系列 08】线上集群扩缩容操作及要点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.12" data-path="modify-ip.html">
+            
+                <a href="modify-ip.html">
+            
+                    
+                    【SOP 系列 09】现网如何修改 tidb，tikv，pd 的 ip 地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.13" data-path="modify-port.html">
+            
+                <a href="modify-port.html">
+            
+                    
+                    【SOP 系列 10】现网如何修改 tidb，tikv，pd 的 port
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >【SOP 系列 01】 Release-2.1 升级到 Release-3.0 线上集群升级</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="01-release-21-&#x5347;&#x7EA7;&#x5230;-release-30-&#x7EBF;&#x4E0A;&#x96C6;&#x7FA4;&#x5347;&#x7EA7;">01 Release-2.1 &#x5347;&#x7EA7;&#x5230; Release-3.0 &#x7EBF;&#x4E0A;&#x96C6;&#x7FA4;&#x5347;&#x7EA7;</h1>
+<blockquote>
+<p>&#x674E;&#x4EF2;&#x8212;  2020 &#x5E74; 2 &#x6708; 10 &#x65E5;</p>
+</blockquote>
+<h2 id="&#x4E00;&#x3001;&#x80CC;&#x666F;--&#x76EE;&#x7684;">&#x4E00;&#x3001;&#x80CC;&#x666F; / &#x76EE;&#x7684;</h2>
+<p>&#x5206;&#x5E03;&#x5F0F;&#x6570;&#x636E;&#x5E93;&#x96C6;&#x7FA4;&#x8FD0;&#x7EF4;&#x8FC7;&#x7A0B;&#x6709;&#x4E00;&#x5B9A;&#x7684;&#x590D;&#x6742;&#x6027;&#x548C;&#x7E41;&#x7410;&#x6027;&#xFF0C;3.0 &#x7248;&#x672C;&#x662F;&#x76EE;&#x524D;&#x88AB;&#x5E7F;&#x6CDB;&#x4F7F;&#x7528;&#x7684;&#x7248;&#x672C;&#xFF0C;&#x76F8;&#x6BD4; 2.1 &#x6709;&#x5927;&#x5E45;&#x5EA6;&#x589E;&#x52A0;&#x6027;&#x80FD;&#xFF0C;&#x4EE5;&#x53CA;&#x5F88;&#x591A;&#x65B0;&#x589E;&#x7684;&#x529F;&#x80FD;&#x548C;&#x7279;&#x6027;&#xFF0C;&#x6574;&#x4F53;&#x67B6;&#x6784;&#x3001;&#x914D;&#x7F6E;&#x4E5F;&#x6709;&#x8F83;&#x5927;&#x7684;&#x4F18;&#x5316;&#x3002;&#x8BE5;&#x7BC7;&#x6839;&#x636E;&#x5E7F;&#x5927;&#x7528;&#x6237;&#x7684;&#x5347;&#x7EA7;&#x7ECF;&#x9A8C;&#xFF0C;&#x5C3D;&#x53EF;&#x80FD;&#x5C06; Release-2.1 &#x5347;&#x7EA7;&#x5230; Release-3.0 &#x7684;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;&#x3001;&#x5347;&#x7EA7;&#x8FC7;&#x7A0B;&#x4E2D;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#x3001;&#x5347;&#x7EA7;&#x540E;&#x91CD;&#x70B9;&#x5173;&#x6CE8;&#x5217;&#x4E3E;&#x8BE6;&#x7EC6;&#xFF0C;&#x505A;&#x5230;&#x9632;&#x60A3;&#x4E8E;&#x672A;&#x7136;&#x3002;&#x4E3A; Release-3.0 &#x7248;&#x672C;&#x7684;&#x4F18;&#x79C0;&#x7279;&#x6027;&#x548C;&#x4EA7;&#x54C1;&#x6027;&#x80FD;&#x5728;&#x4E1A;&#x52A1;&#x573A;&#x666F;&#x4E2D;&#x5E7F;&#x6CDB;&#x4F7F;&#x7528;&#x63D0;&#x4F9B;&#x6587;&#x6863;&#x4F9D;&#x6258;&#x3002;  </p>
+<p>&#x9002;&#x7528;&#x4EBA;&#x7FA4;&#x9ED8;&#x8BA4;&#x4E3A;&#x719F;&#x6089; 2.1 &#x7248;&#x672C;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x505A;&#x8FC7;&#x5927;&#x7248;&#x672C;&#x5347;&#x7EA7;&#x3002;</p>
+<h2 id="&#x4E8C;&#x3001;&#x64CD;&#x4F5C;&#x524D;&#x7684;-check-&#x9879;">&#x4E8C;&#x3001;&#x64CD;&#x4F5C;&#x524D;&#x7684; Check &#x9879;</h2>
+<h3 id="21-&#x5907;&#x4EFD;&#x539F;&#x96C6;&#x7FA4;&#x4FEE;&#x6539;&#x8FC7;&#x7684;-tidb&#x3001;tikv-&#x548C;-pd-&#x53C2;&#x6570;">2.1 &#x5907;&#x4EFD;&#x539F;&#x96C6;&#x7FA4;&#x4FEE;&#x6539;&#x8FC7;&#x7684; TiDB&#x3001;TiKV &#x548C; PD &#x53C2;&#x6570;</h3>
+<blockquote>
+<p>&#x521B;&#x5EFA;&#x4E34;&#x65F6;&#x76EE;&#x5F55;&#xFF0C;&#x5907;&#x4EFD;&#x5347;&#x7EA7;&#x524D;&#x7684;&#x53C2;&#x6570;&#x914D;&#x7F6E;</p>
+</blockquote>
+<pre><code class="lang-shell">mkdir -p /tmp/tidb_update_3.0/conf
+mkdir -p /tmp/tidb_update_3.0/group_vars
+</code></pre>
+<blockquote>
+<p>&#x786E;&#x8BA4;&#x5E76;&#x5907;&#x4EFD; tidb-ansible/conf/tidb.yml &#x4E2D;&#x7684;&#x53C2;&#x6570;</p>
+</blockquote>
+<pre><code class="lang-shell">$cat tidb.yml |grep -v &quot;#&quot; |grep -v ^$ &gt; /tmp/tidb_update_3.0/conf/tidb.yml
+$cat /tmp/tidb_update_3.0/conf/tidb.yml
+... &#x914D;&#x7F6E;&#x5C55;&#x793A;&#x7701;&#x7565; ...
+</code></pre>
+<blockquote>
+<p>&#x786E;&#x8BA4;&#x5E76;&#x5907;&#x4EFD; tidb-ansible/conf/tikv.yml &#x4E2D;&#x7684;&#x53C2;&#x6570;</p>
+</blockquote>
+<pre><code class="lang-shell">$cat tikv.yml |grep -v &quot;#&quot; |grep -v ^$ &gt; /tmp/tidb_update_3.0/conf/tikv.yml
+$cat /tmp/tidb_update_3.0/conf/tikv.yml
+... &#x914D;&#x7F6E;&#x5C55;&#x793A;&#x7701;&#x7565; ...
+</code></pre>
+<blockquote>
+<p>&#x786E;&#x8BA4;&#x5E76;&#x5907;&#x4EFD; tidb-ansible/conf/pd.yml &#x4E2D;&#x7684;&#x53C2;&#x6570;</p>
+</blockquote>
+<pre><code class="lang-shell">$cat pd.yml |grep -v &quot;#&quot; |grep -v ^$ &gt; /tmp/tidb_update_3.0/conf/tidb.yml
+$cat /tmp/tidb_update_3.0/conf/pd.yml
+... &#x914D;&#x7F6E;&#x5C55;&#x793A;&#x7701;&#x7565; ...
+</code></pre>
+<blockquote>
+<p>&#x786E;&#x8BA4;&#x5E76;&#x5907;&#x4EFD; PD &#x96C6;&#x7FA4;&#x4E2D; etcd &#x8BB0;&#x5F55;&#x7684; PD &#x914D;&#x7F6E;&#x4FE1;&#x606F;</p>
+</blockquote>
+<pre><code class="lang-shell">$cd tidb-ansible/resource/bin/
+$./pd-ctl -u &quot;http://{pd-ip}:{pd_client_port}&quot; config show all &gt; /tmp/tidb_update_3.0/conf/pd.json
+$cat /tmp/tidb_update_3.0/conf/pd.json
+... &#x914D;&#x7F6E;&#x5C55;&#x793A;&#x7701;&#x7565; ...
+</code></pre>
+<blockquote>
+<p>&#x786E;&#x8BA4;&#x5E76;&#x5907;&#x4EFD; TiDB&#x3001;TiKV&#x3001;PD&#x3001;Grafana&#x3001;Prometheus &#x7B49;&#x7EC4;&#x4EF6;&#x7684;&#x7EC4;&#x53C2;&#x6570;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x7AEF;&#x53E3;&#x7684;&#x53D8;&#x5316;</p>
+</blockquote>
+<pre><code class="lang-shell">$cd tidb-ansible/group_vars
+$ll |awk &apos;{print $9}&apos;|grep -v ^$
+alertmanager_servers.yml
+all.yml
+drainer_servers.yml
+grafana_servers.yml
+importer_server.yml
+lightning_server.yml
+monitored_servers.yml
+monitoring_servers.yml
+pd_servers.yml
+pump_servers.yml
+tidb_servers.yml
+tikv_servers.yml
+$cp *.yml /tmp/tidb_update_3.0/group_vars/
+</code></pre>
+<h2 id="&#x4E09;&#x3001;&#x5347;&#x7EA7;&#x524D;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;">&#x4E09;&#x3001;&#x5347;&#x7EA7;&#x524D;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;</h2>
+<h3 id="31--&#x67E5;&#x770B;-tidb-&#x7684;-release-notes">3.1  &#x67E5;&#x770B; TiDB &#x7684; Release Notes</h3>
+<p>&#x4EE5; v3.0.9 <a href="https://pingcap.com/docs-cn/stable/releases/3.0.9/" target="_blank">Release Notes</a> &#x4E3A;&#x4F8B;&#xFF0C;&#x901A;&#x8FC7;Release Notes&#x4E86;&#x89E3;&#x505A;&#x4E86;&#x90A3;&#x4E9B;&#x4F18;&#x5316;&#x6216;&#x8005;&#x4FEE;&#x590D;&#x4E86;&#x54EA;&#x4E9B; bug&#x3002;</p>
+<h3 id="32-&#x5347;&#x7EA7;-3-&#x4E2A;&#x6CE8;&#x610F;&#x3001;2-&#x4E2A;&#x4E0D;&#x652F;&#x6301;&#x3001;1-&#x4E2A;&#x7528;&#x6237;">3.2 &#x5347;&#x7EA7; 3 &#x4E2A;&#x6CE8;&#x610F;&#x3001;2 &#x4E2A;&#x4E0D;&#x652F;&#x6301;&#x3001;1 &#x4E2A;&#x7528;&#x6237;</h3>
+<ul>
+<li><p>&#x6CE8;&#x610F;&#x901A;&#x77E5;&#x4E1A;&#x52A1;&#xFF0C;&#x5347;&#x7EA7;&#x671F;&#x95F4;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x5076;&#x5C14;&#x7684;&#x6027;&#x80FD;&#x6296;&#x52A8;&#xFF0C;PD leader &#x5347;&#x7EA7;&#x53EF;&#x80FD;&#x4F1A;&#x6709; 3s &#x7684;&#x5F71;&#x54CD;&#xFF1B;</p>
+</li>
+<li><p>&#x6CE8;&#x610F;&#x9884;&#x4F30;&#x5347;&#x7EA7;&#x65F6;&#x95F4; = tikv &#x4E2A;&#x6570; * 5 min&#xFF08;&#x9ED8;&#x8BA4;&#x662F; transfer leader &#x65F6;&#x95F4;&#xFF09; + 10 min&#xFF0C;&#x6EDA;&#x52A8;&#x5347;&#x7EA7; TiKV &#x65F6;&#x95F4;&#x8F83;&#x957F;&#xFF1B;</p>
+</li>
+<li><p>&#x6CE8;&#x610F;&#x901A;&#x77E5;&#x4E1A;&#x52A1;&#x5347;&#x7EA7;&#x8FC7;&#x7A0B;&#x7981;&#x6B62;&#x64CD;&#x4F5C; DDL&#xFF0C;&#x6700;&#x597D;&#x8FC7;&#x4E00;&#x6B21;&#x5B8C;&#x6574;&#x7684;&#x6570;&#x636E;&#x51B7;&#x5907;&#x4EFD;&#xFF0C;&#x901A;&#x8FC7; MyDumper &#x5BFC;&#x51FA;&#x4E1A;&#x52A1;&#x5E93;&#xFF1B;</p>
+</li>
+<li><p>&#x6574;&#x4E2A;&#x5347;&#x7EA7;&#x8FC7;&#x7A0B;&#x4E0D;&#x652F;&#x6301;&#x7248;&#x672C;&#x56DE;&#x9000;&#xFF0C;&#x76EE;&#x524D;&#x672A;&#x51FA;&#x73B0;&#x5347;&#x7EA7;&#x5931;&#x8D25;&#x9700;&#x8981;&#x56DE;&#x9000;&#x6848;&#x4F8B;;</p>
+</li>
+<li><p>&#x5347;&#x7EA7;&#x8FC7;&#x7A0B;&#x4E2D;&#x4E0D;&#x652F;&#x6301; DDL &#x64CD;&#x4F5C;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x6709;&#x672A;&#x5B9A;&#x4E49;&#x95EE;&#x9898;&#xFF0C;&#x6700;&#x7EC8;&#x5BFC;&#x81F4;&#x5347;&#x7EA7;&#x5F02;&#x5E38;&#xFF0C;&#x5F71;&#x54CD;&#x4E1A;&#x52A1;&#xFF1B;</p>
+</li>
+<li><p>&#x5347;&#x7EA7;&#x64CD;&#x4F5C;&#x901A;&#x8FC7;&#x4E2D;&#x63A7;&#x673A;&#x7684; TiDB &#x7BA1;&#x7406;&#x7528;&#x6237;&#x5B8C;&#x6210;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F; &#x201C;tidb&#x201D; &#x7528;&#x6237;&#x3002;</p>
+</li>
+</ul>
+<h2 id="&#x56DB;&#x3001;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;">&#x56DB;&#x3001;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;</h2>
+<h3 id="41-&#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7248;&#x7684;-v30x-&#x7248;&#x672C;&#x7684;-tidb-ansible">4.1 &#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x7248;&#x7684; v3.0.x &#x7248;&#x672C;&#x7684; tidb-ansible</h3>
+<p>&#x5BF9;&#x5E94;&#x7684; TAG &#x53EF;&#x4EE5;&#x67E5;&#x770B; Github &#x4E2D;&#x7684;<a href="https://github.com/pingcap/tidb-ansible/releases/tag/v3.0.9" target="_blank"> tidb-ansible &#x9879;&#x76EE;</a>&#xFF0C;&#x4EE5; v3.0.9 &#x4E3A;&#x4F8B;&#xFF0C;&#x6CE8;&#x610F;&#x8BBE;&#x7F6E;&#x76EE;&#x5F55;&#x522B;&#x540D; <code>&#x201C;tidb-ansible-v3.0.9&#x201D;</code></p>
+<pre><code class="lang-shell">git clone -b v3.0.9 https://github.com/pingcap/tidb-ansible.git tidb-ansible-v3.0.9
+</code></pre>
+<p>tidb-ansible-v3.0.9 &#x51E0;&#x4E2A;&#x7279;&#x6B8A;&#x7684;&#x5730;&#x65B9;&#xFF1A;</p>
+<ul>
+<li><p>&#x5173;&#x4E8E;&#x65B0;&#x589E;&#x7684; <code>excessive_rolling_update.yml</code> &#x548C; <code>rolling_update.yml</code> &#x7684;&#x5173;&#x7CFB;&#x3002;</p>
+<ul>
+<li><p>&#x5982;&#x679C;&#x90E8;&#x7F72;&#x91C7;&#x7528; &#xFF08;&#x9ED8;&#x8BA4;&#xFF09;systemd &#x6A21;&#x5F0F; &#xFF0C;&#x4F7F;&#x7528; <code>excessive_rolling_update.yml</code> &#x6765;&#x8FDB;&#x884C;&#x6EDA;&#x52A8;&#x5347;&#x7EA7;&#x64CD;&#x4F5C;&#xFF0C;&#x539F;&#x56E0;&#x662F;&#x6D89;&#x53CA;&#x5230; <a href="https://github.com/pingcap/tidb-ansible/blob/v3.0.9/excessive_rolling_update.yml#L208-L211" target="_blank">PD &#x6EDA;&#x52A8;&#x5347;&#x7EA7;</a>&#xFF08;&#x4EE5; v3.0.9 &#x4E3A;&#x4F8B;&#xFF09;&#x7684;&#x4EE3;&#x7801;&#x53D8;&#x52A8;&#xFF0C;&#x8BE5;&#x811A;&#x672C;&#x4EC5;&#x672C;&#x6B21;&#x5347;&#x7EA7;&#x4F7F;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x4EE5;&#x540E;&#x518D;&#x6B21;&#x5347;&#x7EA7;&#x5230;&#x540E;&#x7EED;&#x7248;&#x672C;&#x5747;&#x7531; <code>rolling_update.yml</code> &#x6765;&#x5B8C;&#x6210;&#x3002;</p>
+<pre><code class="lang-shell"> $ cat inventory.ini|grep supervision
+
+ # process supervision, [systemd, supervise]
+
+ process_supervision = systemd
+</code></pre>
+</li>
+<li><p>&#x5982;&#x679C;&#x91C7;&#x7528; supervise &#x6A21;&#x5F0F;&#xFF0C;&#x4F9D;&#x7136;&#x4F7F;&#x7528; rolling_update.yml &#x6765;&#x8FDB;&#x884C;&#x6EDA;&#x52A8;&#x5347;&#x7EA7;&#x64CD;&#x4F5C;&#x3002;</p>
+<pre><code class="lang-shell"> $ cat inventory.ini|grep supervision
+ # process supervision, [systemd, supervise]
+ process_supervision = supervise
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>&#x65B0;&#x589E; <a href="https://github.com/pingcap/tidb-ansible/blob/v3.0.9/rolling_update.yml#L57-L76" target="_blank">config check</a> &#xFF08;&#x4EE5; v3.0.9 &#x4E3A;&#x4F8B;&#xFF09;,&#x4E3B;&#x8981;&#x68C0;&#x67E5;&#x53C2;&#x6570;&#x914D;&#x7F6E;&#x8BED;&#x6CD5;&#x6B63;&#x786E;&#x6027;&#x3002;</p>
+</li>
+</ul>
+<pre><code class="lang-yml"><span class="hljs-comment">## &#x4EE3;&#x7801;&#x5757;</span>
+<span class="hljs-attr">- name:</span> Pre-check PD configuration
+<span class="hljs-attr">  hosts:</span> pd_servers[<span class="hljs-number">0</span>]
+<span class="hljs-attr">  tags:</span>
+<span class="hljs-bullet">    -</span> pd
+<span class="hljs-attr">  roles:</span>
+<span class="hljs-bullet">    -</span> check_config_pd
+
+<span class="hljs-attr">- name:</span> Pre-check TiKV configuration
+<span class="hljs-attr">  hosts:</span> tikv_servers[<span class="hljs-number">0</span>]
+<span class="hljs-attr">  tags:</span>
+<span class="hljs-bullet">    -</span> tikv
+<span class="hljs-attr">  roles:</span>
+<span class="hljs-bullet">    -</span> check_config_tikv
+
+<span class="hljs-attr">- name:</span> Pre-check TiDB configuration
+<span class="hljs-attr">  hosts:</span> tidb_servers[<span class="hljs-number">0</span>]
+<span class="hljs-attr">  tags:</span>
+<span class="hljs-bullet">    -</span> tidb
+<span class="hljs-attr">  roles:</span>
+<span class="hljs-bullet">    -</span> check_config_tidb
+</code></pre>
+<h3 id="42-&#x66F4;&#x65B0;-ansible-&#x53CA;&#x4F9D;&#x8D56;&#x7EC4;&#x4EF6;&#x7248;&#x672C;">4.2 &#x66F4;&#x65B0; ansible &#x53CA;&#x4F9D;&#x8D56;&#x7EC4;&#x4EF6;&#x7248;&#x672C;</h3>
+<pre><code class="lang-shell"># &#x9A8C;&#x8BC1;&#x7248;&#x672C;&#x662F;&#x5426;&#x7B26;&#x5408;&#x8981;&#x6C42;
+# &#x7248;&#x672C;&#x8981;&#x6C42;
+$cat ./requirements.txt
+ansible==2.7.11
+jinja2&gt;=2.9.6
+jmespath&gt;=0.9.0
+# &#x68C0;&#x67E5;&#x7248;&#x672C;
+$ansible --version
+$pip show jinja2
+$pip show jmespath
+# &#x5378;&#x8F7D;&#x91CD;&#x65B0;&#x5B89;&#x88C5;
+# &#x5378;&#x8F7D;&#x7EC4;&#x4EF6;
+$sudo pip uninstall ansible -y
+$sudo pip uninstall jinja2 -y
+$sudo pip uninstall jmespath -y
+# &#x5B89;&#x88C5;&#x7EC4;&#x4EF6;
+$sudo pip install -r ./requirements.txt
+</code></pre>
+<h3 id="43--&#x7F16;&#x8F91;&#x65B0;-ansible-&#x7684;-inventoryini-&#x548C;-&#x914D;&#x7F6E;">4.3  &#x7F16;&#x8F91;&#x65B0; ansible &#x7684; inventory.ini &#x548C; &#x914D;&#x7F6E;</h3>
+<p>&#x53C2;&#x8003;&#x539F;&#x59CB; inventory.ini &#x7F16;&#x8F91;&#x65B0; inventory.ini </p>
+<pre><code class="lang-shell">$cd tidb-ansible-v3.0.9
+# &#x6309;&#x7167; tidb-ansible/inventory.ini &#x914D;&#x7F6E;
+$vi inventory.ini
+</code></pre>
+<blockquote>
+<p>&#x6CE8;&#x610F;</p>
+<p>&#x4E0D;&#x8981;&#x76F4;&#x63A5; cp &#x6216;&#x8005; mv &#x65B9;&#x5F0F;&#x8986;&#x76D6;&#x65B0;&#x7684; inventory.ini &#x6587;&#x4EF6;&#xFF0C;&#x5EFA;&#x8BAE;&#x5C06;&#x5907;&#x4EFD;&#x7684;&#x539F; tidb-ansible &#x7684; inventory.ini &#x7684;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x901A;&#x8FC7;&#x590D;&#x5236;&#x3001;&#x9ECF;&#x8D34;&#x7684;&#x65B9;&#x5F0F;&#x5C06;&#x53C2;&#x6570;&#x586B;&#x5199;&#x5230;&#x65B0;&#x7684; tidb-ansible &#x7684; inventory.ini &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x3002;&#x53E6;&#x5916;&#x6CE8;&#x610F;&#x4EE5;&#x4E0B;&#x51E0;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>TiKV &#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B; <ul>
+<li>TiKV &#x591A;&#x5B9E;&#x4F8B;&#x90E8;&#x7F72;&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x6DFB;&#x52A0; <a href="https://pingcap.com/docs-cn/stable/how-to/upgrade/from-previous-version/#%E7%BC%96%E8%BE%91-tidb-%E9%9B%86%E7%BE%A4%E7%BB%84%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" target="_blank">tikv_status_port</a> &#x53C2;&#x6570;&#xFF0C;&#x540C;&#x673A;&#x4E0A;&#x7684;&#x591A;&#x4E2A;&#x5B9E;&#x4F8B;&#x6CE8;&#x610F;&#x533A;&#x5206;&#x7AEF;&#x53E3;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x9020;&#x6210;&#x76D1;&#x63A7;&#x7F3A;&#x5931;&#x3002;
+&#x3010;&#x529F;&#x80FD;&#x4ECB;&#x7ECD;&#x3011;&#x76D1;&#x63A7;&#x6570;&#x636E;&#x5230; Prometheus &#x4ECE; push &#x6A21;&#x5F0F;&#x8C03;&#x6574;&#x4E3A; pull &#x6A21;&#x5F0F;&#xFF0C;TiKV &#x7684;&#x542F;&#x52A8;&#x811A;&#x672C; <code>run_tikv.sh</code> &#x9700;&#x8981;&#x914D;&#x7F6E; <code>tikv_status_port</code>&#xFF0C;&#x9700;&#x8981;&#x5728; inventory.ini &#x7684; <code>[tikv_servers]</code> &#x4E3B;&#x673A;&#x7EC4;&#x4E0B;&#x7684;&#x76EE;&#x6807;&#x5B9E;&#x4F8B;&#x914D;&#x7F6E;&#x4E2D;&#x6DFB;&#x52A0;&#x53C2;&#x6570; <code>tikv_status_port</code>&#xFF0C;&#x901A;&#x8FC7;&#x6EDA;&#x52A8;&#x5347;&#x7EA7;&#x624D;&#x4F1A;&#x5C06;&#x53C2;&#x6570;&#x5199;&#x5165;&#x5230; <code>run_tikv.sh</code> &#x4E2D;&#x3002;</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<pre><code>  ```yml
+  vi tidb-ansible/inventory.ini
+  ...&#x7701;&#x7565;&#x4E0A;&#x90E8;&#x5206;&#x53C2;&#x6570;... 
+  [tikv_servers]
+  TiKV1-1 ansible_host=172.16.10.4 deploy_dir=/data1/deploy       tikv_port=20171 tikv_status_port=20181 labels=&quot;host=tikv1&quot;
+  TiKV1-2 ansible_host=172.16.10.4 deploy_dir=/data2/deploy       tikv_port=20172 tikv_status_port=20182 labels=&quot;host=tikv1&quot;
+  ...&#x7701;&#x7565;&#x4E0B;&#x90E8;&#x5206;&#x53C2;&#x6570;...
+  ```
+</code></pre><ul>
+<li><p>label &#x8BBE;&#x7F6E;&#x662F;&#x5426;&#x6B63;&#x786E;&#xFF1A;</p>
+<ul>
+<li><p><code>[tikv_servers]</code> &#x4E3B;&#x673A;&#x7EC4;&#x914D;&#x7F6E;&#x4E2D;&#x540C;&#x53F0;&#x4E3B;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#x8BBE;&#x7F6E;&#x4E3A;&#x76F8;&#x540C;&#x7684; host label &#xFF1B;</p>
+</li>
+<li><p><code>[pd_servers:vars]</code> &#x4E0B;&#x7684; <code>locations_labels</code> &#x662F;&#x5426;&#x6B63;&#x786E;&#x8BBE;&#x7F6E;&#x4E3A; <code>locations_labels = [&#x201C;host&#x201D;]</code>&#xFF1B;</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>enable_binlog</code> &#x662F;&#x5426;&#x5F00;&#x542F;  ,&#x5982;&#x679C;&#x8BBE;&#x7F6E;&#x4E3A; <code>True</code> &#xFF0C;&#x5347;&#x7EA7;&#x8FC7;&#x7A0B;&#x4E2D; Pump Server &#x4F1A;&#x8DDF;&#x6EDA;&#x52A8;&#x5347;&#x7EA7;&#x64CD;&#x4F5C;&#x4E00;&#x8D77;&#x5347;&#x7EA7;&#xFF0C;Drainer Server &#x9700;&#x8981;&#x5355;&#x72EC;&#x5B8C;&#x6210;&#x5347;&#x7EA7;&#x64CD;&#x4F5C;&#x3002;</p>
+</li>
+<li><p><code>deploy_dir</code> &#x548C;&#x6307;&#x5B9A;&#x7684;&#x53C2;&#x6570;&#xFF08;&#x4F8B;&#x5982;&#xFF1A;&#x7AEF;&#x53E3;&#x3001;IP&#x3001;&#x522B;&#x540D;&#xFF09;&#x914D;&#x7F6E;&#x662F;&#x5426;&#x6B63;&#x786E;&#x3002;</p>
+</li>
+</ul>
+<h3 id="44--&#x7F16;&#x8F91;-groupvars-&#x6587;&#x4EF6;">4.4  &#x7F16;&#x8F91; <code>group_vars</code> &#x6587;&#x4EF6;</h3>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<p>&#x4E0D;&#x8981;&#x76F4;&#x63A5; cp &#x6216;&#x8005; mv &#x65B9;&#x5F0F;&#x8986;&#x76D6;&#x65B0;&#x7684; <code>group_vars</code> &#x76EE;&#x5F55;&#x4E0B;&#x7684; yml &#x6587;&#x4EF6;&#xFF0C;&#x5EFA;&#x8BAE;&#x5C06;&#x539F;&#x6765; <code>group_vars</code> &#x4E0B;&#x7684; yml &#x6587;&#x4EF6;&#x5206;&#x522B;&#x548C;&#x65B0;&#x7684; <code>group_vars</code> &#x76EE;&#x5F55;&#x4E0B;&#x7684; yml &#x6587;&#x4EF6;&#x7684;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x5BF9;&#x6BD4;&#xFF0C;&#x5982;&#x679C;&#x4E4B;&#x524D;&#x6709;&#x505A;&#x8FC7;&#x53C2;&#x6570;&#x8C03;&#x6574;&#xFF0C;&#x4FEE;&#x6539;&#x65B0;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1B;&#x5982;&#x679C;&#x9ED8;&#x8BA4;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x8FD9;&#x4E2A;&#x6B65;&#x9AA4;&#x3002;  </p>
+</blockquote>
+<pre><code class="lang-shell">#&#x6309;&#x7167; /tmp/tidb_update_3.0/group_vars &#x624B;&#x52A8;&#x4FEE;&#x6539;&#x8FC7;&#x7684;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x53D8;&#x52A8;&#xFF0C;&#x6309;&#x7167;&#x9ED8;&#x8BA4;&#x7684;&#x914D;&#x7F6E;&#x3002;
+$cd tidb-ansible-v3.0.9/group_vars
+</code></pre>
+<h3 id="45--&#x7F16;&#x8F91;-conf-&#x6587;&#x4EF6;">4.5  &#x7F16;&#x8F91; conf &#x6587;&#x4EF6;</h3>
+<blockquote>
+<p>&#x6CE8;&#x610F; </p>
+<p>&#x4E0D;&#x8981;&#x76F4;&#x63A5; cp &#x6216;&#x8005; mv &#x65B9;&#x5F0F;&#x8986;&#x76D6;&#x65B0;&#x7684; conf &#x76EE;&#x5F55;&#x4E0B;&#x7684; yml &#x6587;&#x4EF6;&#xFF0C;&#x5EFA;&#x8BAE;&#x5BF9;&#x6BD4; /tmp/tidb_update_3.0/conf &#x4E0B;&#x7684; yml &#x914D;&#x7F6E;&#x6587;&#x4EF6; &#x548C; &#x65B0;&#x7684; conf &#x76EE;&#x5F55;&#x4E0B;&#x7684; yml &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5C06;&#x53D8;&#x5316;&#x7684;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x53D8;&#x52A8;&#xFF0C;&#x6309;&#x7167;&#x9ED8;&#x8BA4;&#x7684;&#x914D;&#x7F6E;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x9700;&#x8981;&#x518D;&#x989D;&#x5916;&#x5173;&#x6CE8;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x53D8;&#x5316;&#x7684;&#x529F;&#x80FD;&#x70B9;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;&#x3002;</p>
+</blockquote>
+<ul>
+<li><p>&#x3010;&#x529F;&#x80FD;&#x4ECB;&#x7ECD;&#x3011;&#x5F00;&#x542F;&#x5171;&#x4EAB; block-cache </p>
+<ul>
+<li><p><a href="https://github.com/pingcap/tidb-ansible/blob/v3.0.9/conf/tikv.yml#L124-L146" target="_blank">storage.block-cache.capacity</a> &#x9ED8;&#x8BA4;&#x5F00;&#x542F;&#x5171;&#x4EAB;&#x6C60;&#x6765;&#x81EA;&#x52A8;&#x8C03;&#x6574;&#xFF0C;&#x81EA;&#x52A8;&#x8C03;&#x6574;&#x8303;&#x56F4;&#x6DB5;&#x76D6;&#x4EE5;&#x4E0B;&#x53C2;&#x6570;&#xFF1A;rocksdb.defaultcf.block-cache-size&#xFF0C;rocksdb.writecf.block-cache-size&#xFF0C;rocksdb.lockcf.block-cache-size&#xFF0C;raftdb.defaultcf.block-cache-size &#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728; tidb-ansible/conf/tikv.toml &#x8BBE;&#x7F6E; capacity&#xFF0C;&#x5176;&#x4ED6;&#x7684; block-cache-size &#x53C2;&#x6570;&#x4E0D;&#x518D;&#x9700;&#x8981;&#x624B;&#x52A8;&#x8BBE;&#x7F6E;&#x3002;</p>
+</li>
+<li><p>&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#xFF1A;capacity = (MEM_TOTAL * 0.5 / TiKV &#x5B9E;&#x4F8B;&#x6570;&#x91CF;)  </p>
+</li>
+</ul>
+<pre><code class="lang-yml">vi tidb-ansible/conf/tikv.yml
+&#x2026;&#x7701;&#x7565;&#x4E0A;&#x90E8;&#x5206;&#x53C2;&#x6570;...
+<span class="hljs-attr">storage:</span>
+<span class="hljs-attr"> block-cache:</span>
+<span class="hljs-attr">   capacity:</span> <span class="hljs-string">&quot;1GB&quot;</span>
+&#x2026;&#x7701;&#x7565;&#x4E0B;&#x90E8;&#x5206;&#x53C2;&#x6570;...
+</code></pre>
+</li>
+<li><p>&#x3010;&#x529F;&#x80FD;&#x4ECB;&#x7ECD;&#x3011;&#x5F00;&#x542F;<a href="https://github.com/tikv/tikv/blob/fa6e6d3eda27e7580a2c2e5ec88a8895d7b4cafb/docs/reference/configuration/raftstore-config.md#hibernate-region" target="_blank">&#x9759;&#x9ED8; region</a>&#xFF0C;&#x964D;&#x4F4E; region &#x5FC3;&#x8DF3;&#x5BF9; CPU &#x6D88;&#x8017; 50%&#x3002; </p>
+<pre><code class="lang-yml">vi tidb-ansible/conf/tikv.yml
+...&#x7701;&#x7565;&#x4E0A;&#x90E8;&#x5206;&#x53C2;&#x6570;...
+<span class="hljs-attr">raftstore:</span>
+<span class="hljs-attr">  hibernate-regions:</span> <span class="hljs-literal">true</span>
+...&#x7701;&#x7565;&#x4E0B;&#x90E8;&#x5206;&#x53C2;&#x6570;...
+</code></pre>
+</li>
+</ul>
+<h3 id="46--&#x4E0B;&#x8F7D;-tidb-binary">4.6  &#x4E0B;&#x8F7D; TiDB binary</h3>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<p>&#x8BE5;&#x64CD;&#x4F5C;&#x4F1A;&#x4ECE;&#x4E92;&#x8054;&#x7F51;&#x4E2D;&#x7684; PingCAP &#x7684;&#x4ECB;&#x8D28;&#x670D;&#x52A1;&#x5668;&#x4E0B;&#x8F7D;&#x76F8;&#x5E94;&#x7684;&#x7248;&#x672C; tar &#x5305;&#x6216;&#x8005; binary &#x6587;&#x4EF6;&#xFF0C;&#x4E0B;&#x8F7D;&#x7684;&#x4ECB;&#x8D28;&#x548C;&#x5BF9;&#x5E94;&#x7684; tidb-ansible &#x7248;&#x672C;&#x4E00;&#x4E00;&#x5BF9;&#x5E94;&#xFF0C;&#x4E0D;&#x5EFA;&#x8BAE;&#x7248;&#x672C;&#x5DEE;&#x5F02;&#x5316;&#x4E0B;&#x8F7D;&#xFF0C;&#x4F8B;&#x5982;&#x4F7F;&#x7528; v3.0.9 &#x7684; tidb-ansible &#xFF0C;&#x4FEE;&#x6539; inventory.ini &#x4E2D;&#x7684; tidb-version &#x914D;&#x7F6E;&#xFF0C;&#x4E0B;&#x8F7D;&#x5176;&#x4ED6;&#x7248;&#x672C;&#x7684; tidb binary &#x6587;&#x4EF6;&#x3002; </p>
+</blockquote>
+<pre><code class="lang-shell">$cd tidb-ansible-v3.0.9
+$ansible-playbook local_prepare.yml
+</code></pre>
+<h3 id="47--&#x6EDA;&#x52A8;&#x5347;&#x7EA7;">4.7  &#x6EDA;&#x52A8;&#x5347;&#x7EA7;</h3>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4FEE;&#x6539;&#x4EE3;&#x7801;&#x5EF6;&#x957F; Transfer leader &#x65F6;&#x95F4;&#xFF0C;&#x6765;&#x51CF;&#x5C11;&#x6EDA;&#x52A8; TiKV &#x8FC7;&#x7A0B;&#x7684;&#x6027;&#x80FD;&#x6296;&#x52A8;&#x3002;&#x53EF;&#x4EE5;&#x5C06; retries: 18 &#x8C03;&#x6574;&#x81F3; 1800 &#x3002;&#x5982;&#x679C;&#x63D0;&#x524D; transfer leader &#x5B8C;&#x6210;&#x4EE5;&#x540E;&#xFF0C;&#x4F1A;&#x505C;&#x6B62; check &#xFF0C;&#x7EE7;&#x7EED;&#x4E0B;&#x9762;&#x7684;&#x5DE5;&#x4F5C;&#x3002;&#x5EF6;&#x957F; check &#x65F6;&#x95F4;&#xFF0C;&#x4E5F;&#x610F;&#x5473;&#x7740;&#x5347;&#x7EA7;&#x65F6;&#x95F4;&#x4F1A;&#x62C9;&#x957F;&#xFF0C;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x771F;&#x5B9E;&#x9700;&#x6C42;&#x5E73;&#x8861;&#x53C2;&#x6570;&#x3002;</p>
+</blockquote>
+<pre><code class="lang-yml"><span class="hljs-comment"># &#x4EE5;&#x975E; tls &#x6A21;&#x5F0F;&#x4E3A;&#x4F8B;</span>
+cd tidb-ansible-v3<span class="hljs-number">.0</span><span class="hljs-number">.9</span>/common_tasks
+vi add_evict_leader_scheduler.yml
+...&#x4E0A;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x5FFD;&#x7565;...
+<span class="hljs-attr">- name:</span> check tikv<span class="hljs-string">&apos;s leader count
+  uri:
+    url: &quot;http://<span class="hljs-template-variable">{{ pd_addr }}</span>/pd/api/v1/store/<span class="hljs-template-variable">{{ store_id }}</span>&quot;
+    method: GET
+    return_content: yes
+    body_format: json
+    status_code: 200
+  register: store_info
+  until: (store_info.json.status.leader_count is defined and store_info.json.status.leader_count|int &lt; 1) or store_info.json.status.leader_count is not defined
+  retries: 18
+  delay: 10
+  failed_when: false
+  when: not enable_tls|default(false)
+...&#x4E0B;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x5FFD;&#x7565;...
+</span></code></pre>
+<ul>
+<li><p>&#x6267;&#x884C;&#x6EDA;&#x52A8;&#x5347;&#x7EA7;&#x811A;&#x672C;&#xFF0C;&#x987A;&#x5E8F;&#x4E3A; PD&#x3001;TiKV&#x3001;Pump&#x3001;TiDB&#x3002;</p>
+<ul>
+<li>systemd &#x6A21;&#x5F0F;&#xFF08;&#x9ED8;&#x8BA4;&#xFF09;</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<p><code>excessive_rolling_update.yml</code> &#x4EC5;&#x9650;&#x6EDA;&#x52A8;&#x5347;&#x7EA7; TiDB &#x96C6;&#x7FA4;&#x4F7F;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x540E;&#x9762;&#x518D;&#x6B21;&#x5347;&#x7EA7;&#x5230;&#x5176;&#x4ED6;&#x7248;&#x672C;&#x5747;&#x901A;&#x8FC7; <code>rolling_update.yml</code> &#x6765;&#x5B8C;&#x6210;&#x3002;</p>
+</blockquote>
+<pre><code class="lang-yml">$cd tidb-ansible-v3<span class="hljs-number">.0</span><span class="hljs-number">.9</span>
+$ansible-playbook excessive_rolling_update.yml
+</code></pre>
+<ul>
+<li>supervise &#x6A21;&#x5F0F;</li>
+</ul>
+<pre><code class="lang-yml">$cd tidb-ansible-v3<span class="hljs-number">.0</span><span class="hljs-number">.9</span>
+$ansible-playbook rolling_update.yml
+</code></pre>
+<ul>
+<li>&#x5347;&#x7EA7;&#x5982;&#x679C;&#x4E2D;&#x95F4;&#x6B65;&#x9AA4;&#x62A5;&#x9519;&#x9000;&#x51FA;&#xFF0C;&#x5904;&#x7406;&#x597D;&#x95EE;&#x9898;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x5229;&#x7528; --tags &#x548C; -l &#x8DF3;&#x8FC7;&#x524D;&#x9762;&#x5347;&#x7EA7;&#x5B8C;&#x7684;&#x7EC4;&#x4EF6;&#xFF0C;&#x7EE7;&#x7EED;&#x540E;&#x9762;&#x7684;&#x5347;&#x7EA7;&#x3002;&#x4E3E;&#x4F8B;&#xFF1A;&#x5728;&#x5347;&#x7EA7; TiKV1-2 &#x65F6;&#x62A5;&#x9519;&#xFF0C;&#x4F9D;&#x6B21;&#x6267;&#x884C;&#x6267;&#x884C; &#xFF1A;</li>
+</ul>
+<pre><code class="lang-shell">ansible-playbook excessive_rolling_update.yml --tags=tikv -l TiKV1-2,TiKV2-1,TiKV2-2 &#x2026;
+
+ansible-playbook excessive_rolling_update.yml --tags=pump (&#x5982;&#x679C;&#x6CA1;&#x5F00; binlog &#x53EF;&#x5FFD;&#x7565;&#xFF09;
+
+ansible-playbook excessive_rolling_update.yml --tags=tidb
+</code></pre>
+<ul>
+<li><p>&#x5347;&#x7EA7;&#x540E;&#x4F1A;&#x5F00;&#x542F; <a href="https://pingcap.com/docs-cn/stable/reference/tools/pd-control/" target="_blank">Region Merge</a>&#xFF0C;&#x51CF;&#x5C11;&#x7A7A; Region &#x548C;&#x5C0F; Region &#x5BF9; CPU &#x6D88;&#x8017;&#xFF0C;&#x7531;&#x4E8E;&#x521A;&#x5347;&#x7EA7;&#xFF0C;&#x4E4B;&#x524D;&#x5806;&#x79EF;&#x7684;&#x9700;&#x8981; merge &#x7684;&#x91CF;&#x4F1A;&#x6BD4;&#x8F83;&#x591A;&#xFF0C;&#x5EFA;&#x8BAE;&#x5148;&#x8C03;&#x4F4E;&#x5E76;&#x53D1;&#x5230; 2&#xFF1A;</p>
+<pre><code class="lang-yml">./pd-ctl -u <span class="hljs-string">&quot;http://{pd-ip}:{pd_client_port}&quot;</span>
+&#xBB; config set merge-schedule-limit <span class="hljs-number">2</span>
+Success!
+</code></pre>
+</li>
+<li><p>&#x7B49;&#x89C2;&#x5BDF; region &#x6570;&#x91CF;&#x8D8B;&#x4E8E;&#x7A33;&#x5B9A;&#x540E;&#xFF0C;&#x518D;&#x9010;&#x6E10;&#x8C03;&#x5927;&#x5230; 8</p>
+</li>
+</ul>
+<pre><code class="lang-shell">./pd-ctl -u &quot;http://{pd-ip}:{pd_client_port}&quot;
+&#xBB; config set merge-schedule-limit 8
+Success!
+&#xBB; config set replica-schedule-limit 16
+Success!
+</code></pre>
+<h3 id="48-&#x6EDA;&#x52A8;&#x5347;&#x7EA7;-tidb-&#x76D1;&#x63A7;&#x7EC4;&#x4EF6;">4.8. &#x6EDA;&#x52A8;&#x5347;&#x7EA7; TiDB &#x76D1;&#x63A7;&#x7EC4;&#x4EF6;</h3>
+<blockquote>
+<p>&#x6CE8;&#x610F;
+&#x8BE5;&#x64CD;&#x4F5C;&#x4F1A;&#x5C06; <code>Prometheus</code>&#x3001;<code>Grafana</code>&#x3001;<code>blackbox_exporter,node_exporter</code> &#x76D1;&#x63A7;&#x7EC4;&#x4EF6;&#x6EDA;&#x52A8;&#x5347;&#x7EA7;&#xFF0C;&#x5347;&#x7EA7;&#x8FC7;&#x7A0B;&#x4E2D; Grafana &#x9875;&#x9762;&#x4F1A;&#x6709;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x4E0D;&#x53EF;&#x7528;&#x72B6;&#x6001;&#x6216;&#x8005;&#x6570;&#x636E;&#x4E3A;&#x7A7A;&#xFF0C;&#x770B;&#x4E0D;&#x5230;&#x76D1;&#x63A7;&#x6570;&#x636E;&#x6216;&#x8005;&#x663E;&#x793A; <code>&#x201C;no data&#x201D;</code> &#x662F;&#x9884;&#x671F;&#x7684;&#x3002;</p>
+</blockquote>
+<h2 id="&#x4E94;&#x3001;&#x64CD;&#x4F5C;&#x540E;-check-&#x76D1;&#x63A7;&#x9879;">&#x4E94;&#x3001;&#x64CD;&#x4F5C;&#x540E; Check &#x76D1;&#x63A7;&#x9879;</h2>
+<p>&#x767B;&#x5F55; Grafana &#x9875;&#x9762; <code>http://{grafana-ip}:{grafana-port}</code> &#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#xFF1A;inventory.ini &#x6709;&#x914D;&#x7F6E;</p>
+<ul>
+<li>&#x67E5;&#x770B; overview &#x9875;&#x9762;&#xFF0C; <code>Overview</code> &#x9875;&#x9762;&#x7684; <code>Services Port Status</code> &#x72B6;&#x6001;&#x662F;&#x5426;&#x5747;&#x4E3A;&#x7EFF;&#x8272;&#x7684; up &#x72B6;&#x6001;&#xFF1B;</li>
+</ul>
+<p><img src="media/update0.jpg" alt=""></p>
+<ul>
+<li>&#x67E5;&#x770B; TiDB &#x9875;&#x9762;&#xFF0C; <code>Query Summary</code> &#x76D1;&#x63A7;&#x680F;&#x7684; <code>Duration&#x3001;QPS</code>&#x3001;<code>Statement OPS</code>&#x3001;<code>QPS By Instance</code>&#x3001;<code>Failed Query OPM</code> &#x76D1;&#x63A7;&#x9879;&#x662F;&#x5426;&#x6B63;&#x5E38;&#xFF0C;&#x5728;&#x6BCF;&#x4E2A;&#x76D1;&#x63A7;&#x9879;&#x5DE6;&#x4E0A;&#x2196;&#xFE0F;&#x90FD;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x201C;i&#x201D; &#x5149;&#x6807;&#x653E;&#x5728;&#x90A3;&#x91CC;&#x4F1A;&#x63CF;&#x8FF0;&#x76D1;&#x63A7;&#x9879;&#x7684;&#x89E3;&#x91CA;&#x548C;&#x9884;&#x671F;&#x60C5;&#x51B5;&#xFF1B;</li>
+</ul>
+<p><img src="media/upgrade-1.png" alt="TiDB &#x76D1;&#x63A7;"></p>
+<p><img src="media/upgrade-2.png" alt="Query Duraion"></p>
+<ul>
+<li><p>&#x67E5;&#x770B; TiKV-Details &#x9875;&#x9762;&#xFF0C;TiKV &#x9875;&#x9762;&#x5DF2;&#x7ECF;&#x5931;&#x6548;&#xFF0C;&#x65B0;&#x7684;&#x76D1;&#x63A7;&#x6570;&#x636E;&#x4E3B;&#x8981;&#x4F1A;&#x5C55;&#x793A;&#x5728; <code>TiKV-Details</code>&#x3001;<code>TiKV-Summary</code>&#x3001;<code>TiKV-Trouble-Shooting</code> &#x4E2D;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; TiKV-Details &#x9875;&#x9762;&#xFF0C;&#x901A;&#x8FC7; <code>Cluster</code>&#x3001;<code>Error</code>&#x3001;<code>Server</code> &#x786E;&#x8BA4; TiKV &#x5B9E;&#x4F8B;&#x7684;&#x72B6;&#x6001;&#x7684;&#x8D1F;&#x8F7D;&#x4EE5;&#x53CA;&#x9519;&#x8BEF;&#x60C5;&#x51B5;&#x3002;</p>
+</li>
+<li><p>&#x67E5;&#x770B; PD &#x9875;&#x9762;&#xFF0C;&#x67E5;&#x770B; Cluster &#x76D1;&#x63A7;&#x680F;&#x4E2D;&#x7684; <code>Storage capacity</code>&#x3001;<code>Current storage size</code>&#x3001;<code>Current stroage used</code>&#x3001;<code>Normal stores</code>&#x3001;<code>Number of Regions</code> &#x786E;&#x8BA4;&#x5F53;&#x524D;&#x96C6;&#x7FA4;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x548C; Region &#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x53E6;&#x5916;&#x6DFB;&#x52A0;&#x4E86; PD &#x53C2;&#x6570;&#x5C55;&#x793A;&#x548C; Label &#x72B6;&#x6001;&#x5C55;&#x793A;&#x7684;&#x76D1;&#x63A7;&#x3002;</p>
+</li>
+</ul>
+<p><img src="media/upgrade-3.png" alt="Overview"></p>
+<ul>
+<li>&#x51FA;&#x73B0;&#x4EE5;&#x4E0B;&#x76D1;&#x63A7;&#x544A;&#x8B66;&#x53EF;&#x80FD;&#x662F;&#x9884;&#x671F;&#x7684; Region Merge &#x64CD;&#x4F5C;&#x5BFC;&#x81F4;&#x7684;&#xFF0C;&#x56E0;&#x4E3A; v3.0 &#x7248;&#x672C;&#x7684; Region Merge &#x6548;&#x679C;&#x6BD4; v2.1 &#x8981;&#x597D;&#xFF0C;&#x6240;&#x4EE5;&#x5982;&#x679C;&#x5F00;&#x542F; Region Merge &#x5E76;&#x53D1;&#x8C03;&#x5EA6;&#xFF0C;&#x53EF;&#x80FD;&#x77ED;&#x65F6;&#x95F4;&#x4F1A;&#x51FA;&#x73B0; <code>tikvclient_backoff_count error</code> &#x544A;&#x8B66;&#xFF0C;&#x540C;&#x65F6; values &#x4F1A;&#x9010;&#x6E10;&#x51CF;&#x5C11;&#x3002;&#x5BF9;&#x4E1A;&#x52A1;&#x51E0;&#x4E4E;&#x6CA1;&#x6709;&#x5F71;&#x54CD;&#xFF0C;&#x5982;&#x62C5;&#x5FC3;&#x4E1A;&#x52A1;&#x5EF6;&#x8FDF;&#x53EF;&#x4EE5;&#x73B0;&#x5C06;&#x5E76;&#x53D1;&#x8C03;&#x5EA6;&#x8C03;&#x6574;&#x4E3A; 0 &#xFF0C;&#x7B49;&#x5230;&#x4E1A;&#x52A1;&#x4F4E;&#x5CF0;&#x65F6;&#x5019;&#xFF0C;&#x518D;&#x52A0;&#x5927; Region Merge &#x5E76;&#x53D1;&#x5EA6;&#x3002;</li>
+</ul>
+<pre><code class="lang-conf">&#x3010;&#x6837;&#x4F8B;&#x3011;
+TiDB tikvclient_backoff_count error
+&#x72B6;&#x6001;: &#x95EE;&#x9898;
+cluster: xxx-cluster, instance: 172.16.1.1:10081, values:.2000000
+2000000
+2020-02-11 13:04
+</code></pre>
+<h2 id="&#x516D;&#x3001;&#x5468;&#x8FB9;&#x5DE5;&#x5177;&#x5347;&#x7EA7;">&#x516D;&#x3001;&#x5468;&#x8FB9;&#x5DE5;&#x5177;&#x5347;&#x7EA7;</h2>
+<h3 id="61-tidb-binlog-&#x5347;&#x7EA7;">6.1 tidb-binlog &#x5347;&#x7EA7;</h3>
+<ul>
+<li><p>tidb-binlog &#x6309;&#x7167; tidb-ansible &#x90E8;&#x7F72;</p>
+<ul>
+<li>pump &#x4F1A;&#x66F4; TiDB Cluster &#x7684;&#x6EDA;&#x52A8;&#x5347;&#x7EA7;&#x64CD;&#x4F5C;&#x4E00;&#x540C;&#x5347;&#x7EA7;&#xFF0C;&#x5347;&#x7EA7;&#x8FC7;&#x7A0B;&#x5BF9;&#x4E8E;&#x6B63;&#x5728;&#x589E;&#x91CF;&#x540C;&#x6B65;&#x7684;&#x6570;&#x636E;&#x6CA1;&#x6709;&#x5F71;&#x54CD;&#xFF0C;&#x5347;&#x7EA7;&#x5B8C;&#x6210;&#x4EE5;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x767B;&#x5F55;&#x5230;&#x76EE;&#x6807;&#x7684; pump &#x8282;&#x70B9;&#xFF0C;&#x786E;&#x8BA4; pump &#x7684;&#x7248;&#x672C;&#x3002;</li>
+</ul>
+<pre><code class="lang-shell">$ ./pump -V
+Release Version: v3.0.9
+Git Commit Hash: c97e501d5054ed63c325c02b581a7c1a661cbd42
+Build TS: 2020-01-14 12:53:37
+Go Version: go1.13
+Go OS/Arch: linux/amd64
+</code></pre>
+<ul>
+<li>drainer &#x5347;&#x7EA7;&#x9700;&#x8981;&#x5148;&#x5C06; drainer &#x7684; binary &#x4E0A;&#x4F20;&#x81F3;&#x76EE;&#x6807;&#x7684;&#x8282;&#x70B9; ${deploy_dir}/bin &#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x6CE8;&#x610F;&#x4E0D;&#x8981;&#x8986;&#x76D6;&#x539F; drainer &#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x4E0B;&#x9762;&#x7684;&#x64CD;&#x4F5C;&#x3002;</li>
+</ul>
+<pre><code class="lang-shell">$tidb-ansible/resources/bin
+$ ./drainer -V
+Release Version: v3.0.9
+Git Commit Hash: c97e501d5054ed63c325c02b581a7c1a661cbd42
+Build TS: 2020-01-14 12:53:50
+Go Version: go1.13
+Go OS/Arch: linux/amd64
+$cp drainer drainer309
+$scp drainer309 tidb@{drainer-ip}:${deploy_dir}/bin/
+$ssh {drainer-ip}
+$cd ${deploy_dir}/scripts
+$./stop_drainer.sh
+$mv ${deploy_dir}/bin/drainer ${deploy_dir}/bin/drainer.old
+$mv ${deploy_dir}/bin/drainer309 ${deploy_dir}/bin/drainer
+$./start_drainer.sh
+</code></pre>
+</li>
+</ul>
+<h3 id="62-tispark-&#x5347;&#x7EA7;">6.2 Tispark &#x5347;&#x7EA7;</h3>
+<ul>
+<li><p>&#x76EE;&#x524D; Tispark &#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x901A;&#x8FC7; ansible &#x5347;&#x7EA7;</p>
+</li>
+<li><p><code>local_prepare.yml</code>  &#x4F1A;&#x5C06; Tispark &#x548C; spark binary &#x4E0B;&#x8F7D;&#x5230;&#x4E2D;&#x63A7;&#x673A;&#x672C;&#x5730;&#x76EE;&#x5F55;</p>
+<ul>
+<li><p>&#x4EE3;&#x7801;&#x5757;</p>
+<pre><code class="lang-yml">
+<span class="hljs-attr">tispark_packages:</span>
+<span class="hljs-attr"> - name:</span> spark<span class="hljs-bullet">-2.4</span><span class="hljs-number">.3</span>-bin-hadoop2<span class="hljs-number">.7</span>.tgz
+<span class="hljs-attr">   version:</span> <span class="hljs-number">2.4</span><span class="hljs-number">.3</span>
+<span class="hljs-attr">   url:</span> http://download.pingcap.org/spark<span class="hljs-bullet">-2.4</span><span class="hljs-number">.3</span>-bin-hadoop2<span class="hljs-number">.7</span>.tgz
+<span class="hljs-attr">   checksum:</span>    <span class="hljs-string">&quot;sha256:80a4c564ceff0d9aff82b7df610b1d34e777b45042e21e2d41f3e497bb1fa5d8&quot;</span>
+<span class="hljs-attr"> - name:</span> tispark-latest.tar.gz
+<span class="hljs-attr">   version:</span> latest
+<span class="hljs-attr">   url:</span> http://download.pingcap.org/tispark-assembly-latest-linux-amd64.tar.gz
+<span class="hljs-attr"> - name:</span> tispark-sample-data.tar.gz
+<span class="hljs-attr">   version:</span> latest
+<span class="hljs-attr">   url:</span> http://download.pingcap.org/tispark-sample-data.tar.gz
+<span class="hljs-attr">   checksum:</span>    <span class="hljs-string">&quot;sha256:bd0368a9d8663a4a8de89e39cc4cc1d91c718faf36d4bc7e1f8482c34d5bb8db&quot;</span>
+</code></pre>
+</li>
+<li><p>&#x4E0B;&#x8F7D;&#x76EE;&#x5F55;</p>
+<pre><code class="lang-shell">$cd tidb-ansible-v3.0.9/downloads
+$ ll *spark*|awk &apos;{print $9}&apos;
+spark-2.4.3-bin-hadoop2.7.tgz
+tispark-core-2.1.8-spark_2.4-jar-with-dependencies.jar
+tispark-sample-data.tar.gz
+$pwd
+/home/tidb/lzs/ansible/
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>&#x5347;&#x7EA7;&#x64CD;&#x4F5C;&#x548C; drainer &#x5347;&#x7EA7;&#x64CD;&#x4F5C;&#x7C7B;&#x4F3C;</p>
+<ul>
+<li><p>&#x5148;&#x505C;&#x6389; Spark &#x670D;&#x52A1;</p>
+</li>
+<li><p>&#x5C06; Tispark &#x7684; jar &#x5305;&#x62F7;&#x8D1D;&#x5230;spark&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x4E0B;&#x9762;&#x7684; jars &#x5B50;&#x76EE;&#x5F55;</p>
+</li>
+<li><p>&#x542F;&#x52A8; Spark &#x670D;&#x52A1;</p>
+</li>
+<li><p>&#x6253;&#x5F00;master web ui: <code>http://${master ip}:8080</code>&#xFF0C;&#x786E;&#x8BA4;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#xFF0C;&#x786E;&#x8BA4;work&#x4E2A;&#x6570;&#x3001;core&#x4E2A;&#x6570;&#x3001;&#x5185;&#x5B58;&#x6570;&#x662F;&#x5426;&#x7B26;&#x5408;&#x9884;&#x671F;</p>
+</li>
+<li><p>&#x7B80;&#x5355;&#x6D4B;&#x8BD5;&#xFF1A;<code>./bin/spark-shell --master spark://${master ip}:7077</code> &#x8FD0;&#x884C;&#x4E00;&#x4E9B;&#x7B80;&#x5355;&#x7684;&#x6D4B;&#x8BD5;&#x547D;&#x4EE4;&#xFF0C;&#x4F8B;&#x5982;&#x770B;&#x770B;&#x662F;&#x5426;&#x80FD;&#x8BBF;&#x95EE;tidb</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="&#x4E03;&#x3001;&#x5347;&#x7EA7;&#x5E38;&#x89C1;&#x95EE;&#x9898;">&#x4E03;&#x3001;&#x5347;&#x7EA7;&#x5E38;&#x89C1;&#x95EE;&#x9898;</h2>
+<h3 id="71--tidb-ansible-&#x64CD;&#x4F5C;&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x6392;&#x67E5;">7.1  tidb-ansible &#x64CD;&#x4F5C;&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x6392;&#x67E5;</h3>
+<ul>
+<li><p>&#x901A;&#x8FC7; git &#x4E0B;&#x8F7D; tidb-ansible &#x5206;&#x652F;&#x548C;&#x5347;&#x7EA7; TIDB &#x96C6;&#x7FA4;&#x7248;&#x672C;&#x4E0D;&#x5339;&#x914D;&#x95EE;&#x9898;</p>
+<ul>
+<li>&#x4E0D;&#x5EFA;&#x8BAE;&#x591A;&#x7248;&#x672C;&#x6DF7;&#x7528; tidb-ansible &#xFF0C;&#x76EE;&#x524D;&#x5F88;&#x591A;&#x903B;&#x8F91;&#x652F;&#x6301;&#x7684;&#x90FD;&#x662F;&#x5F53;&#x524D;&#x7248;&#x672C;&#xFF0C;&#x4F7F;&#x7528; tidb-ansible &#x7248;&#x672C;&#x548C; tidb &#x96C6;&#x7FA4;&#x7248;&#x672C;&#x4E00;&#x81F4;&#x3002;&#x901A;&#x8FC7; git clone &#x4E0B;&#x8F7D;&#x6307;&#x5B9A;&#x7684; tag &#x5206;&#x652F;&#xFF0C;inventory.ini &#x4E2D;&#x7684; tidb-version &#x53C2;&#x6570;&#x4E0D;&#x8981;&#x64C5;&#x81EA;&#x4FEE;&#x6539;&#x3002;</li>
+</ul>
+</li>
+<li><p>&#x6267;&#x884C; <code>local_prepare.yml</code> &#x62A5;&#x9519;</p>
+<ul>
+<li><p>&#x7F51;&#x7EDC;&#x5EF6;&#x8FDF;&#x9AD8;&#xFF0C;&#x5BFC;&#x81F4;&#x90E8;&#x5206; curl get &#x4E0B;&#x8F7D;&#x4ECB;&#x8D28;&#x6587;&#x4EF6;&#x4E0D;&#x5B8C;&#x6574;&#x6216;&#x8005;&#x4E2D;&#x65AD;&#x62A5;&#x9519;&#xFF1B;</p>
+</li>
+<li><p>&#x4E0B;&#x8F7D;&#x7684;&#x4ECB;&#x8D28;&#x6587;&#x4EF6;&#x5F02;&#x5E38;&#xFF0C;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x62A5;&#x9519;&#x627E;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x811A;&#x672C;&#x672A;&#x77E5;&#x548C;&#x4E0B;&#x8F7D;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x901A;&#x8FC7; curl &#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x4E0B;&#x8F7D;&#x9A8C;&#x8BC1;&#x3002;</p>
+</li>
+</ul>
+</li>
+<li><p>&#x6267;&#x884C; <code>rolling_update.yml</code> &#x62A5;&#x9519;</p>
+<ul>
+<li>tikv &#x6EDA;&#x52A8;&#x8FC7;&#x7A0B;&#x4E2D;&#x62A5;&#x9519;&#x9000;&#x51FA;&#xFF0C;&#x786E;&#x8BA4;&#x5177;&#x4F53;&#x7684;&#x62A5;&#x9519;&#x4F4D;&#x7F6E;&#xFF0C;&#x67E5;&#x770B;&#x5BF9;&#x5E94;&#x7684; ansible-playbook &#x903B;&#x8F91;</li>
+</ul>
+</li>
+</ul>
+<h2 id="&#x516B;&#x3001;&#x76F8;&#x5173;&#x6848;&#x4F8B;">&#x516B;&#x3001;&#x76F8;&#x5173;&#x6848;&#x4F8B;</h2>
+<p>Asktug &#x95EE;&#x9898;</p>
+<ul>
+<li><p><a href="https://asktug.com/t/topic/2126" target="_blank">https://asktug.com/t/topic/2126</a></p>
+</li>
+<li><p><a href="https://asktug.com/t/v2-1-4-v3-0-0-tikv-up/415" target="_blank">https://asktug.com/t/v2-1-4-v3-0-0-tikv-up/415</a></p>
+</li>
+<li><p><a href="https://asktug.com/t/topic/2280" target="_blank">https://asktug.com/t/topic/2280</a></p>
+</li>
+<li><p><a href="https://asktug.com/t/v2-1-9-v3-0-5-fatal-schema-1146-table-mysql-tidb-doesnt-exist/1616" target="_blank">https://asktug.com/t/v2-1-9-v3-0-5-fatal-schema-1146-table-mysql-tidb-doesnt-exist/1616</a></p>
+</li>
+<li><p><a href="https://asktug.com/t/tidbv2-1-1-v3-0-1/1638" target="_blank">https://asktug.com/t/tidbv2-1-1-v3-0-1/1638</a></p>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="sop/Prometheuemigrate.md" class="navigation navigation-prev " aria-label="Previous page: 02 Prometheus 等监控组件迁移">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Prometheuemigrate.html" class="navigation navigation-next " aria-label="Next page: 【SOP 系列 02】 Prometheus 等监控组件迁移">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"【SOP 系列 01】 Release-2.1 升级到 Release-3.0 线上集群升级","level":"1.1.4","depth":2,"next":{"title":"【SOP 系列 02】 Prometheus 等监控组件迁移","level":"1.1.5","depth":2,"path":"Prometheuemigrate.md","ref":"Prometheuemigrate.md","articles":[]},"previous":{"title":"02 Prometheus 等监控组件迁移","level":"1.1.3","depth":2,"path":"sop/Prometheuemigrate.md","ref":"sop/Prometheuemigrate.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"upgradeto3.0.md","mtime":"2020-03-21T05:39:25.380Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-21T13:25:49.008Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

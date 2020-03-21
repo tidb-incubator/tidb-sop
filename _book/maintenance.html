@@ -1,0 +1,845 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>【SOP 系列 06】临时关机维护某线上主机 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="switch-binlog.html" />
+    
+    
+    <link rel="prev" href="multi-idc.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <span>
+            
+                    
+                    [TiDB 运维手册 SOP 系列 V1.0]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="sop/upgradeto3.0.md">
+            
+                <span>
+            
+                    
+                    01 Release-2.1 升级到 Release-3.0线上集群升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="sop/Prometheuemigrate.md">
+            
+                <span>
+            
+                    
+                    02 Prometheus 等监控组件迁移
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="upgradeto3.0.html">
+            
+                <a href="upgradeto3.0.html">
+            
+                    
+                    【SOP 系列 01】 Release-2.1 升级到 Release-3.0 线上集群升级
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="Prometheuemigrate.html">
+            
+                <a href="Prometheuemigrate.html">
+            
+                    
+                    【SOP 系列 02】 Prometheus 等监控组件迁移
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="onlineddl.html">
+            
+                <a href="onlineddl.html">
+            
+                    
+                    【SOP 系列 03】在线表结构变更（Online DDL）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" data-path="multi-tikv.html">
+            
+                <a href="multi-tikv.html">
+            
+                    
+                    【SOP 系列 04】现有集群 TiKV 如何从单实例部署调整为多实例部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="multi-idc.html">
+            
+                <a href="multi-idc.html">
+            
+                    
+                    【SOP 系列 05】现有集群如何从单机房调整为跨机房部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.9" data-path="maintenance.html">
+            
+                <a href="maintenance.html">
+            
+                    
+                    【SOP 系列 06】临时关机维护某线上主机
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.10" data-path="switch-binlog.html">
+            
+                <a href="switch-binlog.html">
+            
+                    
+                    【SOP 系列 07】如何在线开启/关闭 TiDB Binlog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.11" data-path="scale.html">
+            
+                <a href="scale.html">
+            
+                    
+                    【SOP 系列 08】线上集群扩缩容操作及要点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.12" data-path="modify-ip.html">
+            
+                <a href="modify-ip.html">
+            
+                    
+                    【SOP 系列 09】现网如何修改 tidb，tikv，pd 的 ip 地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.13" data-path="modify-port.html">
+            
+                <a href="modify-port.html">
+            
+                    
+                    【SOP 系列 10】现网如何修改 tidb，tikv，pd 的 port
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >【SOP 系列 06】临时关机维护某线上主机</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="06-&#x4E34;&#x65F6;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#x67D0;&#x7EBF;&#x4E0A;&#x4E3B;&#x673A;">06 &#x4E34;&#x65F6;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#x67D0;&#x7EBF;&#x4E0A;&#x4E3B;&#x673A;</h1>
+<blockquote>
+<p>&#x5468;&#x8DC3;&#x8DC3;  2020 &#x5E74; 2 &#x6708; 28 &#x65E5;</p>
+</blockquote>
+<h2 id="&#x4E00;&#x3001;&#x80CC;&#x666F;">&#x4E00;&#x3001;&#x80CC;&#x666F;</h2>
+<blockquote>
+<p>&#x6709;&#x4E9B;&#x65F6;&#x5019;&#xFF0C;&#x7531;&#x4E8E;&#x786C;&#x4EF6;&#x7EF4;&#x62A4;&#x3001;&#x642C;&#x79FB;&#x673A;&#x67B6;&#x4F4D;&#x7B49;&#x9700;&#x6C42;&#xFF0C;&#x9700;&#x8981;&#x4E3B;&#x52A8;&#x5173;&#x95ED;&#x7EBF;&#x4E0A;&#x4E3B;&#x673A;&#xFF0C;&#x65F6;&#x95F4;&#x95F4;&#x9694;&#x53EF;&#x80FD;&#x5728;&#x51E0;&#x5206;&#x949F;&#x5230;&#x6570;&#x5C0F;&#x65F6;&#x4E4B;&#x95F4;&#x3002;&#x5982;&#x679C;&#x4E3B;&#x673A;&#x4E0A;&#x8FD0;&#x884C;&#x7740;&#x7EBF;&#x4E0A; TiDB &#x96C6;&#x7FA4;&#x7684;&#x67D0;&#x4E2A;&#x7EC4;&#x4EF6;&#xFF0C;&#x7528;&#x6237;&#x9700;&#x8981;&#x5982;&#x4F55;&#x63D0;&#x524D;&#x505A;&#x597D;&#x51C6;&#x5907;&#xFF0C;&#x51CF;&#x5C11;&#x5BF9;&#x7EBF;&#x4E0A;&#x4E1A;&#x52A1;&#x7684;&#x5F71;&#x54CD;&#x5462;&#x3002;&#x672C;&#x6587;&#x63CF;&#x8FF0;&#x4E86;&#x4E34;&#x65F6;&#x7EF4;&#x62A4;&#x7684;&#x4E3B;&#x673A;&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#xFF0C;&#x5305;&#x542B; PD&#xFF0C;TiKV&#xFF0C;TiDB &#x7B49;&#x5404;&#x7EC4;&#x4EF6;&#x3002;</p>
+</blockquote>
+<h2 id="&#x4E8C;&#x3001;pd-&#x7EC4;&#x4EF6;">&#x4E8C;&#x3001;PD &#x7EC4;&#x4EF6;</h2>
+<blockquote>
+<p>&#x901A;&#x5E38;&#x5927;&#x591A;&#x6570;&#x7684;&#x7EBF;&#x4E0A;&#x96C6;&#x7FA4;&#x6709; 3 &#x6216; 5 &#x4E2A; PD &#x8282;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x7EF4;&#x62A4;&#x7684;&#x4E3B;&#x673A;&#x4E0A;&#x6709; PD &#x7EC4;&#x4EF6;&#xFF0C;&#x9700;&#x8981;&#x5177;&#x4F53;&#x8003;&#x8651;&#x8282;&#x70B9;&#x662F; leader &#x8FD8;&#x662F; follower&#xFF08;1 &#x548C; 2 &#x4E24;&#x90E8;&#x5206;&#xFF09;&#xFF0C;&#x5173;&#x95ED; follower &#x5BF9;&#x96C6;&#x7FA4;&#x8FD0;&#x884C;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x5F71;&#x54CD;&#xFF0C;&#x5173;&#x95ED; leader &#x9700;&#x8981;&#x5148;&#x5207;&#x6362;&#xFF0C;&#x5E76;&#x5728;&#x5207;&#x6362;&#x65F6;&#x6709; 3 s &#x5DE6;&#x53F3;&#x7684;&#x6027;&#x80FD;&#x6296;&#x52A8;&#x3002;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#x4E0B;&#x5982;&#x679C;&#x96C6;&#x7FA4;&#x603B;&#x5171;&#x53EA;&#x6709; 1 &#x4E2A; PD&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x7B2C; 3 &#x90E8;&#x5206;&#x3002;</p>
+</blockquote>
+<h3 id="1&#x3001;&#x5F53;&#x524D;&#x673A;&#x5668;&#x5305;&#x62EC;&#x4E00;&#x4E2A;-pd-follower-&#x8282;&#x70B9;&#x4E14;&#x96C6;&#x7FA4;-pd-&#x603B;&#x6570;--3">1&#x3001;&#x5F53;&#x524D;&#x673A;&#x5668;&#x5305;&#x62EC;&#x4E00;&#x4E2A; PD follower &#x8282;&#x70B9;&#x4E14;&#x96C6;&#x7FA4; PD &#x603B;&#x6570; &gt;= 3</h3>
+<ul>
+<li>&#x68C0;&#x67E5;&#x5F53;&#x524D;&#x5F85;&#x64CD;&#x4F5C; PD &#x96C6;&#x7FA4;&#x8282;&#x70B9;&#x4FE1;&#x606F;</li>
+</ul>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; member //&#x663E;&#x793A;&#x5F53;&#x524D;&#x6240;&#x6709;&#x6210;&#x5458;
+</code></pre><ul>
+<li>&#x5728;&#x5F85;&#x7EF4;&#x62A4;&#x673A;&#x5668;&#x4E0A;&#x6267;&#x884C;</li>
+</ul>
+<pre><code>${deploy_dir}/scripts/stop_pd.sh
+</code></pre><ul>
+<li><p>&#x5173;&#x673A;&#x7EF4;&#x62A4;</p>
+</li>
+<li><p>&#x542F;&#x52A8;&#x673A;&#x5668;</p>
+</li>
+<li><p>&#x767B;&#x9646;&#x673A;&#x5668;&#x6267;&#x884C;</p>
+</li>
+</ul>
+<pre><code>${deploy_dir}/scripts/start_pd.sh
+</code></pre><ul>
+<li>&#x68C0;&#x67E5;&#x5F53;&#x524D;&#x5F85;&#x64CD;&#x4F5C; PD &#x96C6;&#x7FA4;&#x8282;&#x70B9;&#x4FE1;&#x606F;</li>
+</ul>
+<h3 id="2&#x3001;&#x5F53;&#x524D;&#x673A;&#x5668;&#x5305;&#x62EC;&#x4E00;&#x4E2A;-pd-leader-&#x8282;&#x70B9;&#x4E14;&#x96C6;&#x7FA4;-pd-&#x603B;&#x6570;--3">2&#x3001;&#x5F53;&#x524D;&#x673A;&#x5668;&#x5305;&#x62EC;&#x4E00;&#x4E2A; PD leader &#x8282;&#x70B9;&#x4E14;&#x96C6;&#x7FA4; PD &#x603B;&#x6570; &gt;= 3</h3>
+<ul>
+<li>&#x68C0;&#x67E5;&#x5F53;&#x524D;&#x5F85;&#x64CD;&#x4F5C; PD &#x96C6;&#x7FA4;&#x8282;&#x70B9;&#x4FE1;&#x606F;</li>
+</ul>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; member //&#x663E;&#x793A;&#x5F53;&#x524D;&#x6240;&#x6709;&#x6210;&#x5458;
+</code></pre><ul>
+<li>&#x68C0;&#x67E5;&#x5F53;&#x524D;&#x5F85;&#x64CD;&#x4F5C; PD &#x8282;&#x70B9;&#x89D2;&#x8272;</li>
+</ul>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; mebmer leader show //&#x663E;&#x793A; leader &#x7684;&#x4FE1;&#x606F;
+</code></pre><ul>
+<li>&#x8FC1;&#x79FB; leader &#x8282;&#x70B9;</li>
+</ul>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; member leader transfer pd2 // &#x5C06; leader &#x8FC1;&#x79FB;&#x5230;&#x6307;&#x5B9A;&#x6210;&#x5458;
+</code></pre><ul>
+<li>&#x68C0;&#x67E5;&#x8FC1;&#x79FB;&#x7ED3;&#x679C;</li>
+</ul>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; member //&#x663E;&#x793A;&#x5F53;&#x524D;&#x6240;&#x6709;&#x6210;&#x5458;&#xFF0C;&#x8FC1;&#x79FB;&#x6210;&#x529F;&#x8FDB;&#x884C;&#x4E0B;&#x4E00;&#x6B65;&#xFF0C;&#x5426;&#x5219;&#x7B49;&#x5F85;
+</code></pre><ul>
+<li>&#x5728;&#x5F85;&#x7EF4;&#x62A4;&#x673A;&#x5668;&#x4E0A;&#x6267;&#x884C;</li>
+</ul>
+<pre><code>${deploy_dir}/scripts/stop_pd.sh
+</code></pre><ul>
+<li><p>&#x5173;&#x673A;&#x7EF4;&#x62A4;</p>
+</li>
+<li><p>&#x542F;&#x52A8;&#x673A;&#x5668;</p>
+</li>
+<li><p>&#x5728;&#x7EF4;&#x62A4;&#x540E;&#x673A;&#x5668;&#x4E0A;&#x6267;&#x884C;</p>
+</li>
+</ul>
+<pre><code>${deploy_dir}/scripts/start_pd.sh
+</code></pre><ul>
+<li>leader &#x8FC1;&#x56DE;&#xFF08;&#x53EF;&#x9009;&#xFF09;</li>
+</ul>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; member leader transfer pd1 // &#x5C06; leader &#x8FC1;&#x79FB;&#x5230;&#x6307;&#x5B9A;&#x6210;&#x5458;
+&#x68C0;&#x67E5;&#x5F53;&#x524D;&#x5F85;&#x64CD;&#x4F5C; PD &#x96C6;&#x7FA4;&#x8282;&#x70B9;&#x4FE1;&#x606F;
+</code></pre><h3 id="3&#x3001;&#x5F53;&#x524D;&#x673A;&#x5668;&#x5305;&#x62EC;&#x4E00;&#x4E2A;-pd-leader-&#x8282;&#x70B9;&#x4E14;&#x96C6;&#x7FA4;-pd-&#x603B;&#x6570;--1">3&#x3001;&#x5F53;&#x524D;&#x673A;&#x5668;&#x5305;&#x62EC;&#x4E00;&#x4E2A; PD leader &#x8282;&#x70B9;&#x4E14;&#x96C6;&#x7FA4; PD &#x603B;&#x6570; = 1</h3>
+<p>&#x5728;&#x4E34;&#x65F6;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#x65F6;&#xFF0C;&#x9488;&#x5BF9;&#x96C6;&#x7FA4;&#x4E0D;&#x540C;&#x60C5;&#x51B5;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x53EF;&#x5206;&#x4E3A;&#x4E09;&#x79CD;&#x5904;&#x7406;&#x65B9;&#x5F0F;</p>
+<h5 id="1-&#x7EBF;&#x4E0A;&#x73AF;&#x5883;&#xFF0C;&#x670D;&#x52A1;&#x9700;&#x8981;&#x9AD8;&#x53EF;&#x7528;&#xFF0C;&#x4E0D;&#x63A5;&#x53D7;&#x505C;&#x670D;&#x52A1;">(1) &#x7EBF;&#x4E0A;&#x73AF;&#x5883;&#xFF0C;&#x670D;&#x52A1;&#x9700;&#x8981;&#x9AD8;&#x53EF;&#x7528;&#xFF0C;&#x4E0D;&#x63A5;&#x53D7;&#x505C;&#x670D;&#x52A1;</h5>
+<ul>
+<li>&#x5982;&#x786E;&#x5B9E;&#x9700;&#x8981;&#x9AD8;&#x53EF;&#x7528;&#xFF0C;&#x9700;&#x8981;&#x5728;&#x5176;&#x4ED6;&#x673A;&#x5668;&#x6269;&#x5BB9;&#x81F3;&#x4E09;&#x4E2A; PD &#xFF0C;&#x53C2;&#x8003; <a href="https://pingcap.com/docs-cn/stable/how-to/scale/with-ansible/#%E6%89%A9%E5%AE%B9-tidbtikv-%E8%8A%82%E7%82%B9" target="_blank">PD &#x8282;&#x70B9;&#x5E93;&#x5BB9;</a></li>
+<li>&#x4E34;&#x65F6;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#xFF0C;&#x53C2;&#x8003; 2 &#xFF08;&#x5F53;&#x524D;&#x673A;&#x5668;&#x5305;&#x62EC;&#x4E00;&#x4E2A; PD leader &#x8282;&#x70B9;&#x4E14;&#x96C6;&#x7FA4; PD &#x603B;&#x6570; &gt;= 3 &#xFF09;</li>
+</ul>
+<h5 id="2-&#x7EBF;&#x4E0A;&#x6216;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x670D;&#x52A1;&#x9AD8;&#x53EF;&#x7528;&#x6216;&#x8005;&#x8D44;&#x6E90;&#x7D27;&#x5F20;&#xFF0C;&#x53EF;&#x63A5;&#x53D7;&#x7EF4;&#x62A4;&#x671F;&#x95F4;&#x670D;&#x52A1;&#x4E0D;&#x53EF;&#x7528;">(2) &#x7EBF;&#x4E0A;&#x6216;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x670D;&#x52A1;&#x9AD8;&#x53EF;&#x7528;&#x6216;&#x8005;&#x8D44;&#x6E90;&#x7D27;&#x5F20;&#xFF0C;&#x53EF;&#x63A5;&#x53D7;&#x7EF4;&#x62A4;&#x671F;&#x95F4;&#x670D;&#x52A1;&#x4E0D;&#x53EF;&#x7528;</h5>
+<ul>
+<li>&#x4E2D;&#x63A7;&#x673A;&#x6267;&#x884C;</li>
+</ul>
+<pre><code>ansible-playbook stop.yml --tags=pd  &#xFF08;&#x53EA;&#x505C; PD&#xFF0C;&#x64CD;&#x4F5C;&#x5C11;&#xFF0C;&#x4F46;&#x5BA2;&#x6237;&#x7AEF;&#x4F1A;&#x62A5;&#x5F02;&#x5E38;&#xFF0C;&#x4E0D;&#x5F71;&#x54CD;&#x6B63;&#x786E;&#x6027;&#xFF09;
+</code></pre><p>&#x6216;&#x8005;</p>
+<pre><code>ansible-playbook stop.yml &#xFF08;&#x505C;&#x6574;&#x4E2A;&#x96C6;&#x7FA4;&#xFF09;
+</code></pre><ul>
+<li>&#x5173;&#x673A;&#x7EF4;&#x62A4;</li>
+<li>&#x542F;&#x52A8;&#x673A;&#x5668;</li>
+<li>&#x4E2D;&#x63A7;&#x673A;&#x6267;&#x884C;</li>
+</ul>
+<pre><code>ansible-playbook start.yml --tags=pd
+</code></pre><p>&#x6216;&#x8005; </p>
+<pre><code>ansible-playbook start.yml
+</code></pre><ul>
+<li>&#x68C0;&#x67E5;&#x5F53;&#x524D;&#x5F85;&#x64CD;&#x4F5C; PD &#x96C6;&#x7FA4;&#x8282;&#x70B9;&#x4FE1;&#x606F;</li>
+</ul>
+<h5 id="&#xFF08;3&#xFF09;&#x7EBF;&#x4E0A;&#x6216;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x670D;&#x52A1;&#x9AD8;&#x53EF;&#x7528;&#x6216;&#x8005;&#x8D44;&#x6E90;&#x7D27;&#x5F20;&#xFF0C;&#x4E0D;&#x63A5;&#x53D7;&#x7EF4;&#x62A4;&#x671F;&#x95F4;&#x670D;&#x52A1;&#x4E0D;&#x53EF;&#x7528;">&#xFF08;3&#xFF09;&#x7EBF;&#x4E0A;&#x6216;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x670D;&#x52A1;&#x9AD8;&#x53EF;&#x7528;&#x6216;&#x8005;&#x8D44;&#x6E90;&#x7D27;&#x5F20;&#xFF0C;&#x4E0D;&#x63A5;&#x53D7;&#x7EF4;&#x62A4;&#x671F;&#x95F4;&#x670D;&#x52A1;&#x4E0D;&#x53EF;&#x7528;</h5>
+<ul>
+<li><p>&#x65B0;&#x589E;&#x4E00;&#x4E2A; PD &#x8282;&#x70B9;</p>
+<ul>
+<li>&#x53C2;&#x8003; <a href="https://pingcap.com/docs-cn/stable/how-to/scale/with-ansible/#%E6%89%A9%E5%AE%B9-tidbtikv-%E8%8A%82%E7%82%B9" target="_blank">PD &#x8282;&#x70B9;&#x6269;&#x5BB9;</a></li>
+</ul>
+</li>
+<li><p>&#x68C0;&#x67E5; PD &#x96C6;&#x7FA4;&#x8282;&#x70B9;&#x4FE1;&#x606F;</p>
+</li>
+</ul>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; member //&#x663E;&#x793A;&#x5F53;&#x524D;&#x6240;&#x6709;&#x6210;&#x5458;
+</code></pre><ul>
+<li>&#x8FC1;&#x79FB; PD leader &#x8282;&#x70B9;&#x81F3;&#x65B0;&#x589E; PD &#x8282;&#x70B9;</li>
+</ul>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; member leader transfer pd2 // &#x5C06; leader &#x8FC1;&#x79FB;&#x5230;&#x6307;&#x5B9A;&#x6210;&#x5458;
+</code></pre><ul>
+<li>&#x68C0;&#x67E5;&#x8FC1;&#x79FB;&#x7ED3;&#x679C;</li>
+</ul>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; member //&#x663E;&#x793A;&#x5F53;&#x524D;&#x6240;&#x6709;&#x6210;&#x5458;&#xFF0C;&#x8FC1;&#x79FB;&#x6210;&#x529F;&#x8FDB;&#x884C;&#x4E0B;&#x4E00;&#x6B65;&#xFF0C;&#x5426;&#x5219;&#x7B49;&#x5F85;
+</code></pre><ul>
+<li><p>&#x5220;&#x9664;&#x5F85;&#x7EF4;&#x62A4;&#x673A;&#x5668; PD &#x8282;&#x70B9;</p>
+<ul>
+<li>&#x53C2;&#x8003; <a href="https://pingcap.com/docs-cn/stable/how-to/scale/with-ansible/#%E6%89%A9%E5%AE%B9-tidbtikv-%E8%8A%82%E7%82%B9" target="_blank">PD &#x8282;&#x70B9;&#x7F29;&#x5BB9;</a></li>
+</ul>
+</li>
+<li><p>&#x68C0;&#x67E5;&#x5F53;&#x524D;&#x5F85;&#x64CD;&#x4F5C; PD &#x96C6;&#x7FA4;&#x8282;&#x70B9;&#x4FE1;&#x606F;</p>
+</li>
+<li><p>&#x5173;&#x673A;&#x7EF4;&#x62A4;</p>
+</li>
+<li>&#x542F;&#x52A8;&#x673A;&#x5668;</li>
+<li>&#x8FC1;&#x56DE; PD &#x8282;&#x70B9;&#xFF08;&#x53EF;&#x9009;&#xFF09;<blockquote>
+<p>&#x5728;&#x7EF4;&#x62A4;&#x7ED3;&#x675F;&#x7684;&#x673A;&#x5668;&#x4E0A;&#x65B0;&#x589E;&#x4E00;&#x4E2A; PD &#x8282;&#x70B9;&#xFF0C;&#x5C06;&#x4E4B;&#x524D;&#x65B0;&#x6269;&#x5BB9; leader transfer &#x81F3;&#x8BE5;&#x8282;&#x70B9;&#xFF0C;&#x5E76;&#x5220;&#x9664;&#x6700;&#x5F00;&#x59CB;&#x65B0;&#x589E;&#x7684;&#x8282;&#x70B9;&#x3002;&#x5177;&#x4F53;&#x6B65;&#x9AA4;&#x53C2;&#x8003;&#xFF1A;01&#xFF0C;02&#xFF0C;03&#xFF0C;04&#xFF0C;05&#xFF0C;06</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="&#x4E09;&#x3001;tikv-&#x7EC4;&#x4EF6;">&#x4E09;&#x3001;TiKV &#x7EC4;&#x4EF6;</h2>
+<blockquote>
+<p>&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7EBF;&#x4E0A;&#x96C6;&#x7FA4;&#x5BF9; TiKV &#x7684;&#x90E8;&#x7F72;&#x4F7F;&#x7528;&#xFF0C;&#x4E00;&#x822C;&#x662F;&#x5355;&#x673A;&#x90E8;&#x7F72;&#x6216;&#x8005;&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#xFF0C;&#x5728;&#x5BF9;&#x673A;&#x5668;&#x505A;&#x4E34;&#x65F6;&#x7EF4;&#x62A4;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x6839;&#x636E;&#x90E8;&#x7F72;&#x60C5;&#x51B5;&#x6765;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF1A;&#x5355;&#x673A;&#x5355;&#x5B9E;&#x4F8B;&#x548C;&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#x3002;&#x8282;&#x70B9;&#x4E0B;&#x7EBF;&#x8FC7;&#x7A0B;&#x4E2D; leader &#x8C03;&#x5EA6;&#x5BF9;&#x96C6;&#x7FA4;&#x7684;&#x670D;&#x52A1;&#x5F71;&#x54CD;&#x5F88;&#x5C0F;&#xFF0C;&#x53EF;&#x5FFD;&#x7565;&#x3002;</p>
+</blockquote>
+<h5 id="&#xFF08;1&#xFF09;&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#x4E34;&#x65F6;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#x6B65;&#x9AA4;">&#xFF08;1&#xFF09;&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#x4E34;&#x65F6;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#x6B65;&#x9AA4;</h5>
+<ul>
+<li>&#x68C0;&#x67E5;&#x662F;&#x5426;&#x6709; label</li>
+</ul>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; label //&#x7528;&#x4E8E;&#x663E;&#x793A;&#x96C6;&#x7FA4;&#x6807;&#x7B7E;&#x4FE1;&#x606F;
+</code></pre><ul>
+<li><p>&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x4E14;&#x6709; label </p>
+<ul>
+<li><p>&#x8FC1;&#x79FB;&#x8BE5;&#x673A;&#x5668;&#x4E0A;&#x6240;&#x6709; store &#x7684; leader</p>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; scheduler add evict-leader-scheduler 1 // &#x628A; store 1 &#x4E0A;&#x7684;&#x6240;&#x6709; region &#x7684; leader &#x4ECE; store 1 &#x8C03;&#x5EA6;&#x51FA;&#x53BB;
+</code></pre></li>
+<li><p>&#x4FEE;&#x6539; max-store-down-time &#x8D85;&#x8FC7;&#x670D;&#x52A1;&#x5668;&#x7EF4;&#x62A4;&#x65F6;&#x95F4;&#xFF0C;&#x9ED8;&#x8BA4; 30 min&#xFF0C;&#x4FDD;&#x8BC1;&#x5728;&#x670D;&#x52A1;&#x5668;&#x7EF4;&#x62A4;&#x671F;&#x95F4;&#x4E0D;&#x53D1;&#x751F;&#x8865;&#x526F;&#x672C;&#x884C;&#x4E3A;</p>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379  &gt;&gt; config set max-store-down-time 3h
+</code></pre></li>
+<li><p>&#x68C0;&#x67E5; leader &#x60C5;&#x51B5;</p>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379  &gt;&gt; store store_id // &#x68C0;&#x67E5; &#x8BE5;&#x673A;&#x5668;&#x6240;&#x6709; tikv &#x8282;&#x70B9;&#x4E0A;&#x7684; leader&#xFF0C;leader &#x6570;&#x91CF;&#x4E3A; 0 &#x8FDB;&#x884C;&#x4E0B;&#x4E00;&#x6B65;&#xFF0C;&#x5426;&#x5219;&#x7B49;&#x5F85;&#x4E3A; 0
+</code></pre></li>
+<li><p>&#x5728;&#x5F85;&#x7EF4;&#x62A4;&#x673A;&#x5668;&#x4E0A;&#x6267;&#x884C;</p>
+<pre><code>${deploy_dir}/scripts/stop_tikv.sh
+</code></pre></li>
+<li><p>&#x5173;&#x673A;&#x7EF4;&#x62A4;</p>
+</li>
+<li>&#x91CD;&#x542F;&#x673A;&#x5668;</li>
+<li><p>&#x5728;&#x7EF4;&#x62A4;&#x540E;&#x673A;&#x5668;&#x4E0A;&#x6267;&#x884C;</p>
+<pre><code>${deploy_dir}/scripts/start_tikv.sh
+</code></pre></li>
+<li><p>&#x5220;&#x9664; leader &#x8C03;&#x5EA6;&#x7B56;&#x7565;</p>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379  &gt;&gt; scheduler remove grant-leader-scheduler-1
+</code></pre></li>
+</ul>
+</li>
+<li><p>&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x4E14;&#x65E0; label</p>
+<ul>
+<li><p>&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x5C5E;&#x4E8E;&#x9519;&#x8BEF;&#x914D;&#x7F6E;&#xFF0C;&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#x5FC5;&#x987B;&#x8981;&#x6709; label&#xFF0C;&#x5426;&#x5219;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x4E00;&#x4E2A; raft group &#x7684; 2 &#x4E2A;&#x526F;&#x672C;&#x51FA;&#x73B0;&#x5728;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x7684;&#x591A;&#x4E2A; tikv&#x3002;&#x8FD9;&#x65F6;&#x505C;&#x673A;&#x4F1A;&#x5BFC;&#x81F4; region &#x5F02;&#x5E38;&#x3002;&#x9700;&#x8981;&#x5148;&#x7ED9;&#x6240;&#x6709; tikv &#x8865;&#x8BBE; label&#xFF0C;&#x7B49; region &#x8C03;&#x5EA6;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x518D;&#x64CD;&#x4F5C;&#x5173;&#x673A;</p>
+<pre><code>pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; store label {store_id} host &amp;tikvhost (&#x5BF9;&#x6240;&#x6709;&#x7684; store &#x90FD;&#x8981;&#x6307;&#x5B9A; host &#x8FD9;&#x4E2A; label, &#x786E;&#x4FDD;&#x76F8;&#x540C;&#x4E3B;&#x673A;&#x7684; tikv &#x76F8;&#x540C;&#x7684; &amp;tikvhost, &#x53E6;&#x5916; &quot;host&quot; &#x53EA;&#x662F; label &#x7684;&#x540D;&#x5B57;&#x53EF;&#x4EE5;&#x968F;&#x610F;&#x4FEE;&#x6539;)
+pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; config set location-labels &quot;&quot; 
+pd-ctl -i -u http://127.0.0.1:2379 &gt;&gt; region --jq=&quot;.regions[] | {id: .id, peer_stores: [.peers[].store_id] | select(any(.==store_id1)) | select(any(.==store_id2)) }&quot;  // &#x7B49;&#x5F85;&#x8C03;&#x5EA6;&#x5B8C;&#x6210;&#xFF0C;&#x8F93;&#x51FA;&#x4E3A;&#x7A7A;&#xFF0C;&#x786E;&#x8BA4;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;region &#x5728;&#x8BE5;&#x673A;&#x5668;&#x4E0A;&#x6709; 2 &#x4E2A;&#x526F;&#x672C;&#xFF0C;&#x5176;&#x4E2D; store_id1 &#x548C; store_id2 &#x662F;&#x8BE5;&#x673A;&#x5668;&#x591A;&#x4E2A; tikv &#x7684; store id
+</code></pre></li>
+<li>&#x5F00;&#x59CB;&#x6267;&#x884C;&#x4E0B;&#x7EBF;&#xFF0C;&#x540C; &#xFF08;02&#xFF09;&#x64CD;&#x4F5C;</li>
+</ul>
+</li>
+</ul>
+<h5 id="&#xFF08;2&#xFF09;&#x5355;&#x673A;&#x5355;&#x5B9E;&#x4F8B;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#x6B65;&#x9AA4;">&#xFF08;2&#xFF09;&#x5355;&#x673A;&#x5355;&#x5B9E;&#x4F8B;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#x6B65;&#x9AA4;</h5>
+<blockquote>
+<p>&#x53EF;&#x76F4;&#x63A5;&#x53C2;&#x8003;&#xFF08;&#x5355;&#x673A;&#x591A;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x4E14;&#x6709; label&#xFF09;&#x64CD;&#x4F5C;</p>
+</blockquote>
+<h5 id="&#x98CE;&#x9669;&#x70B9;">&#x98CE;&#x9669;&#x70B9;</h5>
+<blockquote>
+<ul>
+<li>&#x5982;&#x679C;&#x5199;&#x5165;&#x7279;&#x70B9;&#x662F;&#x96C6;&#x4E2D;&#x5C11;&#x6570;&#x4E00;&#x4E9B; region&#xFF0C;&#x505C;&#x673A;&#x4E24;&#x5C0F;&#x65F6;&#xFF0C;leader &#x4E0A;&#x5806;&#x79EF;&#x7684; raft &#x65E5;&#x5FD7;&#x6709;&#x9650;&#x3002;&#x542F;&#x52A8;&#x7684;&#x65F6;&#x5019;&#x8FD9;&#x4E9B;&#x5C11;&#x6570; region &#x5927;&#x6982;&#x7387;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x62FF; snapshot&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x4E0A;&#x9762;&#x7684;&#x65B9;&#x6848;&#x6CA1;&#x4EC0;&#x4E48;&#x98CE;&#x9669;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x5199;&#x5165;&#x7279;&#x70B9;&#x662F;&#x975E;&#x5E38;&#x5206;&#x6563;&#x7684;&#xFF0C;&#x505C;&#x673A;&#x4E24;&#x5C0F;&#x65F6;&#xFF0C;leader &#x4E0A;&#x5806;&#x79EF;&#x7684; raft &#x65E5;&#x5FD7;&#x6709;&#x53EF;&#x80FD;&#x4F1A;&#x6BD4;&#x8F83;&#x591A;&#xFF0C;&#x53D6;&#x51B3;&#x4E8E;&#x5199;&#x5165;&#x7684;&#x6D41;&#x91CF;&#x3002;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0A;&#x9762;&#x7684;&#x65B9;&#x6848;&#x6709;&#x4E00;&#x70B9;&#x70B9;&#x98CE;&#x9669;&#xFF0C;raft log &#x5806;&#x79EF;&#x592A;&#x591A;&#x53EF;&#x80FD;&#x4F1A;&#x7A0D;&#x5FAE;&#x5F71;&#x54CD;&#x4E0B;&#x6027;&#x80FD;&#x3002;</li>
+</ul>
+</blockquote>
+<h2 id="&#x56DB;&#x3001;tidb">&#x56DB;&#x3001;TiDB</h2>
+<blockquote>
+<p>&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7EBF;&#x4E0A;&#x4F7F;&#x7528; TiDB &#x4F1A;&#x642D;&#x914D;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x4F7F;&#x7528;&#xFF0C;&#x4E0B;&#x9762;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;&#x57FA;&#x4E8E;&#x6B64;&#x5B9E;&#x73B0;&#x3002;</p>
+</blockquote>
+<ul>
+<li><p>&#x4ECE; lvs &#x628A;&#x8981;&#x5347;&#x7EA7;&#x7684; TiDB &#x8282;&#x70B9;&#x6458;&#x9664;</p>
+</li>
+<li><p>&#x505C;&#x5B9E;&#x4F8B;</p>
+</li>
+</ul>
+<pre><code>${deploy_dir}/scripts/stop_tidb.sh
+</code></pre><ul>
+<li><p>&#x8FDB;&#x7A0B;&#x505C;&#x6B62;&#x4E4B;&#x540E;&#x5F00;&#x59CB;&#x5173;&#x673A;&#x7EF4;&#x62A4;</p>
+</li>
+<li><p>&#x542F;&#x52A8;&#x5B9E;&#x4F8B;</p>
+</li>
+</ul>
+<pre><code>${deploy_dir}/scripts/start_tidb.sh
+</code></pre><ul>
+<li><p>&#x6DFB;&#x52A0; IP &#x81F3; lvs</p>
+</li>
+<li><p>&#x4F7F;&#x7528;&#x65B0;&#x6DFB;&#x52A0;&#x7684; ip &amp; port &#x8FDE;&#x63A5;&#x6570;&#x636E;&#x5E93;&#x89C2;&#x5BDF;&#x662F;&#x5426;&#x6709;&#x65B0;&#x94FE;&#x63A5;&#xFF0C;&#x786E;&#x8BA4; tidb-server &#x53EF;&#x6B63;&#x5E38;&#x63D0;&#x4F9B;&#x670D;&#x52A1;</p>
+</li>
+</ul>
+<p>&#x98CE;&#x9669;&#x70B9;</p>
+<blockquote>
+<p>&#x5728;&#x8FDB;&#x884C; stop tidb  &#x8282;&#x70B9;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x4E3A; owner &#x8282;&#x70B9;&#xFF08;curl <a href="http://{TiDBIP}:10080/info" target="_blank">http://{TiDBIP}:10080/info</a>
+&#xFF09;&#x4E14;&#x6B63;&#x5728;&#x8FDB;&#x884C; DDL &#x53D8;&#x66F4;&#xFF0C;&#x76F4;&#x63A5;&#x4E0B;&#x6389; tidb &#x8282;&#x70B9;&#x4F1A;&#x5728; 60s lease &#x4E4B;&#x540E;&#x5728;&#x8FDB;&#x884C;&#x65B0;&#x7684; owner &#x9009;&#x4E3E;&#xFF0C;DDL &#x53D8;&#x66F4;&#x4F1A;&#x53D8;&#x6162;&#x3002;&#x53E6;&#x5916;&#x5982;&#x679C;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x975E; owner &#x8282;&#x70B9;&#xFF0C;&#x5728;&#x4E0B;&#x6389;&#x4E4B;&#x540E;&#x6709; DDL &#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x6BCF;&#x4E2A;&#x72B6;&#x6001;&#x53D8;&#x66F4;&#x65F6;&#x4E5F;&#x4F1A;&#x53BB;&#x8BBF;&#x95EE;&#x8BE5;&#x4E0B;&#x7EBF;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x4F1A;&#x5BF9;&#x96C6;&#x7FA4; DDL &#x64CD;&#x4F5C;&#x6709;&#x5F71;&#x54CD;&#xFF0C;&#x8BE5;&#x95EE;&#x9898; 10min &#x540E;&#x4F1A;&#x6D88;&#x9664;&#xFF0C;&#x56E0;&#x6B64;&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x5728;&#x4E34;&#x65F6;&#x4E0B;&#x6389; tidb &#x65F6;&#x4EE5;&#x53CA;&#x671F;&#x95F4;&#x8FDB;&#x884C; DDL &#x64CD;&#x4F5C;&#x3002;</p>
+</blockquote>
+<h2 id="&#x4E94;&#x3001;binlog">&#x4E94;&#x3001;Binlog</h2>
+<blockquote>
+<p>&#x5728;&#x4F7F;&#x7528; Binlog &#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;&#x6839;&#x636E;&#x90E8;&#x7F72;&#x6587;&#x6863;&#xFF0C;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x53EF;&#x90E8;&#x7F72;&#x591A;&#x4E2A; pump &#xFF0C;&#x4E00;&#x4E2A;&#x6216;&#x8005;&#x591A;&#x4E2A;drainer&#x3002;</p>
+</blockquote>
+<h3 id="1&#x3001;pump-&#x7EC4;&#x4EF6;">1&#x3001;pump &#x7EC4;&#x4EF6;</h3>
+<blockquote>
+<p>&#x5728;&#x5BF9;&#x6709;&#x90E8;&#x5206; pump &#x7EC4;&#x4EF6;&#x7684;&#x4E3B;&#x673A;&#x4E34;&#x65F6;&#x505C;&#x673A;&#x7EF4;&#x62A4;&#x65F6;&#xFF0C;&#x7531;&#x4E8E;&#x5728;&#x540C;&#x6B65; binlog &#x8FC7;&#x7A0B;&#x4E2D;&#x56E0;&#x4E3A; pump &#x4E2A;&#x6570;&#x51CF;&#x5C11;&#xFF0C;&#x540C;&#x6B65;&#x64CD;&#x4F5C;&#x4F1A;&#x53D8;&#x6162;&#xFF0C;&#x4F1A;&#x51FA;&#x73B0;&#x6570;&#x636E;&#x5EF6;&#x8FDF;&#x95EE;&#x9898;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x5F53;&#x5728;&#x4E1A;&#x52A1;&#x9AD8;&#x5CF0;&#x671F;&#xFF0C;&#x505C;&#x6389;&#x90E8;&#x5206; pump &#x6765;&#x8FDB;&#x884C;&#x4E3B;&#x673A;&#x7EF4;&#x62A4;&#x65F6;&#x5EF6;&#x8FDF;&#x73B0;&#x8C61;&#x4F1A;&#x88AB;&#x653E;&#x5927;&#x3002;&#x56E0;&#x6B64;&#x5EFA;&#x8BAE;&#x5728;&#x4E1A;&#x52A1;&#x4F4E;&#x5CF0;&#x671F;&#x8FDB;&#x884C;&#x505C;&#x673A;&#x7EF4;&#x62A4;&#x3002;</p>
+<ul>
+<li>&#x5982;&#x679C;&#x5E0C;&#x671B;&#x64CD;&#x4F5C;&#x7B80;&#x5355;&#xFF0C;&#x80FD;&#x63A5;&#x53D7;&#x7EF4;&#x62A4;&#x671F;&#x95F4;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x5EF6;&#x8FDF;&#x60C5;&#x51B5;&#xFF0C;&#x5EFA;&#x8BAE;&#x539F;&#x5730;&#x505C;&#x6B62; pump&#xFF0C;&#x5373; &#x539F;&#x5730;&#x4E0B;&#x7EBF; pump</li>
+<li>&#x5982;&#x679C;&#x4E0D;&#x80FD;&#x63A5;&#x53D7;&#x5EF6;&#x8FDF;&#xFF0C;&#x53EF;&#x4EE5;&#x65B0;&#x589E;&#x4E00;&#x53F0; pump&#xFF0C;&#x518D;&#x505C;&#x673A;&#x7EF4;&#x62A4;&#xFF0C;&#x5373;&#x65B0;&#x589E; pump</li>
+</ul>
+</blockquote>
+<h5 id="1-&#x539F;&#x5730;&#x4E0B;&#x7EBF;-pump">(1) &#x539F;&#x5730;&#x4E0B;&#x7EBF; pump</h5>
+<ul>
+<li>&#x67E5;&#x8BE2;&#x6240;&#x6709; pump &#x72B6;&#x6001;&#x4EE5;&#x53CA;&#x5206;&#x5E03;&#xFF0C;&#x786E;&#x4FDD;&#x72B6;&#x6001;&#x4E3A; online</li>
+</ul>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd pumps
+</code></pre><ul>
+<li>&#x4E0B;&#x7EBF;&#x6307;&#x5B9A;&#x7684; pump</li>
+</ul>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd offline-pump -node-id ${ip}:${port}
+</code></pre><ul>
+<li><p>&#x67E5;&#x8BE2; pump &#x72B6;&#x6001;</p>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd pumps
+</code></pre><ul>
+<li>&#x5F53;&#x5F85;&#x7EF4;&#x62A4;&#x4E3B;&#x673A;&#x4E0A; pump &#x72B6;&#x6001;&#x53D8;&#x4E3A; offline &#x65F6;&#xFF0C;&#x8FDB;&#x884C;&#x4E0B;&#x4E00;&#x6B65;&#xFF0C;&#x5426;&#x5219;&#x7B49;&#x5F85;</li>
+</ul>
+</li>
+<li><p>&#x505C;&#x6389; pump &#x8FDB;&#x7A0B;</p>
+</li>
+</ul>
+<pre><code>ansible-playbook stop.yml -l pump pump_name
+</code></pre><ul>
+<li>&#x5173;&#x673A;&#x7EF4;&#x62A4;</li>
+<li>&#x91CD;&#x542F;&#x673A;&#x5668;</li>
+<li><p>&#x91CD;&#x65B0;&#x4E0A;&#x7EBF; pump</p>
+<ul>
+<li><p>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#x6267;&#x884C;     </p>
+<pre><code>ansible-playbook start.yml --tags=pump -l pump_name
+</code></pre></li>
+<li><p>&#x67E5;&#x8BE2;&#x6240;&#x6709; pump &#x72B6;&#x6001; &#x4E3A; online</p>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd pumps
+</code></pre><h5 id="2-&#x65B0;&#x589E;-pump">(2) &#x65B0;&#x589E; pump</h5>
+</li>
+</ul>
+</li>
+<li>&#x67E5;&#x8BE2;&#x6240;&#x6709; pump &#x72B6;&#x6001;&#x4EE5;&#x53CA;&#x5206;&#x5E03;</li>
+</ul>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd pumps
+</code></pre><ul>
+<li><p>&#x65B0;&#x589E; pump <a href="https://pingcap.com/docs-cn/stable/reference/tidb-binlog/deploy/" target="_blank">&#x53C2;&#x8003;&#x6587;&#x6863;</a></p>
+</li>
+<li><p>&#x67E5;&#x8BE2;&#x6240;&#x6709; pump &#x72B6;&#x6001;</p>
+</li>
+</ul>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd pumps
+</code></pre><ul>
+<li>&#x6309;&#x7167; (1) &#x539F;&#x5730;&#x4E0B;&#x7EBF; pump  &#x5B8C;&#x6210;&#x7EF4;&#x62A4;&#x4E3B;&#x673A;</li>
+<li>&#x6309;&#x9700;&#x7F29;&#x5BB9;&#x6389;&#x4EFB;&#x610F;&#x4E00;&#x4E2A; pump&#x3002;&#x7F16;&#x8F91; inventory.ini &#x6587;&#x4EF6;&#xFF0C;&#x79FB;&#x9664; pump &#x8282;&#x70B9;&#x4FE1;&#x606F;</li>
+</ul>
+<pre><code>pump_name  ansible_host=xxx  ansible_port=xxx deploy_dir=/data/pump
+</code></pre><ul>
+<li>&#x66F4;&#x65B0; Prometheus &#x914D;&#x7F6E;&#x5E76;&#x91CD;&#x542F;</li>
+</ul>
+<pre><code>ansible-playbook rolling_update_monitor.yml
+</code></pre><ul>
+<li>&#x67E5;&#x8BE2;&#x6240;&#x6709; pump &#x72B6;&#x6001; &#x4E3A; online</li>
+</ul>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd pumps
+</code></pre><h3 id="2&#x3001;drainer">2&#x3001;drainer</h3>
+<blockquote>
+<p>Drainer &#x4ECE;&#x5404;&#x4E2A; Pump &#x4E2D;&#x6536;&#x96C6; Binlog &#x8FDB;&#x884C;&#x5F52;&#x5E76;&#xFF0C;&#x518D;&#x5C06; Binlog &#x8F6C;&#x5316;&#x6210; SQL &#x6216;&#x8005;&#x6307;&#x5B9A;&#x683C;&#x5F0F;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6700;&#x7EC8;&#x540C;&#x6B65;&#x5230;&#x4E0B;&#x6E38;&#x3002;&#x5F53;&#x5305;&#x542B; drainer &#x7684;&#x673A;&#x5668;&#x9700;&#x8981;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#xFF0C;&#x5BF9;&#x5F53;&#x524D;&#x7684;&#x6570;&#x636E;&#x540C;&#x6B65;&#x80AF;&#x5B9A;&#x4F1A;&#x6709;&#x5F71;&#x54CD;&#x3002;</p>
+<ul>
+<li>&#x5982;&#x679C;&#x5E0C;&#x671B;&#x64CD;&#x4F5C;&#x7B80;&#x5355;&#xFF0C;&#x80FD;&#x63A5;&#x53D7;&#x7EF4;&#x62A4;&#x671F;&#x95F4;&#x6682;&#x505C;&#x590D;&#x5236;&#xFF0C;&#x5EFA;&#x8BAE;&#x539F;&#x5730;&#x505C;&#x6B62; drainer&#xFF0C;&#x5373;&#x539F;&#x5730;&#x505C;&#x6B62; drainer&#x3002; </li>
+<li>&#x5982;&#x679C;&#x4E0D;&#x80FD;&#x63A5;&#x53D7;&#x590D;&#x5236;&#x6682;&#x505C;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E00;&#x4E2A;&#x65B0;&#x7684; drainer &#x66FF;&#x6362;&#xFF0C;&#x518D;&#x505C;&#x673A;&#x7EF4;&#x62A4;&#xFF0C;&#x5373;&#x66FF;&#x6362; drainer</li>
+</ul>
+</blockquote>
+<h5 id="&#xFF08;1&#xFF09;&#x539F;&#x5730;&#x505C;&#x6B62;-drainer">&#xFF08;1&#xFF09;&#x539F;&#x5730;&#x505C;&#x6B62; drainer</h5>
+<ul>
+<li>&#x67E5;&#x8BE2;&#x6240;&#x6709; drainer &#x72B6;&#x6001;&#x4EE5;&#x53CA;&#x5206;&#x5E03;</li>
+</ul>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd drainer
+</code></pre><ul>
+<li>&#x6682;&#x505C;&#x6307;&#x5B9A;&#x7684; drainer</li>
+</ul>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd pause-drainer -node-id ${ip}:${port}
+</code></pre><ul>
+<li>&#x67E5;&#x8BE2; drainer &#x72B6;&#x6001;</li>
+</ul>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd drainer
+</code></pre><blockquote>
+<p>&#x5F53;&#x5F85;&#x7EF4;&#x62A4;&#x4E3B;&#x673A;&#x4E0A; drainer &#x72B6;&#x6001;&#x53D8;&#x4E3A; paused &#x65F6;&#xFF0C;&#x8FDB;&#x884C;&#x4E0B;&#x4E00;&#x6B65;&#xFF0C;&#x5426;&#x5219;&#x7B49;&#x5F85;&#x3002;</p>
+</blockquote>
+<ul>
+<li><p>&#x5173;&#x673A;&#x7EF4;&#x62A4;</p>
+</li>
+<li><p>&#x91CD;&#x542F;&#x673A;&#x5668;</p>
+</li>
+<li><p>&#x91CD;&#x65B0;&#x4E0A;&#x7EBF; drainer</p>
+<pre><code>ansible-playbook start_drainer.yml
+</code></pre><ul>
+<li><p>&#x67E5;&#x8BE2;&#x6240;&#x6709; drainer &#x72B6;&#x6001;</p>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379     -cmd drainer
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h5 id="&#xFF08;2&#xFF09;&#x66FF;&#x6362;-drainer">&#xFF08;2&#xFF09;&#x66FF;&#x6362; drainer</h5>
+<ul>
+<li><p>&#x4E0B;&#x7EBF;&#x5F85;&#x7EF4;&#x62A4;&#x673A;&#x5668;&#x4E0A; drainer&#xFF0C;&#x8BB0;&#x5F55;&#x6700;&#x65B0;&#x7684; checkpoint ts</p>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd offline-drainer -node-id ${ip}:${port}
+</code></pre><ul>
+<li><p>&#x505C;&#x6389; drainer &#x8FDB;&#x7A0B;</p>
+<pre><code>ansible-playbook stop.yml -l drainer  drainer_name
+</code></pre></li>
+<li><p>&#x7F16;&#x8F91; inventory.ini &#x6587;&#x4EF6;&#xFF0C;&#x79FB;&#x9664; drainer  &#x8282;&#x70B9;&#x4FE1;&#x606F;</p>
+<pre><code>drainer_mysql ansible_host=xxx initial_commit_ts=&quot;xxx&quot;
+</code></pre></li>
+<li><p>&#x66F4;&#x65B0; Prometheus &#x914D;&#x7F6E;&#x5E76;&#x91CD;&#x542F;</p>
+<pre><code>ansible-playbook rolling_update_monitor.yml --tags=prometheus
+</code></pre></li>
+<li><p>&#x67E5;&#x8BE2;&#x6240;&#x6709; drainer &#x72B6;&#x6001;</p>
+<pre><code>bin/binlogctl -pd-urls=http://127.0.0.1:2379 -cmd drainer
+</code></pre></li>
+</ul>
+</li>
+<li><p>&#x5728;&#x5176;&#x4ED6;&#x673A;&#x5668;&#x90E8;&#x7F72; drainer &#xFF0C;&#x53C2;&#x8003;&#x6587;&#x6863;<a href="https://pingcap.com/docs-cn/stable/reference/tidb-binlog/deploy/" target="_blank">&#x90E8;&#x7F72; drainer</a> &#xFF0C;&#x4F7F;&#x7528;&#x4E4B;&#x524D;&#x6682;&#x505C; drainer &#x7684;  checkpoint ts &#x4F5C;&#x4E3A;&#x65B0; drainer &#x7684; initial_commit_ts  &#xFF0C;&#x540C;&#x65F6;&#x65B0; drainer &#x914D;&#x7F6E;&#x53C2;&#x8003;&#x65E7; drainer</p>
+</li>
+<li><p>&#x5173;&#x673A;&#x7EF4;&#x62A4;</p>
+</li>
+</ul>
+<h2 id="&#x516D;&#x3001;dm">&#x516D;&#x3001;DM</h2>
+<blockquote>
+<p>&#x4F7F;&#x7528; DM &#x5728;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x540C;&#x6B65;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x6D89;&#x53CA;&#x5230;&#x7EC4;&#x4EF6;&#x6240;&#x5728;&#x673A;&#x5668;&#x9700;&#x8981;&#x4E34;&#x65F6;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#xFF0C;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7EC4;&#x4EF6;&#x4E0D;&#x540C;&#x60C5;&#x51B5;&#x6765;&#x5206;&#x522B;&#x5904;&#x7406;</p>
+<ul>
+<li>&#x5982;&#x679C;&#x662F;&#x7EF4;&#x62A4; DM-master &#x7684;&#x673A;&#x5668;&#xFF0C;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x540C;&#x6B65;&#x6B63;&#x5E38;&#x8FDB;&#x884C;&#xFF0C;&#x6CE8;&#x610F;&#x671F;&#x95F4;&#x4E0D;&#x8981;&#x6267;&#x884C; DDL</li>
+<li>&#x5982;&#x679C;&#x662F;&#x7EF4;&#x62A4; DM-worker &#x7684;&#x673A;&#x5668;&#xFF0C;&#x539F;&#x5730;&#x505C;&#x6B62;&#x4F1A;&#x505C;&#x6B62;&#x6570;&#x636E;&#x540C;&#x6B65;&#xFF1B;&#x5982;&#x679C;&#x4E0D;&#x80FD;&#x63A5;&#x53D7;&#x505C;&#x6B62;&#x540C;&#x6B65;&#xFF0C;&#x53EF;&#x4EE5;&#x5148;&#x628A; worker &#x8FC1;&#x79FB;&#x8D70;&#x3002;</li>
+</ul>
+</blockquote>
+<h3 id="1&#x3001;dm-worker">1&#x3001;DM-worker</h3>
+<h5 id="1-&#x539F;&#x5730;&#x505C;&#x6B62;-dm-worker">(1) &#x539F;&#x5730;&#x505C;&#x6B62; dm-worker</h5>
+<ul>
+<li><p>&#x505C;&#x6389;&#x5F85;&#x7EF4;&#x62A4;&#x673A;&#x5668;&#x4E0A; dm-worker &#x670D;&#x52A1;</p>
+<ul>
+<li>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#x4E0A;&#x6267;&#x884C;<pre><code>ansible-playbook stop.yml --tags=dm-worker -l dm_worker3
+</code></pre></li>
+</ul>
+</li>
+<li><p>&#x5173;&#x673A;&#x7EF4;&#x62A4;</p>
+</li>
+<li>&#x91CD;&#x542F;&#x673A;&#x5668;</li>
+<li><p>&#x542F;&#x52A8; dm-worker &#x670D;&#x52A1;</p>
+<pre><code>ansible-playbook stop.yml --tags=dm-worker -l dm_worker3
+</code></pre><ul>
+<li><p>&#x672A;&#x542F;&#x52A8; sharding DDL &#x540C;&#x6B65;&#x529F;&#x80FD;</p>
+<ul>
+<li><p>&#x624B;&#x52A8;&#x542F;&#x52A8;&#x540C;&#x6B65;&#x4EFB;&#x52A1;</p>
+<pre><code>./dmctl  start-task task.yaml
+</code></pre></li>
+</ul>
+</li>
+<li><p>&#x542F;&#x52A8; sharding DDL &#x540C;&#x6B65;&#x529F;&#x80FD;</p>
+<ul>
+<li><p>&#x5F53; DM-worker &#x91CD;&#x542F;&#x53D1;&#x751F;&#x5728; sharding DDL &#x8BED;&#x53E5;&#x540C;&#x6B65;&#x5F00;&#x59CB;&#x524D;&#x6216;&#x5B8C;&#x6210;&#x540E;&#xFF0C;DM-worker &#x4F1A;&#x6839;&#x636E;&#x65AD;&#x70B9;&#x4FE1;&#x606F;&#x548C;&#x672C;&#x5730;&#x8BB0;&#x5F55;&#x7684;&#x5B50;&#x4EFB;&#x52A1;&#x4FE1;&#x606F;&#x81EA;&#x52A8;&#x6062;&#x590D;&#x6570;&#x636E;&#x540C;&#x6B65;</p>
+<ul>
+<li><p>&#x624B;&#x52A8;&#x542F;&#x52A8;&#x540C;&#x6B65;&#x4EFB;&#x52A1;</p>
+<pre><code>./dmctl  start-task task.yaml
+</code></pre></li>
+</ul>
+</li>
+<li><p>&#x5F53; DM-worker &#x91CD;&#x542F;&#x53D1;&#x751F;&#x5728; sharding DDL &#x8BED;&#x53E5;&#x540C;&#x6B65;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x51FA;&#x73B0;&#x4F5C;&#x4E3A; DDL lock owner &#x7684; DM-worker &#x5B9E;&#x4F8B;&#x5DF2;&#x6267;&#x884C;&#x4E86; DDL &#x8BED;&#x53E5;&#x5E76;&#x6210;&#x529F;&#x53D8;&#x66F4;&#x4E86;&#x4E0B;&#x6E38;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7ED3;&#x6784;&#xFF0C;&#x4F46;&#x5176;&#x4ED6; DM-worker &#x5B9E;&#x4F8B;&#x91CD;&#x542F;&#x800C;&#x65E0;&#x6CD5;&#x8DF3;&#x8FC7; DDL &#x8BED;&#x53E5;&#x4E5F;&#x65E0;&#x6CD5;&#x66F4;&#x65B0;&#x65AD;&#x70B9;&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+<ul>
+<li><p>&#x624B;&#x52A8;&#x542F;&#x52A8;&#x540C;&#x6B65;&#x4EFB;&#x52A1;</p>
+<pre><code>./dmctl  start-task task.yaml
+</code></pre></li>
+<li>&#x62A5;&#x9519;&#x5904;&#x7406;<a href="https://pingcap.com/docs-cn/stable/reference/tools/data-migration/features/manually-handling-sharding-ddl-locks/#%E5%9C%BA%E6%99%AF%E4%BA%8Cunlock-%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%83%A8%E5%88%86-dm-worker-%E9%87%8D%E5%90%AF" target="_blank">&#x53C2;&#x8003;&#x6587;&#x6863;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-&#x8FC1;&#x79FB;-dm-worker">(2) &#x8FC1;&#x79FB; dm-worker</h4>
+<ul>
+<li>&#x53C2;&#x8003;<a href="https://pingcap.com/docs-cn/stable/reference/tools/data-migration/cluster-operations/" target="_blank">&#x8FC1;&#x79FB; dm-worker &#x6587;&#x6863;</a></li>
+</ul>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x5728; sharding DDL &#x540C;&#x6B65;&#x8FC7;&#x7A0B;&#x4E2D;&#x91CD;&#x542F; DM-worker</p>
+<h3 id="2&#x3001;dm-master">2&#x3001;DM-master</h3>
+<h4 id="1-&#x539F;&#x5730;&#x505C;&#x6B62;">(1) &#x539F;&#x5730;&#x505C;&#x6B62;</h4>
+<ul>
+<li><p>&#x505C;&#x6389;&#x5E26;&#x7EF4;&#x62A4;&#x673A;&#x5668; dm-master &#x670D;&#x52A1;</p>
+<ul>
+<li>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#x6267;&#x884C;<pre><code>ansible-playbook stop.yml --tags=dm-master
+</code></pre></li>
+</ul>
+</li>
+<li><p>&#x5173;&#x673A;&#x7EF4;&#x62A4;</p>
+</li>
+<li>&#x91CD;&#x542F;&#x673A;&#x5668;</li>
+<li>&#x542F;&#x52A8;&#x670D;&#x52A1;<ul>
+<li>&#x5728;&#x4E2D;&#x63A7;&#x673A;&#x6267;&#x884C;<pre><code>ansible-playbook start.yml --tags=dm-master
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h4 id="2&#x8FC1;&#x79FB;-dm-master">(2)&#x8FC1;&#x79FB; DM-master</h4>
+<ul>
+<li>&#x53C2;&#x8003;<a href="https://pingcap.com/docs-cn/stable/reference/tools/data-migration/cluster-operations/#%E6%9B%BF%E6%8D%A2%E8%BF%81%E7%A7%BB-dm-master-%E5%AE%9E%E4%BE%8B" target="_blank">&#x8FC1;&#x79FB; dm-master &#x6587;&#x6863;</a></li>
+</ul>
+<h5 id="&#x6839;&#x636E;&#x90E8;&#x7F72;&#x60C5;&#x51B5;&#x786E;&#x5B9A;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#x65B9;&#x6848;">&#x6839;&#x636E;&#x90E8;&#x7F72;&#x60C5;&#x51B5;&#x786E;&#x5B9A;&#x5173;&#x673A;&#x7EF4;&#x62A4;&#x65B9;&#x6848;</h5>
+<ul>
+<li>&#x6570;&#x636E;&#x540C;&#x6B65;&#x4E0D;&#x80FD;&#x957F;&#x65F6;&#x95F4;&#x505C;&#x6B62;<ul>
+<li>&#x5305;&#x542B; DM-worker &#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;&#x53C2;&#x8003; DM-worker &#x90E8;&#x5206;&#xFF1A;02&#xFF08;&#x8FC1;&#x79FB; dm-worker &#xFF09;</li>
+<li>&#x5305;&#x542B; DM-master &#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;&#x53C2;&#x8003; DM-master &#x90E8;&#x5206;&#xFF1A;02&#xFF08;&#x8FC1;&#x79FB; dm-master&#xFF09;</li>
+</ul>
+</li>
+<li>&#x6570;&#x636E;&#x540C;&#x6B65;&#x80FD;&#x957F;&#x65F6;&#x95F4;&#x505C;&#x6B62;<ul>
+<li>&#x5305;&#x542B; DM-worker &#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;&#x53C2;&#x8003; DM-worker &#x90E8;&#x5206;&#xFF1A;01&#xFF08;&#x539F;&#x5730;&#x66F4;&#x65B0; dm-worker &#xFF09;</li>
+<li>&#x5305;&#x542B; DM-master &#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;&#x53C2;&#x8003; DM-master &#x90E8;&#x5206;&#xFF1A;01&#xFF08;&#x539F;&#x5730;&#x66F4;&#x65B0; dm-master&#xFF09;</li>
+</ul>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="multi-idc.html" class="navigation navigation-prev " aria-label="Previous page: 【SOP 系列 05】现有集群如何从单机房调整为跨机房部署">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="switch-binlog.html" class="navigation navigation-next " aria-label="Next page: 【SOP 系列 07】如何在线开启/关闭 TiDB Binlog">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"【SOP 系列 06】临时关机维护某线上主机","level":"1.1.9","depth":2,"next":{"title":"【SOP 系列 07】如何在线开启/关闭 TiDB Binlog","level":"1.1.10","depth":2,"path":"switch-binlog.md","ref":"switch-binlog.md","articles":[]},"previous":{"title":"【SOP 系列 05】现有集群如何从单机房调整为跨机房部署","level":"1.1.8","depth":2,"path":"multi-idc.md","ref":"multi-idc.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"maintenance.md","mtime":"2020-03-20T15:12:29.438Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-21T13:25:49.008Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
