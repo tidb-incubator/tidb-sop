@@ -1,7 +1,7 @@
 # Table of contents
 
+* [前言](README.md)
 * [TiDB 运维手册 SOP 系列 V1.0]
-  * [前言](README.md)
   * [【SOP 系列 01】 Release-2.1 升级到 Release-3.0 线上集群升级](upgradeto3.0.md)
   * [【SOP 系列 02】 Prometheus 等监控组件迁移](Prometheuemigrate.md)
   * [【SOP 系列 03】在线表结构变更（Online DDL）](onlineddl.md)
