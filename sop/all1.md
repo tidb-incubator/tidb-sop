@@ -1,13 +1,12 @@
-#前言
+# TiDB 运维手册 - SOP 系列 1.0 介绍
+
+## 版本
 
 版本 | 发表时间 | 发表人 | 主要修改内容
 ---- | ---- | ---- |----
 V1.0 | 20200301 | PingCAP  UE team | 第一版，有错误修改请邮件给 support@pingcap.com
 
-
-
-## TiDB 运维手册 - SOP 系列 1.0 介绍
-TiDB 作为一款新一代的分布式关系型数据库，在日常运维上会和传统的关系型数据库有一定的区别，用户生态团队给大量 TiDB 提供了社区技术支持，我们根据大家经常提问的一些运维问题，进行收敛，会逐步推出《TiDB 运维手册》，前期计划包括 SOP、POC、Case Stuady 三个系列。
+TiDB 作为一款新一代的分布式关系型数据库，在日常运维上会和传统的关系型数据库有一定的区别，用户生态团队给大量 TiDB 用户提供了社区技术支持，我们根据大家经常提问的一些运维问题，进行收敛，会逐步推出《TiDB 运维手册》，前期计划包括 SOP、POC、Case Stuady 三个系列。
 
 本期是 SOP（`Standard Operation Procedure`） 系列，是第一个版本，一共包括 10 个主题，每个主题我们都会通过标准的 step by step 步骤，来完整实现对某一个常见运维目标的操作。希望对大家有用，如果在操作过程遇到什么问题、或者你有什么需求，可以通过邮件、或者 AskTUG 进行讨论与反馈（ https://asktug.com/t/topic/33145 ），我们会定期 review 、修正内容、增加新的主题，进行版本迭代。
 
@@ -24,23 +23,23 @@ TiDB 作为一款新一代的分布式关系型数据库，在日常运维上会
     SOP 之 -- 如何修改 TiDB/TiKV/PD IP
     SOP 之 -- 如何修改 TiDB/TiKV/PD 端口
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 # 01 Release-2.1 升级到 Release-3.0 线上集群升级
 > 李仲舒  2020 年 2 月 10 日
 
@@ -390,7 +389,7 @@ Success!
 
 - 查看 overview 页面， `Overview` 页面的 `Services Port Status` 状态是否均为绿色的 up 状态；
 
-![](../media/)
+![](./media/update0.jpg)
 
 - 查看 TiDB 页面， `Query Summary` 监控栏的 `Duration、QPS`、`Statement OPS`、`QPS By Instance`、`Failed Query OPM` 监控项是否正常，在每个监控项左上↖️都会有一个“i” 光标放在那里会描述监控项的解释和预期情况；
 
