@@ -37,7 +37,7 @@ TiDB 作为一款新一代的分布式关系型数据库，在日常运维上会
 * SOP 之 -- 如何把多套集群的监控整合为一套 Grafana
 * SOP 之 -- 报警阈值的修改
 
-    如果您有哪些需求，也可以通过邮箱`support@pingcap.com`，或者给该 Git 项目提交 issue，来反馈您的需求。
+    如果您有哪些需求，或者想到哪些常用的主题，也可以通过邮箱`support@pingcap.com`，或者给该 Git 项目提交 issue，或者在 asktug 上留言（ https://asktug.com/t/topic/33145 ）来反馈您的想法。
  
  
  
