@@ -136,7 +136,7 @@ DDL 在执行过程中会有引入多个状态变更。以 Add Index 为例，�
 | truncate table | 1s 左右 |
 | alter table add / drop / modify column | 1s 左右 |
 | drop index | 1s 左右 |
-| add index | 取决于数据量、系统复杂、 DDL 参数的设置 |
+| add index | 取决于数据量、系统负载、 DDL 参数的设置 |
 
 > 注：以上为各类操作的预估耗时，请以实际操作耗时为准。
 
