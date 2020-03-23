@@ -22,8 +22,8 @@ TiDB 作为一款新一代的分布式关系型数据库，在日常运维上会
   * [【SOP 系列 06】临时关机维护某线上主机](maintenance.md)
   * [【SOP 系列 07】如何在线开启/关闭 TiDB Binlog](switch-binlog.md)
   * [【SOP 系列 08】线上集群扩缩容操作及要点](scale.md)
-  * [【SOP 系列 09】现网如何修改 tidb，tikv，pd 的 ip 地址](modify-ip.md)
-  * [【SOP 系列 10】现网如何修改 tidb，tikv，pd 的 port](modify-port.md)
+  * [【SOP 系列 09】现网如何修改 TiDB、TiKV、PD 的 ip 地址](modify-ip.md)
+  * [【SOP 系列 10】现网如何修改 TiDB、TiKV、PD 的 port](modify-port.md)
 
 
 
